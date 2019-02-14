@@ -4,9 +4,9 @@ SRC_PATH = src
 
 SRC_NAME = fichier_a_mettre.c
 
-CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
+CPPFLAGS = -I libft/includes/ -MMD
 
-LDFLAGS = -L libft/ -lft  -L /usr/local/include/ -lmlx
+LDFLAGS = -L libft/ -lft
 
 LDLIBS = -framework OpenGL -framework AppKit
 
@@ -32,7 +32,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -L lib -l SDL2-2.0.0 $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -l SDL2-2.0.0 $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(HEADER_PATH) -o $@ -c $<
