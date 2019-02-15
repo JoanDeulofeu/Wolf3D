@@ -1,16 +1,18 @@
-NAME = wolf3d
+NAME = fractol
 
 SRC_PATH = src
 
-SRC_NAME = fichier_a_mettre.c
+SRC_NAME = main.c
 
-CPPFLAGS = -I libft/includes/ -MMD
+CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
 
 LDFLAGS = -L libft/ -lft
 
-LDLIBS = -framework OpenGL -framework AppKit
-
 CC = gcc
+
+SDLFLAGS =  $(SDLINCL) -L frameworks/sdl2/lib -lSDL2
+
+SDLINCL = -I frameworks/sdl2/include
 
 CFLAGS = -Werror -Wall -Wextra
 
@@ -20,7 +22,7 @@ OBJ_PATH = obj
 
 HEADER_PATH = includes/
 
-HEADER_NAME = wolf3d.h
+HEADER_NAME = fractol.h
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
@@ -32,10 +34,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft/
-	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -l SDL2-2.0.0 $^ -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(SDLFLAGS) $^ -o $@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -I $(HEADER_PATH) -o $@ -c $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(SDLINCL) -I $(HEADER_PATH) -o $@ -c $<
 
 $(OBJ_PATH):
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
