@@ -3,8 +3,12 @@
 # include <SDL2/SDL.h>
 //# include "SDL_mixer.h"
 # include "libft.h"
+# include <unistd.h>
 # include <string.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 typedef struct		s_map
 {
@@ -18,5 +22,7 @@ typedef struct		s_map
 typedef struct		s_s
 {
 	t_map			**map;
+	int				high;
+	int				width;
 }					t_s;
 #endif

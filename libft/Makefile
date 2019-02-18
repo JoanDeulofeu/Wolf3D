@@ -17,7 +17,7 @@ SRC_NAME = ft_abs.c ft_atoi.c ft_bzero.c ft_count_if.c ft_foreach.c \
 			ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
 			ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 			ft_strupcase.c ft_swap.c ft_tolower.c ft_toupper.c get_next_line.c \
-			ft_swap_double.c
+			ft_swap_double.c ft_freetabtab.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

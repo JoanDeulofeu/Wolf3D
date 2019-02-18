@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:40:06 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/04 15:53:33 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/18 16:37:25 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int					ft_atoi(const char *str);
 void				*ft_bzero(void *s, size_t n);
 int					ft_count_if(char **tab, int (*f)(char*));
 void				ft_foreach(int *tab, int length, void (*f)(int));
+void				ft_freetabtab(char **tab);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
