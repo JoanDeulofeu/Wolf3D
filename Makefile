@@ -1,4 +1,4 @@
-NAME = fractol
+NAME = wolf3d
 
 SRC_PATH = src
 
@@ -22,7 +22,7 @@ OBJ_PATH = obj
 
 HEADER_PATH = includes/
 
-HEADER_NAME = fractol.h
+HEADER_NAME = wolf3d.h
 
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
