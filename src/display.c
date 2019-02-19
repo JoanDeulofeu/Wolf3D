@@ -2,7 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+// void ft_parsing_to_trace(t_s *s)
+// {
+// 	int x;
+// 	x = 0
+// 	while(x <= s->high)
+// 	{
+// 		if (s->envi<1000)
+// 			SDL_SetRenderDrawColor(s->render, 255, 0, 0, 255);
+// 		if (s->envi>1000)
+// 		SDL_RenderDrawPoint(s->render, x, y);
+// 		x++;
+// 	}
+// }
 int	ft_display(t_s *s)
 {
     // SDL_Event event;

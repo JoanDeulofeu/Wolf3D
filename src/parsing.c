@@ -64,12 +64,13 @@ void	ft_parsing(t_s *s, char *av)
 			tmp = ft_tmp_to_char(tmp, ',');
 			s->map[x][y]->item = atoi(tmp);
 			tmp = ft_tmp_to_char(tmp, ',');
+			ft_memdel((void **)&tab[i]);
 			i++; // on passe aux coordonees read suivantes
 			y++; // on passe aux coordonees map suivantes
 			ft_putstr("test\n");
 		}
 		ft_putstr("\n");
-		ft_freetabtab(tab);
+		ft_memdel((void **)&tab);
 		x++;
 		ft_memdel((void **)&line);
 	}
