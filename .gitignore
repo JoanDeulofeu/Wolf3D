@@ -1,6 +1,6 @@
 wolf3d
-obj
-frameworks
+obj/
+frameworks/
 
 # Prerequisites
 *.d
@@ -31,6 +31,8 @@ frameworks
 *.so
 *.so.*
 *.dylib
+*.json
+*.pc
 
 # Executables
 *.exe

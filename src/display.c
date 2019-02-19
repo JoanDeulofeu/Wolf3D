@@ -2,30 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WINDOW_WIDTH 600
 
-ft_display(t_s *s)
+int	ft_display(t_s *s)
 {
     // SDL_Event event;
-    SDL_Renderer *renderer;
-    SDL_Window *window;
-    int i;
 
-    SDL_Init(SDL_INIT_VIDEO);
-    SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_WIDTH, 0, &window, &renderer);
-    // SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-    // SDL_RenderClear(renderer);
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+
+    int i;
+    SDL_SetRenderDrawColor(s->render, 255, 0, 0, 255);
     for (i = 0; i < WINDOW_WIDTH; ++i)
-        SDL_RenderDrawPoint(renderer, i, i);
-	ft_parsing_to_trace(s)
-    SDL_RenderPresent(renderer);
-    // while (1) {
-    //     if (SDL_PollEvent(&event) && event.type == SDL_QUIT)
-    //         break;
-    // }
-    // SDL_DestroyRenderer(renderer);
-	if (window)
+        SDL_RenderDrawPoint(s->render, i, i);
+	// ft_parsing_to_trace(s);
+    SDL_RenderPresent(s->render);
+	if (s->window)
 	        {
 	            char cont = 1; /* Détermine si on continue la boucle principale */
 	            SDL_Event event;
@@ -90,11 +79,9 @@ ft_display(t_s *s)
 	                            fprintf(stdout, "\tsouris : %d\n",event.wheel.which);
 	                            fprintf(stdout, "\tposition : %d;%d\n",event.wheel.x,event.wheel.y);
 	                            break;
-
 	                        case SDL_JOYDEVICEADDED:
 	                            fprintf(stdout, "Connexion de joystick :\n");
 	                            fprintf(stdout, "\tjoystick : %d\n",event.jdevice.which);
-
 	                            if ( pJoy == NULL )
 	                            {
 	                                pJoy = SDL_JoystickOpen(event.jdevice.which);
@@ -144,8 +131,6 @@ ft_display(t_s *s)
 	                            fprintf(stdout, "\tbutton : %d\n",event.jhat.hat);
 	                            fprintf(stdout, "\tvaleur : %d\n",event.jhat.value);
 	                            break;
-
-
 	                        case SDL_WINDOWEVENT:
 	                            fprintf(stdout, "Un événement de fenêtre, sur la fenêtre : %d\n",event.window.windowID);
 	                            // En théorie, ici, il faudrait faire un autre test ou switch pour chaque type de cet événement
@@ -153,27 +138,23 @@ ft_display(t_s *s)
 	                        default:
 	                            fprintf(stdout, "Événement non traité : %d\n",event.type);
 	                    }
-
 	                    fprintf(stdout, "\n");
 	                }
-
 	                /* On a traité les événements, on peut continuer le jeu */
 	            }
-
 	            if ( pJoy != NULL )
 	            {
 	                SDL_JoystickClose(pJoy);
 	                pJoy = NULL;
 	            }
-
-	            SDL_DestroyWindow(window);
+	            SDL_DestroyWindow(s->window);
 	        }
 	        else
 	        {
 	            fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
 	        }
-	SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+	SDL_DestroyRenderer(s->render);
+    SDL_DestroyWindow(s->window);
     SDL_Quit();
     return EXIT_SUCCESS;
 }
