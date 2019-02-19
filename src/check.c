@@ -7,12 +7,13 @@ void	ft_check(t_s *s, char *av)
 	char	*line;
 	int		width;
 
-	fd = open(av[1], O_RDONLY);
-	i = -1;
-	width = 0;
+	fd = open(av, O_RDONLY);
 	while (get_next_line(fd, &line)) //tant que le fichier est pas fini
 	{
+		width = 0;
+		i = -1;
 		s->high++;
+		// printf("-high=%d",s->high);
 		while (line[++i] != '\0')
 		{
 			if (line[i] != ',' && line[i] != ' ' && line[i] != '\n' &&
@@ -23,9 +24,10 @@ void	ft_check(t_s *s, char *av)
 		}
 		if (s->high == 1)
 			s->width = width / 4;
+		// printf("width=%d et s->width=%d\n", width, s->width);
 		if ((width / 4) != s->width)
-			ft_usage(2);
-		ft_memdel((void **)line);
+			ft_usage(4);
+		ft_memdel((void **)&line);
 	}
 }
 
@@ -40,7 +42,17 @@ void	ft_check_post_pars(t_s *s)
 	{
 		while (y < s->width)
 		{
-			if (s->map[x][y]->envi < 0 || s->map[x][y]->envi > 2000)
+			if (s->map[x][y]->envi < 1 || s->map[x][y]->envi > 1999)
+				ft_usage(2);
+			if (s->map[x][y]->envi_sz < 1 || s->map[x][y]->envi_sz > 5)
+				ft_usage(2);
+			if (s->map[x][y]->roof < 1 || s->map[x][y]->roof > 999)
+				ft_usage(2);
+			if (s->map[x][y]->roof_sz < 1 || s->map[x][y]->roof_sz > 999)
+				ft_usage(2);
+			if (s->map[x][y]->item < 1 || s->map[x][y]->item > 99)
+				ft_usage(2);
+
 		}
 	}
 }

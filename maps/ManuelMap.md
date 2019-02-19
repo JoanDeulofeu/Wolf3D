@@ -2,21 +2,24 @@ structure =>	{environnement, hauteur envi, plafond, hauteur plafond, item}
 
 ENVIRONNEMENT
 {1, 999}		Les Sols
-1 = sol unicolor gris
 {1000, 1999}	Les Murs
+1 = unicolor gris
+1000 = unicolor vert
 
 HAUTEUR ENVI
 int de 1 (pour le sol) a 5 (hauteur max d'un mur)
 
 PLAFOND
+{1, 999}		Les Plafonds
 1 = pas de plafond
-2 = plafond unicolor gris
+2 = unicolor gris
 
 HAUTEUR PLAFOND
 int de 1 a 5
 
 ITEM
-int correspond a l'item
+{2, 5}		Le Joueur
+{6, 99}		Les Items
 1 = pas d'item
 2 = spawn joueur / camera direction nord
 3 = spawn joueur / camera direction est

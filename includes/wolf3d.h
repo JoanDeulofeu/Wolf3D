@@ -22,7 +22,7 @@ typedef struct		s_map
 
 typedef struct		s_s
 {
-	t_map			**map;
+	t_map			***map;
 	int				high;
 	int				width;
 	void			*render;
