@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_freetabtab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 16:41:25 by jgehin            #+#    #+#             */
-/*   Updated: 2019/02/18 16:41:37 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/02/19 12:44:36 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_freetabtab(char **tab)
 {
