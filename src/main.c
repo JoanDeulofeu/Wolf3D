@@ -2,6 +2,8 @@
 
 void	ft_usage(int usage)
 {
+	if (usage == -1)
+		ft_putstr("Error : Malloc failed\n");
 	if (usage == 1)
 		ft_putstr("Usage : ./Wolf3d map_file.txt\n");
 	if (usage == 2)
@@ -18,6 +20,7 @@ int main(int ac, char **av)
 	if (!(s = (t_s *)malloc(sizeof(t_s))))
 		return (0);
 	ft_check(s, av[1]);
-	ft_parsing(s, av[1]); // il faut malloc la map
+	ft_init_struct(s);
+	ft_parsing(s, av[1]);
 	return (0);
 }

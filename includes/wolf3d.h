@@ -25,4 +25,7 @@ typedef struct		s_s
 	int				high;
 	int				width;
 }					t_s;
+void	ft_check(t_s *s, char *av);
+void	ft_init_struct(t_s *s);
+void	ft_parsing(t_s *s, char *av);
 #endif

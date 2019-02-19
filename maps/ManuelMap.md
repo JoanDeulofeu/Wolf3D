@@ -15,3 +15,4 @@ int de 1 a 5
 
 ITEM
 int correspond a l'item
+1 = spawn joueur
