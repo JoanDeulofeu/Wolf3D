@@ -28,3 +28,19 @@ void	ft_check(t_s *s, char *av)
 		ft_memdel((void **)line);
 	}
 }
+
+void	ft_check_post_pars(t_s *s)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (x < s->high)
+	{
+		while (y < s->width)
+		{
+			if (s->map[x][y]->envi < 0 || s->map[x][y]->envi > 2000)
+		}
+	}
+}

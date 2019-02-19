@@ -2,6 +2,7 @@
 
 char	*ft_tmp_to_char(char *tmp, char c)
 {
+	
 	while (tmp != c) //avance jusqu'a la virgule
 		tmp++;
 	tmp++; //puis juste apres la virgule
@@ -67,4 +68,5 @@ void	ft_parsing(t_s *s, char *av)
 		ft_memdel((void **)line);
 	}
 	close(fd);
+	ft_check_post_pars(s);
 }
