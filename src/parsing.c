@@ -2,13 +2,13 @@
 
 char	*ft_tmp_to_char(char *tmp, char c)
 {
-	while (tmp[0] != c) //avance jusqu'a la virgule
+	while (tmp[0] != c)
 		tmp++;
-	tmp++; //puis juste apres la virgule
+	tmp++;
 	return (tmp);
 }
 
-void	ft_check_comma(char *block) // comma = virgule en Anglais
+void	ft_check_comma(char *block)
 {
 	int i;
 	int comma;
@@ -42,12 +42,12 @@ void	ft_parsing(t_s *s, char *av)
 	fd = open(av, O_RDONLY);
 	i = 0;
 	x = 0;
-	while (get_next_line(fd, &line)) //tant que le fichier est pas fini
+	while (get_next_line(fd, &line))
 	{
 		y = 0;
 		i = 0;
 		tab = ft_strsplit(line, ' ');
-		while (i < s->width) //tant que la ligne est pas fini
+		while (i < s->width)
 		{
 			tmp = tab[i];
 			ft_check_comma(tmp);
@@ -62,8 +62,8 @@ void	ft_parsing(t_s *s, char *av)
 			s->map[x][y]->item = atoi(tmp);
 			tmp = ft_tmp_to_char(tmp, ',');
 			ft_memdel((void **)&tab[i]);
-			i++; // on passe aux coordonees read suivantes
-			y++; // on passe aux coordonees map suivantes
+			i++;
+			y++;
 		}
 		ft_memdel((void **)&tab);
 		x++;

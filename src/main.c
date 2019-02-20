@@ -14,6 +14,8 @@ void	ft_usage(int usage)
 		ft_putstr("Warning : Invalid file (surround map w/ wall)\n");
 	if (usage == 5)
 		ft_putstr("Warning : Invalid file (value not in range)\n");
+	if (usage == 6)
+		printf("Erreur de chargement de l'image : %s",SDL_GetError());
 	exit(0);
 }
 
@@ -28,6 +30,7 @@ int main(int ac, char **av)
 		return (0);
 	s->high = 0;
 	s->width = 0;
+	s->initplayer = 0;
 	ft_check(s, av[1]);
 	ft_init_struct(s);
 	ft_parsing(s, av[1]);

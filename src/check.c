@@ -8,12 +8,11 @@ void	ft_check(t_s *s, char *av)
 	int		width;
 
 	fd = open(av, O_RDONLY);
-	while (get_next_line(fd, &line)) //tant que le fichier est pas fini
+	while (get_next_line(fd, &line))
 	{
 		width = 0;
 		i = -1;
 		s->high++;
-		// printf("-high=%d",s->high);
 		while (line[++i] != '\0')
 		{
 			if (line[i] != ',' && line[i] != ' ' && line[i] != '\n' &&
@@ -24,7 +23,6 @@ void	ft_check(t_s *s, char *av)
 		}
 		if (s->high == 1)
 			s->width = width / 4;
-		// printf("width=%d et s->width=%d\n", width, s->width);
 		if ((width / 4) != s->width)
 			ft_usage(2);
 		ft_memdel((void **)&line);

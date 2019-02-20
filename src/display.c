@@ -1,24 +1,11 @@
 #include <wolf3d.h>
 
-// void	ft_moveplayer(t_s *s)
-// {
-// 	SDL_QueryTexture(s->player, NULL, NULL, &s->posplayer.w, &s->posplayer.h);
-// 	SDL_RenderCopy(s->render, s->player, NULL, &s->posplayer);
-// 	SDL_RenderPresent(s->render);
-// 	SDL_SetRenderTarget(s->render, NULL);
-// }
-
 void	ft_display(t_s *s)
 {
-	// int i;
-	// SDL_SetRenderDrawColor(s->render, 255, 0, 0, 255);
-	// for (i = 0; i < WINDOW_WIDTH; ++i)
-	// 	SDL_RenderDrawPoint(s->render, i, i);
 	ft_draw_minimap(s);
-	// SDL_RenderPresent(s->render);
 	if (s->window)
 	{
-		char cont = 1; /* Détermine si on continue la boucle principale */
+		char cont = 1;
 		SDL_Event event;
 		while (cont != 0)
 		{
@@ -35,13 +22,14 @@ void	ft_display(t_s *s)
 						break;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
-						s->posplayer.y--;
+						s->posplayer.y -= 2;
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
-						s->posplayer.y++;
+						s->posplayer.y += 2;
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
-						s->posplayer.x--;
+						s->posplayer.x -= 2;
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
-						s->posplayer.x++;
+						s->posplayer.x += 2;
+					ft_draw_minimap(s);
 				}
 			}
 		}
@@ -56,11 +44,9 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 	x = 0;
 	y = 0;
 	if (txr == s->wall)
-		SDL_SetRenderDrawColor(s->render,255,0,0,255);
+		SDL_SetRenderDrawColor(s->render,255,30,30,255);
 	if (txr == s->ground)
-		SDL_SetRenderDrawColor(s->render,0,255,0,255);
-	if (txr == s->player)
-		SDL_SetRenderDrawColor(s->render,0,0,255,255);
+		SDL_SetRenderDrawColor(s->render,130,255,240,255);
 	SDL_SetRenderTarget(s->render, txr);
 	while (y != high)
 	{
@@ -76,16 +62,18 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 
 void	ft_draw_minimap(t_s *s)
 {
-	int y;
-	int x = 0;
-	int space = 50;
-	SDL_Rect position;
+	int				y;
+	int				x;
+	int				space;
+	SDL_Rect 		position;
+	SDL_Surface		*pika;
+
+	space = 50;
+	x = 0;
 	s->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
 	ft_draw_rect(s, s->wall, space, space);
 	s->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
 	ft_draw_rect(s, s->ground, space, space);
-	s->player = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,1,1);
-	ft_draw_rect(s, s->player, 1, 1);
 	SDL_SetRenderTarget(s->render, NULL);
 	while (x < s->high)
 	{
@@ -99,22 +87,26 @@ void	ft_draw_minimap(t_s *s)
 			SDL_QueryTexture(s->wall, NULL, NULL, &position.w, &position.h);
 			SDL_RenderCopy(s->render, s->wall, NULL, &position);
 		}
-		else // si on remets un if je gagne une canette
+		else
 		{
 			SDL_QueryTexture(s->ground, NULL, NULL, &position.w, &position.h);
 			SDL_RenderCopy(s->render, s->ground, NULL, &position);
-			if (s->map[x][y]->item == 2)
+			if (s->map[x][y]->item == 2 && s->initplayer == 0)
 			{
-				ft_putstr("test");
 				s->posplayer.x = position.x + space / 2;
 				s->posplayer.y = position.y + space / 2;
-				// SDL_QueryTexture(s->player, NULL, NULL, &s->posplayer.w, &s->posplayer.h);
-				// SDL_RenderCopy(s->render, s->player, NULL, &s->posplayer);
+				s->initplayer++;
 			}
 		}
 		y++;
 		}
 	x++;
 	}
-	SDL_RenderPresent(s->render);
+if(!(pika = SDL_LoadBMP("Pikapika.bmp")))
+    ft_usage(6);
+s->player = SDL_CreateTextureFromSurface(s->render, pika);
+SDL_FreeSurface(s->pika);
+SDL_QueryTexture(s->player, NULL, NULL, &s->posplayer.w, &s->posplayer.h);
+SDL_RenderCopy(s->render, s->player, NULL, &s->posplayer);
+SDL_RenderPresent(s->render);
 }
