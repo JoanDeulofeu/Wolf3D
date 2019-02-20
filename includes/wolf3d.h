@@ -31,6 +31,8 @@ typedef struct		s_s
 	void			*window;
 	SDL_Texture 	*wall;
 	SDL_Texture 	*ground;
+	SDL_Texture 	*player;
+	SDL_Rect		posplayer;
 }					t_s;
 void	ft_check_post_pars(t_s *s);
 void	ft_check(t_s *s, char *av);
