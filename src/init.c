@@ -25,7 +25,7 @@ void	ft_init_struct(t_s *s)
 		x++;
 	}
 	SDL_Init(SDL_INIT_VIDEO);
-    SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_WIDTH, 0, &window, &render);
+    SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HIGH, 0, &window, &render);
 	s->render = render;
 	s->window = window;
 }

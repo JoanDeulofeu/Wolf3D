@@ -11,6 +11,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # define WINDOW_WIDTH 600
+# define WINDOW_HIGH 400
 
 typedef struct		s_map
 {
@@ -35,4 +36,5 @@ void	ft_init_struct(t_s *s);
 void	ft_parsing(t_s *s, char *av);
 void	ft_display(t_s *s);
 void	ft_usage(int usage);
+void	ft_draw_minimap(t_s *s);
 #endif
