@@ -29,20 +29,45 @@ void	ft_display(t_s *s)
 	}
 }
 
+void	ft_draw_rect(t_s *s, char txr, int high, int width)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	if (txr == 'w')
+	{
+		SDL_SetRenderDrawColor(s->render,255,0,0,255);
+		SDL_SetRenderTarget(s->render, s->wall);
+	}
+	else
+	{
+		SDL_SetRenderDrawColor(s->render,0,255,0,255);
+		SDL_SetRenderTarget(s->render, s->ground);
+	}
+	while (y != high)
+	{
+		while (x != width)
+		{
+			SDL_RenderDrawPoint(s->render, x, y);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
 void	ft_draw_minimap(t_s *s)
 {
 	int y;
 	int x = 0;
-	int space = 10;
+	int space = 50;
 	SDL_Rect position;
-	SDL_Texture *wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,10,10);
-	SDL_SetRenderDrawColor(s->render,255,0,0,255);
-	SDL_SetRenderTarget(s->render, wall); //on modifie la texture
-	SDL_RenderDrawLine(s->render,0,0,200,100);
-	SDL_Texture *ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,10,10);
-	SDL_SetRenderDrawColor(s->render,0,255,0,255);
-	SDL_SetRenderTarget(s->render, ground); //on modifie la texture
-	SDL_RenderDrawLine(s->render,0,0,200,100);
+	s->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
+	ft_draw_rect(s, 'w', space, space);
+	s->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
+	ft_draw_rect(s, 'g', space, space);
 	SDL_SetRenderTarget(s->render, NULL);
 	while (x < s->high)
 	{
@@ -51,15 +76,15 @@ void	ft_draw_minimap(t_s *s)
 		{
 		position.x = y * space;
 		position.y = x * space;
-		if (s->map[x][y]->envi > 999 )
+		if (s->map[x][y]->envi > 999)
 		{
-			SDL_QueryTexture(wall, NULL, NULL, &position.w, &position.h);
-			SDL_RenderCopy(s->render,wall,NULL,&position);
+			SDL_QueryTexture(s->wall, NULL, NULL, &position.w, &position.h);
+			SDL_RenderCopy(s->render, s->wall, NULL, &position);
 		}
 		else // si on remets un if je gagne une canette
 		{
-			SDL_QueryTexture(ground, NULL, NULL, &position.w, &position.h);
-			SDL_RenderCopy(s->render,ground,NULL,&position);
+			SDL_QueryTexture(s->ground, NULL, NULL, &position.w, &position.h);
+			SDL_RenderCopy(s->render, s->ground, NULL, &position);
 		}
 		y++;
 		}

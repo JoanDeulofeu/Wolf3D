@@ -49,11 +49,8 @@ void	ft_parsing(t_s *s, char *av)
 		tab = ft_strsplit(line, ' ');
 		while (i < s->width) //tant que la ligne est pas fini
 		{
-			// ft_putstr("test0\n");
 			tmp = tab[i];
-			// ft_putstr("test1\n");
 			ft_check_comma(tmp);
-			// ft_putstr("test2\n");
 			s->map[x][y]->envi = atoi(tmp);
 			tmp = ft_tmp_to_char(tmp, ',');
 			s->map[x][y]->envi_sz = atoi(tmp);

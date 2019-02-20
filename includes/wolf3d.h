@@ -29,6 +29,8 @@ typedef struct		s_s
 	int				width;
 	void			*render;
 	void			*window;
+	SDL_Texture 	*wall;
+	SDL_Texture 	*ground;
 }					t_s;
 void	ft_check_post_pars(t_s *s);
 void	ft_check(t_s *s, char *av);
