@@ -26,7 +26,7 @@ void	ft_check(t_s *s, char *av)
 			s->width = width / 4;
 		// printf("width=%d et s->width=%d\n", width, s->width);
 		if ((width / 4) != s->width)
-			ft_usage(4);
+			ft_usage(2);
 		ft_memdel((void **)&line);
 	}
 }
@@ -35,7 +35,9 @@ void	ft_check_post_pars(t_s *s)
 {
 	int x;
 	int y;
+	int player;
 
+	player = 0;
 	x = 0;
 	y = 0;
 	while (x < s->high)
@@ -48,11 +50,21 @@ void	ft_check_post_pars(t_s *s)
 				ft_usage(2);
 			if (s->map[x][y]->roof < 1 || s->map[x][y]->roof > 999)
 				ft_usage(2);
-			if (s->map[x][y]->roof_sz < 1 || s->map[x][y]->roof_sz > 999)
+			if (s->map[x][y]->roof_sz < 1 || s->map[x][y]->roof_sz > 5)
 				ft_usage(2);
 			if (s->map[x][y]->item < 1 || s->map[x][y]->item > 99)
 				ft_usage(2);
-
+			if ((x == 0 || x == s->high - 1) && s->map[x][y]->envi < 1000)
+				ft_usage(4);
+			if ((y == 0 || y == s->width - 1) && s->map[x][y]->envi < 1000)
+				ft_usage(4);
+			if (s->map[x][y]->item > 1 && s->map[x][y]->item < 6)
+				player++;
+			y++;
 		}
+		y = 0;
+		x++;
 	}
+	if (player != 1)
+		ft_usage(3);
 }

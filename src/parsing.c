@@ -67,13 +67,11 @@ void	ft_parsing(t_s *s, char *av)
 			ft_memdel((void **)&tab[i]);
 			i++; // on passe aux coordonees read suivantes
 			y++; // on passe aux coordonees map suivantes
-			ft_putstr("test\n");
 		}
-		ft_putstr("\n");
 		ft_memdel((void **)&tab);
 		x++;
 		ft_memdel((void **)&line);
 	}
 	close(fd);
-	// ft_check_post_pars(s);
+	ft_check_post_pars(s);
 }

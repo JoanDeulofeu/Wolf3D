@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -28,9 +29,10 @@ typedef struct		s_s
 	void			*render;
 	void			*window;
 }					t_s;
+void	ft_check_post_pars(t_s *s);
 void	ft_check(t_s *s, char *av);
 void	ft_init_struct(t_s *s);
 void	ft_parsing(t_s *s, char *av);
-int		ft_display(t_s *s);
+void	ft_display(t_s *s);
 void	ft_usage(int usage);
 #endif
