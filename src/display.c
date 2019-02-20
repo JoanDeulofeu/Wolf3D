@@ -29,23 +29,18 @@ void	ft_display(t_s *s)
 	}
 }
 
-void	ft_draw_rect(t_s *s, char txr, int high, int width)
+void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 {
 	int x;
 	int y;
 
 	x = 0;
 	y = 0;
-	if (txr == 'w')
-	{
+	if (txr == s->wall)
 		SDL_SetRenderDrawColor(s->render,255,0,0,255);
-		SDL_SetRenderTarget(s->render, s->wall);
-	}
-	else
-	{
+	if (txr == s->ground)
 		SDL_SetRenderDrawColor(s->render,0,255,0,255);
-		SDL_SetRenderTarget(s->render, s->ground);
-	}
+	SDL_SetRenderTarget(s->render, txr);
 	while (y != high)
 	{
 		while (x != width)
@@ -65,9 +60,9 @@ void	ft_draw_minimap(t_s *s)
 	int space = 50;
 	SDL_Rect position;
 	s->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
-	ft_draw_rect(s, 'w', space, space);
+	ft_draw_rect(s, s->wall, space, space);
 	s->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
-	ft_draw_rect(s, 'g', space, space);
+	ft_draw_rect(s, s->ground, space, space);
 	SDL_SetRenderTarget(s->render, NULL);
 	while (x < s->high)
 	{
