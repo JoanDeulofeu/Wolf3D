@@ -45,8 +45,8 @@ void	ft_draw_minimap(t_s *s)
 		y = 0;
 		while (y < s->width)
 		{
-			position.x = y * space;
-			position.y = x * space;
+			position.x = x * space;
+			position.y = y * space;
 			if (s->map[x][y]->envi > 999)
 			{
 				SDL_QueryTexture(s->wall, NULL, NULL, &position.w, &position.h);
@@ -58,8 +58,11 @@ void	ft_draw_minimap(t_s *s)
 				SDL_RenderCopy(s->render, s->ground, NULL, &position);
 				if ((s->map[x][y]->item > 1 && s->map[x][y]->item < 6)&& s->initplayer == 0)
 				{
-					s->posplayer.x = position.x;
-					s->posplayer.y = position.y;
+					s->dirplayer = (s->map[x][y]->item - 1) * 100;
+					s->posplayer.x = position.x + space / 8;
+					s->floatx = s->posplayer.x;
+					s->posplayer.y = position.y + space / 8;
+					s->floaty = s->posplayer.y;
 					s->initplayer++;
 				}
 			}
@@ -67,15 +70,15 @@ void	ft_draw_minimap(t_s *s)
 		}
 		x++;
 	}
-	s->xplayer = s->posplayer.x + space / 2;
-	s->yplayer = s->posplayer.y + space / 2;
+	s->xplayer = s->posplayer.x + space / 8;
+	s->yplayer = s->posplayer.y + space / 8;
 	if(!(pika = SDL_LoadBMP("Pikapika.bmp")))
 	    ft_usage(6);
 	s->player = SDL_CreateTextureFromSurface(s->render, pika);
 	SDL_FreeSurface(s->pika);
 	// SDL_QueryTexture(s->player, NULL, NULL, &s->posplayer.w, &s->posplayer.h);
-	s->posplayer.h = space;
-	s->posplayer.w = space;
+	s->posplayer.h = space / 4;
+	s->posplayer.w = space / 4;
 	SDL_RenderCopy(s->render, s->player, NULL, &s->posplayer);
 	SDL_RenderPresent(s->render);
 }

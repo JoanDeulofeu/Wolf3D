@@ -41,10 +41,10 @@ void	ft_parsing(t_s *s, char *av)
 
 	fd = open(av, O_RDONLY);
 	i = 0;
-	x = 0;
+	y = 0;
 	while (get_next_line(fd, &line))
 	{
-		y = 0;
+		x = 0;
 		i = 0;
 		tab = ft_strsplit(line, ' ');
 		while (i < s->width)
@@ -63,10 +63,10 @@ void	ft_parsing(t_s *s, char *av)
 			tmp = ft_tmp_to_char(tmp, ',');
 			ft_memdel((void **)&tab[i]);
 			i++;
-			y++;
+			x++;
 		}
 		ft_memdel((void **)&tab);
-		x++;
+		y++;
 		ft_memdel((void **)&line);
 	}
 	close(fd);
