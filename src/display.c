@@ -22,16 +22,16 @@ void	ft_display(t_s *s)
 						break;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
-						// if (ft_hitbox(s, SDL_SCANCODE_W))
+						if (ft_hitbox(s, SDL_SCANCODE_W))
 							ft_dir_player(s, 1);// y-
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
-						// if (ft_hitbox(s, SDL_SCANCODE_S))
+						if (ft_hitbox(s, SDL_SCANCODE_S))
 							ft_dir_player(s, 2);// y+
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
-						// if (ft_hitbox(s, SDL_SCANCODE_D))
+						if (ft_hitbox(s, SDL_SCANCODE_D))
 							ft_dir_player(s, 3);// x+
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
-						// if (ft_hitbox(s, SDL_SCANCODE_A))
+						if (ft_hitbox(s, SDL_SCANCODE_A))
 							ft_dir_player(s, 4);// x-
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
