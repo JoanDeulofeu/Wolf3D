@@ -22,16 +22,16 @@ void	ft_display(t_s *s)
 						break;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
-						if (ft_hitbox(s, SDL_SCANCODE_W))
+						if (ft_hitbox(s, 1))
 							ft_dir_player(s, 1);// y-
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
-						if (ft_hitbox(s, SDL_SCANCODE_S))
+						if (ft_hitbox(s, 2))
 							ft_dir_player(s, 2);// y+
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
-						if (ft_hitbox(s, SDL_SCANCODE_D))
+						if (ft_hitbox(s, 3))
 							ft_dir_player(s, 3);// x+
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
-						if (ft_hitbox(s, SDL_SCANCODE_A))
+						if (ft_hitbox(s, 4))
 							ft_dir_player(s, 4);// x-
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
@@ -81,39 +81,63 @@ void ft_dir_player(t_s *s, int i)
 	}
 	if (s->dirplayer <= 100)
 	{
+		if(ft_hitbox(s,1))
+		{
 		s->floaty -= (1-(s->dirplayer/100));
 		if (s->floaty < s->posplayer.y - 0.5)
 			s->posplayer.y --;
+		}
+		if(ft_hitbox(s,3))
+		{
 		s->floatx += (s->dirplayer/100);
 		if (s->floatx > s->posplayer.x + 0.5)
 			s->posplayer.x ++;
+		}
 	}
 	if (s->dirplayer > 100 && s->dirplayer <= 200)
 	{
+		if(ft_hitbox(s,2))
+		{
 		s->floaty += ((s->dirplayer-100)/100);
-		if (s->floaty > s->posplayer.y + 0.5)
+		if (s->floaty > s->posplayer.y + 0.5 )
 			s->posplayer.y ++;
+		}
+		if(ft_hitbox(s,3))
+		{
 		s->floatx += (1-((s->dirplayer-100)/100));
-		if (s->floatx > s->posplayer.x + 0.5)
+		if (s->floatx > s->posplayer.x + 0.5 )
 			s->posplayer.x ++;
+		}
 	}
 	if (s->dirplayer > 200 && s->dirplayer <= 300)
 	{
+		if(ft_hitbox(s,1))
+		{
 		s->floaty += (1-((s->dirplayer-200)/100));
-		if (s->floaty > s->posplayer.y + 0.5)
+		if (s->floaty > s->posplayer.y + 0.5 )
 			s->posplayer.y ++;
+		}
+		if(ft_hitbox(s,4))
+		{
 		s->floatx -= ((s->dirplayer-200)/100);
-		if (s->floatx < s->posplayer.x - 0.5)
+		if (s->floatx < s->posplayer.x - 0.5 )
 			s->posplayer.x --;
+		}
 	}
 	if (s->dirplayer > 300 && s->dirplayer <= 400)
 	{
+		if(ft_hitbox(s,2))
+		{
 		s->floaty -= ((s->dirplayer-300)/100);
-		if (s->floaty < s->posplayer.y - 0.5)
+		if (s->floaty < s->posplayer.y - 0.5 )
 			s->posplayer.y --;
+		}
+		if(ft_hitbox(s,4))
+		{
 		s->floatx -= (1-((s->dirplayer-300)/100));
 		if (s->floatx < s->posplayer.x - 0.5)
 			s->posplayer.x --;
+		}
 	}
 	s->dirplayer = tmp;
 }
