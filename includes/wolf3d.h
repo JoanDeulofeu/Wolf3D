@@ -12,6 +12,7 @@
 # include <fcntl.h>
 # define WINDOW_WIDTH 600
 # define WINDOW_HIGH 400
+# define SPACE 50
 
 typedef struct		s_map
 {
@@ -33,6 +34,8 @@ typedef struct		s_s
 	SDL_Texture 	*ground;
 	SDL_Texture 	*player;
 	SDL_Rect		posplayer;
+	int				xplayer;
+	int				yplayer;
 	int				initplayer;
 	SDL_Surface		*pika;
 }					t_s;
