@@ -59,9 +59,9 @@ void	ft_draw_minimap(t_s *s)
 				if ((s->map[x][y]->item > 1 && s->map[x][y]->item < 6)&& s->initplayer == 0)
 				{
 					s->dirplayer = (s->map[x][y]->item - 2) * 100;
-					s->posplayer.x = position.x + space / 8;
+					s->posplayer.x = position.x;
 					s->floatx = s->posplayer.x;
-					s->posplayer.y = position.y + space / 8;
+					s->posplayer.y = position.y;
 					s->floaty = s->posplayer.y;
 					s->initplayer++;
 				}
@@ -70,8 +70,6 @@ void	ft_draw_minimap(t_s *s)
 		}
 		x++;
 	}
-	s->xplayer = s->posplayer.x + space / 8;
-	s->yplayer = s->posplayer.y + space / 8;
 	if(!(pika = SDL_LoadBMP("Pikapika.bmp")))
 	    ft_usage(6);
 	s->player = SDL_CreateTextureFromSurface(s->render, pika);
