@@ -50,7 +50,7 @@ void	ft_display(t_s *s)
 	}
 }
 
-void ft_dir_player(t_s *s, int i, int mode)//mode 1 = deplacement 2= raycasting
+void ft_dir_player(t_s *s, int i)
 {
 	int tmp;
 	tmp = s->pos->dirplayer;
@@ -142,8 +142,8 @@ void ft_dir_raycasting(t_s *s, int i)
 {
 	int tmp;
 	tmp = s->pos->dirplayer;
-	s->pos->moovex = s->pos->floatx + space / 8;
-	s->pos->moovey = s->pos->floaty + space / 8;
+	s->pos->moovex = s->pos->floatx + SPACE / 8;
+	s->pos->moovey = s->pos->floaty + SPACE / 8;
 	if (i == 2)
 	{
 		if (s->pos->dirplayer < 200)
@@ -167,7 +167,7 @@ void ft_dir_raycasting(t_s *s, int i)
 	}
 	if (s->pos->dirplayer <= 100)
 	{
-		while(ft_hitbox_ray(s,1) ft_hitbox_ray(s,3))
+		while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,3))
 		{
 			s->pos->moovey -= (1-(s->pos->dirplayer/100));
 			s->pos->moovex += (s->pos->dirplayer/100);

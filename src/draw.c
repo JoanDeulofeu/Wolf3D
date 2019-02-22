@@ -9,9 +9,9 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 	x = 0;
 	y = 0;
 	if (txr == s->tex->wall)
-		SDL_SetRenderDrawColor(s->render,255,30,30,255);
+		SDL_SetRenderDrawColor(s->render,155,30,30,255);
 	if (txr == s->tex->ground)
-		SDL_SetRenderDrawColor(s->render,130,255,240,255);
+		SDL_SetRenderDrawColor(s->render,130,130,100,255);
 	SDL_SetRenderTarget(s->render, txr);
 	while (y != high)
 	{

@@ -12,7 +12,7 @@
 # include <fcntl.h>
 # define WINDOW_WIDTH 800
 # define WINDOW_HIGH 800
-# define SPACE 64
+# define SPACE 128
 
 typedef struct		s_map
 {
@@ -40,6 +40,9 @@ typedef struct		s_pos
 	int				initplayer;
 	float			floatx;
 	float			floaty;
+	float			moovex;
+	float			moovey;
+	int				witem;
 	float			dirplayer;
 }					t_pos;
 
@@ -63,7 +66,9 @@ typedef struct		s_s
 }					t_s;
 
 void				ft_dir_player(t_s *s, int i);
+void				ft_dir_raycasting(t_s *s, int i);
 int					ft_hitbox(t_s *s, int key);
+int					ft_hitbox_ray(t_s *s, int key);
 void				ft_check_post_pars(t_s *s);
 void				ft_check(t_s *s, char *av);
 void				ft_init_struct(t_s *s);
