@@ -30,7 +30,6 @@ int main(int ac, char **av)
 		return (0);
 	s->high = 0;
 	s->width = 0;
-	s->initplayer = 0;
 	ft_check(s, av[1]);
 	ft_init_struct(s);
 	ft_parsing(s, av[1]);
