@@ -29,7 +29,7 @@ void	ft_rcasting(t_s *s)
 		ft_dir_raycasting(s, 1);
 		dis = ft_sqrt(pow(s->pos->xplayer - s->pos->moovex, 2) + pow(s->pos->yplayer - s->pos->moovey, 2));
 		dis = (dis <= 0) ? 1 : dis;
-		hp = 10 * (200 / dis); //10=distance ecran *** 200=hauteur du mur defini
+		hp = 20 * (400 / dis); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
 
