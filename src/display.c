@@ -23,13 +23,29 @@ void	ft_display(t_s *s)
 						break;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
-							ft_dir_player(s, 1);// y-
+							{
+								ft_dir_player(s, 1);
+								ft_dir_player(s, 1);
+								ft_dir_player(s, 1);
+							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
-							ft_dir_player(s, 2);// y+
+							{
+								ft_dir_player(s, 2);
+								ft_dir_player(s, 2);
+								ft_dir_player(s, 2);
+							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
-							ft_dir_player(s, 3);// x+
+							{
+								ft_dir_player(s, 3);
+								ft_dir_player(s, 3);
+								ft_dir_player(s, 3);
+							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
-							ft_dir_player(s, 4);// x-
+							{
+								ft_dir_player(s, 4);
+								ft_dir_player(s, 4);
+								ft_dir_player(s, 4);
+							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
 						s->pos->dirplayer += 10;
@@ -73,7 +89,7 @@ void ft_dir_player(t_s *s, int i)
 	if (i == 3)
 	{
 		if (s->pos->dirplayer > 300)
-			s->pos->dirplayer -= 100;
+			s->pos->dirplayer -= 300;
 		else
 			s->pos->dirplayer += 100;
 	}
@@ -165,7 +181,7 @@ void ft_dir_raycasting(t_s *s, int i)
 	if (i == 3)
 	{
 		if (s->pos->dirplayer > 300)
-			s->pos->dirplayer -= 100;
+			s->pos->dirplayer -= 300;
 		else
 			s->pos->dirplayer += 100;
 	}
