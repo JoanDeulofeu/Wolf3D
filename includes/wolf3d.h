@@ -23,25 +23,45 @@ typedef struct		s_map
 	int				item;
 }					t_map;
 
-typedef struct		s_s
+typedef struct		s_inv
 {
-	t_map			***map;
-	int				high;
-	int				width;
-	void			*render;
-	void			*window;
-	SDL_Texture 	*wall;
-	SDL_Texture 	*ground;
-	SDL_Texture 	*player;
+	int				health;
+	int				munition;
+	int				gun;
+	int				lives;
+	int				score;
+}					t_inv;
+
+typedef struct		s_pos
+{
 	SDL_Rect		posplayer;
 	int				xplayer;
 	int				yplayer;
 	int				initplayer;
-	float           floatx;
-	float           floaty;
-	float           dirplayer;
-	SDL_Surface		*pika;
+	float			floatx;
+	float			floaty;
+	float			dirplayer;
+}					t_pos;
+
+typedef struct		s_tex
+{
+	SDL_Texture 	*wall;
+	SDL_Texture 	*ground;
+	SDL_Texture 	*player;
+}					t_tex;
+
+typedef struct		s_s
+{
+	t_map			***map;
+	t_inv			*inv;
+	t_pos			*pos;
+	t_tex			*tex;
+	int				high;
+	int				width;
+	void			*render;
+	void			*window;
 }					t_s;
+
 void				ft_dir_player(t_s *s, int i);
 int					ft_hitbox(t_s *s, int key);
 void				ft_check_post_pars(t_s *s);

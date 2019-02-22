@@ -28,4 +28,10 @@ void	ft_init_struct(t_s *s)
     SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HIGH, 0, &window, &render);
 	s->render = render;
 	s->window = window;
+	if (!(s->inv = (t_inv*)malloc(sizeof(t_inv))))
+		ft_usage(-1);
+	if (!(s->pos = (t_pos*)malloc(sizeof(t_pos))))
+		ft_usage(-1);
+	if (!(s->tex = (t_tex*)malloc(sizeof(t_inv))))
+		ft_usage(-1);
 }
