@@ -35,8 +35,8 @@ typedef struct		s_inv
 typedef struct		s_pos
 {
 	SDL_Rect		posplayer;
-	int				xplayer;
-	int				yplayer;
+	float			xplayer;
+	float			yplayer;
 	int				initplayer;
 	float			floatx;
 	float			floaty;
@@ -51,6 +51,7 @@ typedef struct		s_tex
 	SDL_Texture 	*wall;
 	SDL_Texture 	*ground;
 	SDL_Texture 	*player;
+	SDL_Texture 	*screen;
 }					t_tex;
 
 typedef struct		s_s
@@ -65,6 +66,7 @@ typedef struct		s_s
 	void			*window;
 }					t_s;
 
+void				ft_rcasting(t_s *s);
 void				ft_dir_player(t_s *s, int i);
 void				ft_dir_raycasting(t_s *s, int i);
 int					ft_hitbox(t_s *s, int key);
