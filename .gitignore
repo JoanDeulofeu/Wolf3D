@@ -1,6 +1,6 @@
 wolf3d
 obj/
-frameworks/
+/frameworks
 
 # Prerequisites
 *.d
