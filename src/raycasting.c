@@ -22,6 +22,8 @@ void	ft_rcasting(t_s *s)
 	position.y = 0;
 	position.w = WINDOW_WIDTH;
 	position.h = WINDOW_HIGH;
+	s->tex->screen = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_TARGET, WINDOW_WIDTH, WINDOW_HIGH);
 	while (++x < WINDOW_WIDTH)
 	{
 		s->pos->dirplayer += avcmnt;
@@ -32,10 +34,7 @@ void	ft_rcasting(t_s *s)
 		hp = 20 * (400 / dis); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
-
 		y = 0;
-		s->tex->screen = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888,
-			SDL_TEXTUREACCESS_TARGET, WINDOW_WIDTH, WINDOW_HIGH);
 		SDL_SetRenderDrawColor(s->render,160,160,160,255); //gris
 		SDL_SetRenderTarget(s->render, s->tex->screen);
 		while (y < xbegin)
@@ -50,4 +49,5 @@ void	ft_rcasting(t_s *s)
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	SDL_RenderPresent(s->render);
+	s->pos->dirplayer = savedir; 
 }
