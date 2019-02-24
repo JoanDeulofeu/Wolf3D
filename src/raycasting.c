@@ -5,7 +5,7 @@ void	ft_choise_drawcolor(t_s *s)
 	if (s->pos->nsew == 1)
 		SDL_SetRenderDrawColor(s->render,220,60,60,255); //rouge
 	if (s->pos->nsew == 2)
-		SDL_SetRenderDrawColor(s->render,60,230,230,255); //bleu
+		SDL_SetRenderDrawColor(s->render,70,220,220,255); //bleu
 	if (s->pos->nsew == 3)
 		SDL_SetRenderDrawColor(s->render,240,240,50,255); //jaune
 	if (s->pos->nsew == 4)
@@ -15,7 +15,7 @@ void	ft_choise_drawcolor(t_s *s)
 void	ft_rcasting(t_s *s)
 {
 	float		dis;
-	int			hr = WINDOW_HIGH / 2; //hauteur reel, centre de la vision
+	int			hr = (WINDOW_HIGH / 2) + s->pos->eyehigh; //hauteur reel, centre de la vision
 	int			xbegin;
 	int			xend;
 	int			x;
@@ -62,7 +62,7 @@ void	ft_rcasting(t_s *s)
 		ft_choise_drawcolor(s);
 		while (y < xend)
 			SDL_RenderDrawPoint(s->render, x, y++);
-		SDL_SetRenderDrawColor(s->render,150,70,0,255);
+		SDL_SetRenderDrawColor(s->render,110,60,20,255);
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}

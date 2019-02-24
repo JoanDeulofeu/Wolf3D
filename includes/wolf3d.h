@@ -45,6 +45,7 @@ typedef struct		s_pos
 	int				witem;
 	float			dirplayer;
 	int				nsew;
+	int				eyehigh;
 }					t_pos;
 
 typedef struct		s_tex

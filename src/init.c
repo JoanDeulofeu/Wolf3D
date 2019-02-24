@@ -35,4 +35,5 @@ void	ft_init_struct(t_s *s)
 	if (!(s->tex = (t_tex*)malloc(sizeof(t_inv))))
 		ft_usage(-1);
 	s->pos->initplayer = 0;
+	s->pos->eyehigh = 0;
 }

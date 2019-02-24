@@ -58,6 +58,12 @@ void	ft_display(t_s *s)
 						if (s->pos->dirplayer < 0)
 							s->pos->dirplayer = 360;
 					}
+					if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
+						if (s->pos->eyehigh > -120)
+							s->pos->eyehigh -= 10;
+					if (event.key.keysym.scancode == SDL_SCANCODE_UP)
+						if (s->pos->eyehigh < 120)
+							s->pos->eyehigh += 10;
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nxplay=%d, yplay=%d\nhigh_play=%d, width_play=%d\n\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->xplayer, s->pos->yplayer, s->pos->posplayer.h, s->pos->posplayer.w);
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nndirplayer=%f\nfloatx=%f\nfloaty=%f\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->dirplayer, s->pos->floatx, s->pos->floaty);
 					// ft_draw_minimap(s);
