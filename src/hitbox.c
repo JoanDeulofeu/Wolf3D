@@ -47,25 +47,25 @@ int		ft_hitbox_ray(t_s *s, int key)
 	if (key == 4)
 		if ((s->pos->moovex - 1) < (x * SPACE) && s->map[x-1][y]->envi > 999)
 		{
-			s->pos->nsew == 1;
+			s->pos->nsew = 1;
 			return (0);
 		}
 	if (key == 3)
 		if ((s->pos->moovex + 1) >= ((x + 1) * SPACE) && s->map[x+1][y]->envi > 999)
 		{
-			s->pos->nsew == 2;
+			s->pos->nsew = 2;
 			return (0);
 		}
 	if (key == 1)
 		if ((s->pos->moovey - 1) < (y * SPACE) && s->map[x][y - 1]->envi > 999)
 		{
-			s->pos->nsew == 3;
+			s->pos->nsew = 3;
 			return (0);
 		}
 	if (key == 2) // bas
 		if ((s->pos->moovey + 1) >= ((y + 1) * SPACE) && s->map[x][y + 1]->envi > 999)
 		{
-			s->pos->nsew == 4;
+			s->pos->nsew = 4;
 			return (0);
 		}
 	return (1);

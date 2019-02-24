@@ -1,5 +1,17 @@
 #include "wolf3d.h"
 
+void	ft_choise_drawcolor(t_s *s)
+{
+	if (s->pos->nsew == 1)
+		SDL_SetRenderDrawColor(s->render,220,60,60,255); //rouge
+	if (s->pos->nsew == 2)
+		SDL_SetRenderDrawColor(s->render,60,230,230,255); //bleu
+	if (s->pos->nsew == 3)
+		SDL_SetRenderDrawColor(s->render,240,240,50,255); //jaune
+	if (s->pos->nsew == 4)
+		SDL_SetRenderDrawColor(s->render,60,230,60,255); //vert
+}
+
 void	ft_rcasting(t_s *s)
 {
 	float		dis;
@@ -56,7 +68,7 @@ void	ft_rcasting(t_s *s)
 		SDL_SetRenderTarget(s->render, s->tex->screen);
 		while (y < xbegin)
 			SDL_RenderDrawPoint(s->render, x, y++);
-		SDL_SetRenderDrawColor(s->render,200,200,0,255); //jaune deguelasse
+		ft_choise_drawcolor(s);
 		while (y < xend)
 			SDL_RenderDrawPoint(s->render, x, y++);
 		SDL_SetRenderDrawColor(s->render,150,70,0,255); //marron vraiment deguelasse
