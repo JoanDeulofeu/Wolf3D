@@ -59,7 +59,7 @@ void	ft_display(t_s *s)
 							s->pos->dirplayer = 390;
 					}
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nxplay=%d, yplay=%d\nhigh_play=%d, width_play=%d\n\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->xplayer, s->pos->yplayer, s->pos->posplayer.h, s->pos->posplayer.w);
-					printf("pos_pika_x=%d, pos_pika_y=%d\nndirplayer=%f\nfloatx=%f\nfloaty=%f\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->dirplayer, s->pos->floatx, s->pos->floaty);
+					// printf("pos_pika_x=%d, pos_pika_y=%d\nndirplayer=%f\nfloatx=%f\nfloaty=%f\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->dirplayer, s->pos->floatx, s->pos->floaty);
 					ft_draw_minimap(s);
 					ft_rcasting(s);
 				}
@@ -160,7 +160,7 @@ void ft_dir_player(t_s *s, int i)
 
 void ft_dir_raycasting(t_s *s, int i)
 {
-	int tmp;
+	float tmp;
 	tmp = s->pos->dirplayer;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
