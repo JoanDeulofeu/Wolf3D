@@ -24,14 +24,14 @@ void	ft_rcasting(t_s *s)
 	float		savedir;
 	float		avcmnt; // avancement du dirplayer
 	SDL_Rect 	position;
+	// float		angle;
 
 	x = -1;
+	// angle = 0;
 	savedir = s->pos->dirplayer;
-	avcmnt = ((float)90) / ((float)WINDOW_WIDTH); // un quart de vision sur les 400 possibles dans dirplayer, 0.125 pour 800 de WINDOW_WIDTH
-	// printf("***avancement = %f\n", s->pos->dirplayer);
-	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH/2) * avcmnt + avcmnt); // je place dirplayer au bon endroit
-	// printf("***dirplayer = %f\n", s->pos->dirplayer);
-	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 360 + s->pos->dirplayer; // je remet dirplayer en dessous 400 si necessaire (400 equivalent au 360degres et non a WINDOW_WIDTH/2)
+	avcmnt = ((float)90) / ((float)WINDOW_WIDTH);
+	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH/2) * avcmnt + avcmnt);
+	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 360 + s->pos->dirplayer;
 	position.x = 0;
 	position.y = 0;
 	position.w = WINDOW_WIDTH;
@@ -40,38 +40,29 @@ void	ft_rcasting(t_s *s)
 		SDL_TEXTUREACCESS_TARGET, WINDOW_WIDTH, WINDOW_HIGH);
 	while (++x < WINDOW_WIDTH)
 	{
-		// printf("1dirplayer= %f  ", s->pos->dirplayer);
 		s->pos->dirplayer += avcmnt;
-		// printf("2dirplayer= %f  ", s->pos->dirplayer);
-		s->pos->dirplayer = (s->pos->dirplayer < 360) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 360; //(400 equivalent au 360degres et non a WINDOW_WIDTH/2)
-		// printf("avant dirplayer= %f  ", s->pos->dirplayer);
+		s->pos->dirplayer = (s->pos->dirplayer < 360) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 360;
+		// angle = fabsf(((float)savedir) / ((float)s->pos->dirplayer));
 		ft_dir_raycasting(s, 1);
-		// printf("apres dirplayer= %f  ", s->pos->dirplayer);
 		dis = sqrtf(powf(s->pos->xplayer - s->pos->moovex, 2) + powf(s->pos->yplayer - s->pos->moovey, 2));
 		dis = (dis <= 0) ? 1 : dis;
-		// printf("dirplayer= %f", s->pos->dirplayer);
-		// printf(",  xplayer= %f", s->pos->xplayer);
-		// printf(",  yplayer= %f", s->pos->yplayer);
-		// printf(",  movex= %f", s->pos->moovex);
-		// printf(",  movey= %f", s->pos->moovey);
-		// printf(",  dis= %f", dis);
-		// if (x % 2 == 0)
-			// printf("\n");
-		hp = 20 * (400 / dis); //20=distance ecran *** 400=hauteur du mur defini
+		// dis = dis * cos(angle);
+		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
+		// printf("angle= %f", angle);
+		// printf("cos(angle)= %f", cos(angle));
+		// printf(",  hp= %d", hp);
+		// printf("\n");
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
-		// printf(",  xbegin= %d", xbegin);
-		// printf(",  xend= %d", xend);
-		// printf("\n");
 		y = 0;
-		SDL_SetRenderDrawColor(s->render,160,160,160,255); //gris
+		SDL_SetRenderDrawColor(s->render,160,160,160,255);
 		SDL_SetRenderTarget(s->render, s->tex->screen);
 		while (y < xbegin)
 			SDL_RenderDrawPoint(s->render, x, y++);
 		ft_choise_drawcolor(s);
 		while (y < xend)
 			SDL_RenderDrawPoint(s->render, x, y++);
-		SDL_SetRenderDrawColor(s->render,150,70,0,255); //marron vraiment deguelasse
+		SDL_SetRenderDrawColor(s->render,150,70,0,255);
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
@@ -80,3 +71,14 @@ void	ft_rcasting(t_s *s)
 	SDL_RenderPresent(s->render);
 	s->pos->dirplayer = savedir;
 }
+
+
+// printf("dirplayer= %f", s->pos->dirplayer);
+// printf(",  xplayer= %f", s->pos->xplayer);
+// printf(",  yplayer= %f", s->pos->yplayer);
+// printf(",  movex= %f", s->pos->moovex);
+// printf(",  movey= %f", s->pos->moovey);
+// printf(",  dis= %f", dis);
+// printf(",  xbegin= %d", xbegin);
+// printf(",  xend= %d", xend);
+// printf("\n");
