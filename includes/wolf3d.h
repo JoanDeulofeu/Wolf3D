@@ -44,6 +44,7 @@ typedef struct		s_pos
 	float			moovey;
 	int				witem;
 	float			dirplayer;
+	int				nsew;
 }					t_pos;
 
 typedef struct		s_tex
