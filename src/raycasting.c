@@ -27,11 +27,11 @@ void	ft_rcasting(t_s *s)
 
 	x = -1;
 	savedir = s->pos->dirplayer;
-	avcmnt = ((float)100) / ((float)WINDOW_WIDTH); // un quart de vision sur les 400 possibles dans dirplayer, 0.125 pour 800 de WINDOW_WIDTH
+	avcmnt = ((float)90) / ((float)WINDOW_WIDTH); // un quart de vision sur les 400 possibles dans dirplayer, 0.125 pour 800 de WINDOW_WIDTH
 	// printf("***avancement = %f\n", s->pos->dirplayer);
 	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH/2) * avcmnt + avcmnt); // je place dirplayer au bon endroit
 	// printf("***dirplayer = %f\n", s->pos->dirplayer);
-	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 400 + s->pos->dirplayer; // je remet dirplayer en dessous 400 si necessaire (400 equivalent au 360degres et non a WINDOW_WIDTH/2)
+	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 360 + s->pos->dirplayer; // je remet dirplayer en dessous 400 si necessaire (400 equivalent au 360degres et non a WINDOW_WIDTH/2)
 	position.x = 0;
 	position.y = 0;
 	position.w = WINDOW_WIDTH;
@@ -43,7 +43,7 @@ void	ft_rcasting(t_s *s)
 		// printf("1dirplayer= %f  ", s->pos->dirplayer);
 		s->pos->dirplayer += avcmnt;
 		// printf("2dirplayer= %f  ", s->pos->dirplayer);
-		s->pos->dirplayer = (s->pos->dirplayer < 400) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 400; //(400 equivalent au 360degres et non a WINDOW_WIDTH/2)
+		s->pos->dirplayer = (s->pos->dirplayer < 360) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 360; //(400 equivalent au 360degres et non a WINDOW_WIDTH/2)
 		// printf("avant dirplayer= %f  ", s->pos->dirplayer);
 		ft_dir_raycasting(s, 1);
 		// printf("apres dirplayer= %f  ", s->pos->dirplayer);
