@@ -32,18 +32,25 @@ void	ft_rcasting(t_s *s)
 		s->pos->dirplayer += avcmnt;
 		// printf("2dirplayer= %f  ", s->pos->dirplayer);
 		s->pos->dirplayer = (s->pos->dirplayer < 400) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 400; //(400 equivalent au 360degres et non a WINDOW_WIDTH/2)
-		printf("avant dirplayer= %f  ", s->pos->dirplayer);
+		// printf("avant dirplayer= %f  ", s->pos->dirplayer);
 		ft_dir_raycasting(s, 1);
-		printf("apres dirplayer= %f  ", s->pos->dirplayer);
-		dis = ft_sqrt(pow(s->pos->xplayer - s->pos->moovex, 2) + pow(s->pos->yplayer - s->pos->moovey, 2));
+		// printf("apres dirplayer= %f  ", s->pos->dirplayer);
+		dis = sqrtf(powf(s->pos->xplayer - s->pos->moovex, 2) + powf(s->pos->yplayer - s->pos->moovey, 2));
 		dis = (dis <= 0) ? 1 : dis;
-		// printf("3dirplayer= %f  ", s->pos->dirplayer);
-		// printf(", moovey= %f", s->pos->moovey);
+		// printf("dirplayer= %f", s->pos->dirplayer);
+		// printf(",  xplayer= %f", s->pos->xplayer);
+		// printf(",  yplayer= %f", s->pos->yplayer);
+		// printf(",  movex= %f", s->pos->moovex);
+		// printf(",  movey= %f", s->pos->moovey);
+		// printf(",  dis= %f", dis);
 		// if (x % 2 == 0)
-			printf("\n");
+			// printf("\n");
 		hp = 20 * (400 / dis); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
+		// printf(",  xbegin= %d", xbegin);
+		// printf(",  xend= %d", xend);
+		// printf("\n");
 		y = 0;
 		SDL_SetRenderDrawColor(s->render,160,160,160,255); //gris
 		SDL_SetRenderTarget(s->render, s->tex->screen);

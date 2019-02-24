@@ -60,7 +60,7 @@ void	ft_display(t_s *s)
 					}
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nxplay=%d, yplay=%d\nhigh_play=%d, width_play=%d\n\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->xplayer, s->pos->yplayer, s->pos->posplayer.h, s->pos->posplayer.w);
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nndirplayer=%f\nfloatx=%f\nfloaty=%f\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->dirplayer, s->pos->floatx, s->pos->floaty);
-					ft_draw_minimap(s);
+					// ft_draw_minimap(s);
 					ft_rcasting(s);
 				}
 			}
@@ -189,32 +189,32 @@ void ft_dir_raycasting(t_s *s, int i)
 	{
 		while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,3))
 		{
-			s->pos->moovey -= (1-(s->pos->dirplayer/100));
-			s->pos->moovex += (s->pos->dirplayer/100);
+			s->pos->moovey -= 0.1 * (1-(s->pos->dirplayer/100));
+			s->pos->moovex += 0.1 * (s->pos->dirplayer/100);
 		}
 	}
 	if (s->pos->dirplayer > 100 && s->pos->dirplayer <= 200)
 	{
 		while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,3))
 		{
-			s->pos->moovey += ((s->pos->dirplayer-100)/100);
-			s->pos->moovex += (1-((s->pos->dirplayer-100)/100));
+			s->pos->moovey += 0.1 * ((s->pos->dirplayer-100)/100);
+			s->pos->moovex += 0.1 * (1-((s->pos->dirplayer-100)/100));
 		}
 	}
 	if (s->pos->dirplayer > 200 && s->pos->dirplayer <= 300)
 	{
 		while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,4))
 		{
-			s->pos->moovey += (1-((s->pos->dirplayer-200)/100));
-			s->pos->moovex -= ((s->pos->dirplayer-200)/100);
+			s->pos->moovey += 0.1 * (1-((s->pos->dirplayer-200)/100));
+			s->pos->moovex -= 0.1 * ((s->pos->dirplayer-200)/100);
 		}
 	}
 	if (s->pos->dirplayer > 300 && s->pos->dirplayer <= 400)
 	{
 		while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,4))
 		{
-			s->pos->moovey -= ((s->pos->dirplayer-300)/100);
-			s->pos->moovex -= (1-((s->pos->dirplayer-300)/100));
+			s->pos->moovey -= 0.1 * ((s->pos->dirplayer-300)/100);
+			s->pos->moovex -= 0.1 * (1-((s->pos->dirplayer-300)/100));
 		}
 	}
 	s->pos->dirplayer = tmp;

@@ -12,7 +12,7 @@
 # include <fcntl.h>
 # define WINDOW_WIDTH 800
 # define WINDOW_HIGH 800
-# define SPACE 32
+# define SPACE 128
 
 typedef struct		s_map
 {
