@@ -56,7 +56,7 @@ void	ft_display(t_s *s)
 					{
 						s->pos->dirplayer -= 10;
 						if (s->pos->dirplayer < 0)
-							s->pos->dirplayer = 360;
+							s->pos->dirplayer = 350;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
 						if (s->pos->eyehigh > -120)
