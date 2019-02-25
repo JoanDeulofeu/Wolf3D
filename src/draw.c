@@ -58,7 +58,7 @@ void	ft_draw_minimap(t_s *s)
 				SDL_RenderCopy(s->render, s->tex->ground, NULL, &position);
 				if ((s->map[x][y]->item > 1 && s->map[x][y]->item < 6) && s->pos->initplayer == 0)
 				{
-					s->pos->dirplayer = (s->map[x][y]->item - 2) * 100;
+					s->pos->dirplayer = (s->map[x][y]->item - 2) * 90;
 					s->pos->posplayer.x = position.x;
 					s->pos->xplayer = position.x + SPACE / 8;
 					s->pos->floatx = s->pos->posplayer.x;
