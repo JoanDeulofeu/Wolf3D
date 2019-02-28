@@ -2,7 +2,7 @@ NAME = wolf3d
 
 SRC_PATH = src
 
-SRC_NAME = display.c main.c init.c parsing.c check.c draw.c hitbox.c raycasting.c
+SRC_NAME = display.c main.c init.c parsing.c check.c draw.c hitbox.c raycasting.c raycastcalc.c
 
 CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
 

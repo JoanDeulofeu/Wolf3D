@@ -164,64 +164,59 @@ void ft_dir_player(t_s *s, int i)
 	s->pos->yplayer = s->pos->posplayer.y + SPACE / 8;
 }
 
-void ft_dir_raycasting(t_s *s, int i)
+float ft_dir_raycasting(t_s *s)
 {
 	float tmp;
+	float angle;
+	float angle2;
+	float dis;
 	tmp = s->pos->dirplayer;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
-	if (i == 2)
-	{
-		if (s->pos->dirplayer < 180)
-			s->pos->dirplayer += 180;
-		else
-			s->pos->dirplayer -= 180;
-	}
-	if (i == 4)
-	{
-		if (s->pos->dirplayer < 90)
-			s->pos->dirplayer += 270;
-		else
-			s->pos->dirplayer -= 90;
-	}
-	if (i == 3)
-	{
-		if (s->pos->dirplayer > 270)
-			s->pos->dirplayer -= 270;
-		else
-			s->pos->dirplayer += 90;
-	}
 	if (s->pos->dirplayer <= 90)
 	{
-		while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,3))
-		{
-			s->pos->moovey -= 0.1 * (1-(s->pos->dirplayer/90));
-			s->pos->moovex += 0.1 * (s->pos->dirplayer/90);
-		}
+		// while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,3))
+		// {
+		// 	s->pos->moovey -= 0.01 *(1-(s->pos->dirplayer/90));
+		// 	s->pos->moovex += 0.01 *(s->pos->dirplayer/90);
+		// }
+		angle = ((90 - s->pos->dirplayer ) * M_PI / 180);
+		angle2 = ((s->pos->dirplayer ) * M_PI / 180);
+		dis = ft_dir_raycasting1(s,angle,angle2);
 	}
 	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
 	{
-		while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,3))
-		{
-			s->pos->moovey += 0.1 * ((s->pos->dirplayer-90)/90);
-			s->pos->moovex += 0.1 * (1-((s->pos->dirplayer-90)/90));
-		}
+		// while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,3))
+		// {
+		// 	s->pos->moovey += 0.01 *((s->pos->dirplayer-90)/90);
+		// 	s->pos->moovex += 0.01 *(1-((s->pos->dirplayer-90)/90));
+		// }
+		angle = ((s->pos->dirplayer - 90) * M_PI / 180);
+		angle2 = ((180 - s->pos->dirplayer ) * M_PI / 180);
+		dis = ft_dir_raycasting2(s,angle,angle2);
 	}
 	if (s->pos->dirplayer > 180 && s->pos->dirplayer <= 270)
 	{
-		while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,4))
-		{
-			s->pos->moovey += 0.1 * (1-((s->pos->dirplayer-180)/90));
-			s->pos->moovex -= 0.1 * ((s->pos->dirplayer-180)/90);
-		}
+		angle = ((270 -s->pos->dirplayer) * M_PI / 180);
+		angle2 = ((s->pos->dirplayer - 180) * M_PI / 180);
+		// while(ft_hitbox_ray(s,2) && ft_hitbox_ray(s,4))
+		// {
+		// 	s->pos->moovey += 0.01 *(1-((s->pos->dirplayer-180)/90));
+		// 	s->pos->moovex -= 0.01 *((s->pos->dirplayer-180)/90);
+		// }
+		dis = ft_dir_raycasting3(s,angle, angle2);
 	}
 	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
 	{
-		while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,4))
-		{
-			s->pos->moovey -= 0.1 * ((s->pos->dirplayer-270)/90);
-			s->pos->moovex -= 0.1 * (1-((s->pos->dirplayer-270)/90));
-		}
+		angle = ((s->pos->dirplayer - 270) * M_PI / 180);
+		angle2 = ((360 - s->pos->dirplayer ) * M_PI / 180);
+		// while(ft_hitbox_ray(s,1) && ft_hitbox_ray(s,4))
+		// {
+		// 	s->pos->moovey -= 0.01 *((s->pos->dirplayer-270)/90);
+		// 	s->pos->moovex -= 0.01 *(1-((s->pos->dirplayer-270)/90));
+		// }
+		dis = ft_dir_raycasting4(s,angle, angle2);
 	}
+	return(dis);
 	s->pos->dirplayer = tmp;
 }

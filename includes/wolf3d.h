@@ -10,9 +10,19 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <math.h>
 # define WINDOW_WIDTH 800
 # define WINDOW_HIGH 800
-# define SPACE 64
+# define SPACE 16
+
+typedef struct		s_tga
+{
+	int				fd;
+	int				width;
+	int				high;
+	unsigned char	buff[4000];
+	SDL_Surface		*surface;
+}					t_tga;
 
 typedef struct		s_map
 {
@@ -64,15 +74,20 @@ typedef struct		s_s
 	t_tex			*tex;
 	int				high;
 	int				width;
-	void			*render;
-	void			*window;
+	SDL_Renderer	*render;
+	SDL_Renderer	*rendermap;
+	SDL_Window		*window;
 }					t_s;
 
+SDL_Surface			*ft_tga(const char *path);
 void				ft_rcasting(t_s *s);
 void				ft_dir_player(t_s *s, int i);
-void				ft_dir_raycasting(t_s *s, int i);
+float				ft_dir_raycasting(t_s *s);
+float				ft_dir_raycasting1(t_s *s, float angle, float angle2);
+float				ft_dir_raycasting2(t_s *s, float angle, float angle2);
+float				ft_dir_raycasting3(t_s *s, float angle, float angle2);
+float				ft_dir_raycasting4(t_s *s, float angle, float angle2);
 int					ft_hitbox(t_s *s, int key);
-int					ft_hitbox_ray(t_s *s, int key);
 void				ft_check_post_pars(t_s *s);
 void				ft_check(t_s *s, char *av);
 void				ft_init_struct(t_s *s);

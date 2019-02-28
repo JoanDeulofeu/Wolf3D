@@ -41,14 +41,17 @@ void	ft_rcasting(t_s *s)
 	position.h = WINDOW_HIGH;
 	s->tex->screen = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888,
 		SDL_TEXTUREACCESS_TARGET, WINDOW_WIDTH, WINDOW_HIGH);
+		// printf("dirplayer= %f  --  ", s->pos->dirplayer);
+		// printf(",  movex= %f -- ", s->pos->moovex);
+		// printf(",  movey= %f\n", s->pos->moovey);
 	while (++x < WINDOW_WIDTH)
 	{
 		s->pos->dirplayer += avcmnt;
 		s->pos->dirplayer = (s->pos->dirplayer < 360) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 360;
 		// if (savedir > s->pos->dirplayer)
 		// angle = fabsf(((float)savedir) - ((float)s->pos->dirplayer));
-		ft_dir_raycasting(s, 1);
-		dis = sqrtf(powf(s->pos->xplayer - s->pos->moovex, 2) + powf(s->pos->yplayer - s->pos->moovey, 2));
+		dis = ft_dir_raycasting(s);
+		// dis = sqrtf(powf(s->pos->xplayer - s->pos->moovex, 2) + powf(s->pos->yplayer - s->pos->moovey, 2));
 		dis = (dis <= 0) ? 1 : dis;
 		if (angle - avcmnt > 0 && swich == 0)
 		 	angle = angle - avcmnt;
@@ -61,8 +64,8 @@ void	ft_rcasting(t_s *s)
 		}
 		dis = dis * cos(angle * M_PI / 180);
 		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
-		// printf("angle= %f  --   ", angle);
-		// printf("dirplayer= %f  --  ", s->pos->dirplayer);
+		// // printf("angle= %f  --   ", angle);
+
 		// printf("savedir= %f\n", savedir);
 		// printf("cos(angle)= %f", cos(angle));
 		// printf(",  hp= %d", hp);
@@ -81,6 +84,9 @@ void	ft_rcasting(t_s *s)
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
+	// printf("dirplayer= %f  --  ", s->pos->dirplayer);
+	// printf(",  movex= %f -- ", s->pos->moovex);
+	// printf(",  movey= %f\n\n", s->pos->moovey);
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	SDL_RenderPresent(s->render);
