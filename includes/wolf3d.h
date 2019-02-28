@@ -66,12 +66,23 @@ typedef struct		s_tex
 	SDL_Texture 	*screen;
 }					t_tex;
 
+typedef struct		s_ray
+{
+	float			diffx;
+	float			diffy;
+	float			inty;
+	float			intx;
+	float			save1;
+	float			save2;
+}					t_ray;
+
 typedef struct		s_s
 {
 	t_map			***map;
 	t_inv			*inv;
 	t_pos			*pos;
 	t_tex			*tex;
+	t_ray			*ray;
 	int				high;
 	int				width;
 	SDL_Renderer	*render;
@@ -83,10 +94,10 @@ SDL_Surface			*ft_tga(const char *path);
 void				ft_rcasting(t_s *s);
 void				ft_dir_player(t_s *s, int i);
 float				ft_dir_raycasting(t_s *s);
-float				ft_dir_raycasting1(t_s *s, float angle, float angle2);
-float				ft_dir_raycasting2(t_s *s, float angle, float angle2);
-float				ft_dir_raycasting3(t_s *s, float angle, float angle2);
-float				ft_dir_raycasting4(t_s *s, float angle, float angle2);
+void				ft_dir_raycasting1(t_s *s, float angle, float angle2);
+void				ft_dir_raycasting2(t_s *s, float angle, float angle2);
+void				ft_dir_raycasting3(t_s *s, float angle, float angle2);
+void				ft_dir_raycasting4(t_s *s, float angle, float angle2);
 int					ft_hitbox(t_s *s, int key);
 void				ft_check_post_pars(t_s *s);
 void				ft_check(t_s *s, char *av);
