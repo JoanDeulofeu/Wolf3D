@@ -16,31 +16,59 @@ int		ft_hitbox(t_s *s, int key)
 	// printf("\033[33m%d > %d\033[0m\n", s->pos->floaty - 8, x * SPACE);
 	if (key == 4) // gauche
 	{
-		if ((s->pos->floatx - 1 ) < (x * SPACE) && s->map[x-1][y]->envi > 999)
+		if ((s->pos->floatx - 1 ) < (x * SPACE) && s->map[x-1][y]->envi > 1099)
 			return (0);
-		if ((s->pos->floatx - 1 ) < (x * SPACE) && s->map[x-1][y2]->envi > 999)
+		if ((s->pos->floatx - 1 ) < (x * SPACE) && s->map[x-1][y2]->envi > 1099)
 			return (0);
+		if (s->pos->floatx > x * SPACE + SPACE / 2) // portehorizontale
+		{
+		if ((s->pos->floatx - 1 ) < (x * SPACE + SPACE / 2) && s->map[x][y]->envi == 1001)
+			return (0);
+		if ((s->pos->floatx - 1 ) < (x * SPACE + SPACE / 2) && s->map[x][y2]->envi == 1001)
+			return (0);
+		}
 	}
 	if (key == 3) // droite
 	{
-		if ((s->pos->floatx + SPACE / 4) > ((x + 1) * SPACE) && s->map[x+1][y]->envi > 999)
+		if ((s->pos->floatx + SPACE / 4) > ((x + 1) * SPACE) && s->map[x+1][y]->envi > 1099)
 			return (0);
-		if ((s->pos->floatx + SPACE / 4) > ((x + 1) * SPACE) && s->map[x+1][y2]->envi > 999)
+		if ((s->pos->floatx + SPACE / 4) > ((x + 1) * SPACE) && s->map[x+1][y2]->envi > 1099)
 			return (0);
+		if (s->pos->floatx < x * SPACE + SPACE / 2) // portehorizontale
+		{
+		if ((s->pos->floatx + SPACE / 4) > ((x) * SPACE + SPACE / 2) && s->map[x][y]->envi == 1001)
+			return (0);
+		if ((s->pos->floatx + SPACE / 4) > ((x) * SPACE + SPACE / 2) && s->map[x][y2]->envi == 1001)
+			return (0);
+		}
 	}
 	if (key == 1) //haut
 	{
-		if ((s->pos->floaty - 1) < (y * SPACE) && s->map[x][y - 1]->envi > 999)
+		if ((s->pos->floaty - 1) < (y * SPACE) && s->map[x][y - 1]->envi > 1099)
 			return (0);
-		if ((s->pos->floaty - 1) < (y * SPACE) && s->map[x2][y - 1]->envi > 999)
+		if ((s->pos->floaty - 1) < (y * SPACE) && s->map[x2][y - 1]->envi > 1099)
 			return (0);
+		if (s->pos->floaty > y * SPACE + SPACE / 2) // porteverticale
+		{
+		if ((s->pos->floaty - 1) < (y * SPACE + SPACE / 2 ) && s->map[x][y]->envi == 1000)
+			return (0);
+		if ((s->pos->floaty - 1) < (y * SPACE + SPACE / 2) && s->map[x2][y2]->envi == 1000)
+			return (0);
+		}
 	}
 	if (key == 2) // bas
 	{
-		if ((s->pos->floaty + SPACE / 4) > ((y + 1) * SPACE) && s->map[x][y + 1]->envi > 999)
+		if ((s->pos->floaty + SPACE / 4) > ((y + 1) * SPACE) && s->map[x][y + 1]->envi > 1099)
 			return (0);
-		if ((s->pos->floaty + SPACE / 4) > ((y + 1) * SPACE) && s->map[x2][y + 1]->envi > 999)
+		if ((s->pos->floaty + SPACE / 4) > ((y + 1) * SPACE) && s->map[x2][y + 1]->envi > 1099)
 			return (0);
+		if (s->pos->floaty < y * SPACE + SPACE / 2) // porteverticale
+		{
+			if ((s->pos->floaty + SPACE / 4) > ((y) * SPACE + SPACE / 2 ) && s->map[x][y]->envi == 1000)
+				return (0);
+			if ((s->pos->floaty + SPACE / 4) > ((y ) * SPACE + SPACE / 2 ) && s->map[x2][y]->envi == 1000)
+				return (0);
+		}
 	}
 	// printf("\033[32mYOU CAN MOVE\033[0m\n");
 	return (1);

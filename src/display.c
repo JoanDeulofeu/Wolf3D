@@ -2,6 +2,9 @@
 
 void	ft_display(t_s *s)
 {
+	int		x;
+	int		y;
+
 	ft_draw_minimap(s);
 	ft_rcasting(s);
 	if (s->window)
@@ -46,6 +49,15 @@ void	ft_display(t_s *s)
 								ft_dir_player(s, 4);
 								ft_dir_player(s, 4);
 							}
+					if (event.key.keysym.scancode == SDL_SCANCODE_E)// ouverture porte
+					{
+						y = s->pos->moovey / SPACE;
+						x = s->pos->moovex / SPACE;
+						if (s->map[x][y]->envi == 1000 || s->map[x][y]->envi == 1001)
+						{
+							s->map[x][y]->envi = 0;
+						}
+					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
 						s->pos->dirplayer += 10;
