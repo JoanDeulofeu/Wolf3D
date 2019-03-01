@@ -80,6 +80,7 @@ void	ft_display(t_s *s)
 					// printf("pos_pika_x=%d, pos_pika_y=%d\nndirplayer=%f\nfloatx=%f\nfloaty=%f\n", s->pos->posplayer.x, s->pos->posplayer.y, s->pos->dirplayer, s->pos->floatx, s->pos->floaty);
 					// ft_draw_minimap(s);
 					ft_rcasting(s);
+					ft_draw_minimap(s);
 				}
 			}
 		}

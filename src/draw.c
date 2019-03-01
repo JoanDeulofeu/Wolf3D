@@ -8,10 +8,10 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 
 	x = 0;
 	y = 0;
-	if (txr == s->tex->wall)
-		SDL_SetRenderDrawColor(s->render,155,30,30,255);
 	if (txr == s->tex->ground)
 		SDL_SetRenderDrawColor(s->render,130,130,100,255);
+	else
+		SDL_SetRenderDrawColor(s->render,155,30,30,255);
 	SDL_SetRenderTarget(s->render, txr);
 	while (y != high)
 	{
@@ -35,6 +35,7 @@ void	ft_draw_minimap(t_s *s)
 
 	space = SPACE;
 	x = 0;
+
 	s->tex->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
 	ft_draw_rect(s, s->tex->wall, space, space);
 	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
@@ -47,7 +48,7 @@ void	ft_draw_minimap(t_s *s)
 		{
 			position.x = x * space;
 			position.y = y * space;
-			if (s->map[x][y]->envi > 999)
+			if (s->map[x][y]->envi > 1099)
 			{
 				SDL_QueryTexture(s->tex->wall, NULL, NULL, &position.w, &position.h);
 				SDL_RenderCopy(s->render, s->tex->wall, NULL, &position);

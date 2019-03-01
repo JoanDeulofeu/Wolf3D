@@ -89,7 +89,7 @@ void	ft_rcasting(t_s *s)
 	// printf(",  movey= %f\n\n", s->pos->moovey);
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
-	SDL_RenderPresent(s->render);
+	// SDL_RenderPresent(s->render);
 	s->pos->dirplayer = savedir;
 	// printf("pourri/n\n");
 }
