@@ -74,6 +74,8 @@ typedef struct		s_ray
 	float			intx;
 	float			save1;
 	float			save2;
+	float			swap1;
+	float			swap2;
 }					t_ray;
 
 typedef struct		s_s
@@ -91,6 +93,8 @@ typedef struct		s_s
 }					t_s;
 
 SDL_Surface			*ft_tga(const char *path);
+void				ft_swap_pos(t_s *s, int mode, int x, int y);
+void				ft_swap_ray(t_s *s, int mode, int x, int y);
 void				ft_rcasting(t_s *s);
 void				ft_dir_player(t_s *s, int i);
 float				ft_dir_raycasting(t_s *s);
