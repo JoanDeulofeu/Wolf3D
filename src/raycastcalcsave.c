@@ -1,19 +1,18 @@
 #include "wolf3d.h"
 
-
 void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 {
 	int		x;
 	int		y;
+	int		xsave;
+	int 	ysave;
 	int 	stop = 0;
-	float	save1 = 0;
-	float	save2 = 0 ;
-	float savemoovey;
-	float savemoovex;
+	s->ray->recursx = 0;
+	s->ray->recursy = 0;
 	y = s->pos->moovey / SPACE;
 	x = s->pos->moovex / SPACE;
-	savemoovex = s->pos->moovex;
-	savemoovey = s->pos->moovey;
+	xsave = x;
+	ysave = y;
 	while(1) // avance dans les x;
 	{
 		if (s->map[x][y]->envi == 1001 && (s->pos->moovex - SPACE / 2) < x * SPACE)
@@ -29,32 +28,24 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->diffy = tan(angle) * s->ray->diffx;
 		s->ray->inty = s->pos->moovey - s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2))+ s->ray->swap1;
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		printf("test");
-		if (s->map[x-1][y]->envi > 1049 && s->map[x-1][y]->envi < 1100)
-		{
-				save1 = s->ray->save1;
-				ft_swap_ray(s,1,x-1,y);
-				y = s->pos->moovey / SPACE;
-				x = s->pos->moovex / SPACE;
-				// s->ray->save1 += save1;
-				// break;
-		}
-		if (s->map[x][y]->envi > 1099)
-			stop = 1;
-		if (stop == 1)
-		{
-			if (save1 != 0)
-				s->ray->save1 += save1;
+		if (s->map[x][y]->envi > 1049)
+			{
+				if (s->map[x][y]->envi < 1100)
+				{
+					s->ray->swap1 = s->ray->save1;
+					s->ray->recursx = 1;
+					ft_swap_ray(s, 1, x, y);
+				}
 			break;
-		}
+			}
+		if (stop == 1)
+			break;
 	}
-	s->pos->moovex = savemoovex ;
-	s->pos->moovey = savemoovey ;
-	y = s->pos->moovey / SPACE;
-	x = s->pos->moovex / SPACE;
+	y = ysave;
+	x = xsave;
 	stop = 0;
 	while(1)
 	{
@@ -69,29 +60,22 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->diffx = tan(angle2) * s->ray->diffy;
 		s->ray->intx = s->pos->moovex + s->ray->diffx;
 		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2))+ s->ray->swap2;
 		if (x >= s->width || y >= s->high|| y < 0 || x < 0)
 			break;
-		if (s->map[x][y-1]->envi > 1049 && s->map[x][y]->envi < 1100)
-		{
-			save2 = s->ray->save2;
-			ft_swap_ray(s,11,x,y);
-			y = s->pos->moovey / SPACE;
-			x = s->pos->moovex / SPACE;
-			if (s->map[x][y]->envi > 1099)
-				stop = 1;
-				// s->ray->save2 += save2;
-				// break;
-		}
-		if (s->map[x][y-1]->envi > 1099)
-			stop = 1;
 		y--;
-		if (stop == 1)
+		if (s->map[x][y]->envi > 1049)
 		{
-			if (save2 != 0)
-				s->ray->save2 += save2;
+			if (s->map[x][y]->envi < 1100)
+			{
+				s->ray->recursy = 1;
+				s->ray->swap2 = s->ray->save2;
+				ft_swap_ray(s, 11, x, y );
+			}
 			break;
 		}
+		if (stop == 1)
+			break;
 	}
 }
 
@@ -100,8 +84,6 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 	int		x;
 	int		y;
 	int 	stop = 0;
-	// float	save1;
-	// float	save2;
 	y = s->pos->moovey / SPACE;
 	x = s->pos->moovex / SPACE;
 	while(1) // avance dans les x;
@@ -124,12 +106,6 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 			break;
 		if (s->map[x][y]->envi > 1049)
 			break;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save1 = s->ray->save1;
-		// 		ft_swap_ray(s,2,x,y);
-		// 		s->ray->save1 += save1;
-		// }
 		if (stop == 1)
 			break;
 	}
@@ -157,12 +133,6 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 			break;
 		if (s->map[x][y]->envi > 1049)
 			break;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save2 = s->ray->save2;
-		// 		ft_swap_ray(s,22,x,y);
-		// 		s->ray->save2 += save2;
-		// }
 		if (stop == 1)
 			break;
 	}
@@ -173,8 +143,6 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 	int		x;
 	int		y;
 	int 	stop = 0;
-	// float	save1;
-	// float	save2;
 	y = s->pos->moovey / SPACE;
 	x = s->pos->moovex / SPACE;
 
@@ -197,12 +165,6 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		if (s->map[x - 1][y]->envi > 1049)
 			break;
 		x--;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save1 = s->ray->save1;
-		// 		ft_swap_ray(s,3,x,y);
-		// 		s->ray->save1 += save1;
-		// }
 		if (stop == 1)
 			break;
 	}
@@ -231,27 +193,24 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 			break;
 		if (s->map[x][y]->envi > 1049)
 			break;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save2 = s->ray->save2;
-		// 		ft_swap_ray(s,33,x,y);
-		// 		s->ray->save2 += save2;
-		// }
 		if (stop == 1)
 			break;
 	}
-}
 
+}
 void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 {
 	int		x;
 	int		y;
 	int 	stop = 0;
-	// float	save1;
-	// float	save2;
+	int		xsave;
+	int 	ysave;
 	y = s->pos->moovey / SPACE;
 	x = s->pos->moovex / SPACE;
-
+	s->ray->recursx = 0;
+	s->ray->recursy = 0;
+	xsave = x;
+	ysave = y;
 	while(1) // recule dans les x;
 	{
 		if (s->map[x][y]->envi == 1001 && (s->pos->moovex - SPACE / 2) > x * SPACE)
@@ -264,23 +223,25 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		s->ray->diffy = tan(angle) * s->ray->diffx;
 		s->ray->inty = s->pos->moovey - s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2))+ s->ray->swap1;
 		if (y >= s->width || x >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x-1][y]->envi > 1049)
-			break;
 		x--;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save1 = s->ray->save1;
-		// 		ft_swap_ray(s,4,x,y);
-		// 		s->ray->save1 += save1;
-		// }
+		if (s->map[x][y]->envi > 1049)
+		{
+			// if (s->map[x][y]->envi < 1100)
+			// {
+			// 	s->ray->swap1 = s->ray->save1;
+			// 	s->ray->recursx = 1;
+			// 	ft_swap_ray(s, 4, x, y);
+			// }
+			break;
+		}
 		if (stop == 1)
 			break;
 	}
-	y = s->pos->moovey / SPACE;
-	x = s->pos->moovex / SPACE;
+	y = ysave;
+	x = xsave;
 	stop = 0;
 	while(1)
 	{
@@ -295,18 +256,20 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		s->ray->diffx = tan(angle2) * s->ray->diffy;
 		s->ray->intx = s->pos->moovex - s->ray->diffx;
 		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2))+ s->ray->swap2;
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x][y - 1]->envi > 1049)
-			break;
 		y--;
-		// if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-		// {
-		// 		save2 = s->ray->save2;
-		// 		ft_swap_ray(s,44,x,y);
-		// 		s->ray->save2 += save2;
-		// }
+		if (s->map[x][y]->envi > 1049)
+		{
+			// if (s->map[x][y]->envi < 1100)
+			// {
+			// 	s->ray->recursy = 1;
+			// 	s->ray->swap2 = s->ray->save2;
+			// 	ft_swap_ray(s, 44, x, y);
+			// }
+			break;
+		}
 		if (stop == 1)
 			break;
 	}
@@ -333,7 +296,7 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 					{
 						diffx = x - i;
 						diffy = y - j;
-						s->pos->moovex = (i+1 * SPACE);
+						s->pos->moovex = ((i+1) * SPACE);
 						s->pos->moovey -= (diffy * SPACE);
 						stop = 1;
 						break;
@@ -344,7 +307,6 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			i = 0;
 			j++;
 		}
-		// ft_dir_raycasting(s);
 	}
 	if (mode == 11) // w
 	{
@@ -359,7 +321,7 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 						diffx = x - i;
 						diffy = y - j;
 						s->pos->moovex -= (diffx * SPACE);
-						s->pos->moovey = (5 * SPACE);
+						s->pos->moovey = (j * SPACE);
 						stop = 1;
 						break;
 					}
@@ -369,7 +331,6 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			i = 0;
 			j++;
 		}
-		// ft_dir_raycasting(s);
 	}
 	if (mode == 2) //s
 	{
@@ -395,7 +356,7 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			i = 0;
 			j++;
 		}
-		ft_dir_raycasting(s);
+		// ft_dir_raycasting(s);
 	}
 	if (mode == 22) //s
 	{
@@ -420,7 +381,7 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			i = 0;
 			j++;
 		}
-		ft_dir_raycasting(s);
+		// ft_dir_raycasting(s);
 	}
 	if (mode == 3) //q
 	{
@@ -446,7 +407,31 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			j++;
 		}
 	}
-	if (mode == 4) //d
+	if (mode == 4) // w
+	{
+		while (j < s->high && stop == 0)
+		{
+			while (i < s->width && stop == 0)
+			{
+				if (i != x && j != y)
+				{
+					if (s->map[i][j]->envi == tp)
+					{
+						diffx = x - i;
+						diffy = y - j;
+						s->pos->moovex = ((i+1) * SPACE);
+						s->pos->moovey -= (diffy * SPACE);
+						stop = 1;
+						break;
+					}
+				}
+				i++;
+			}
+			i = 0;
+			j++;
+		}
+	}
+	if (mode == 44) // w
 	{
 		while (j < s->high && stop == 0)
 		{
@@ -459,7 +444,7 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 						diffx = x - i - 1;
 						diffy = y - j;
 						s->pos->moovex -= (diffx * SPACE);
-						s->pos->moovey -= (diffy * SPACE);
+						s->pos->moovey = (j * SPACE);
 						stop = 1;
 						break;
 					}
@@ -470,14 +455,4 @@ void ft_swap_ray(t_s *s, int mode, int x, int y)
 			j++;
 		}
 	}
-	// if (s->ray->save1 < s->ray->save2)
-	// 	{
-	// 		s->pos->nsew = 2;
-	// 		dis = s->ray->save1;
-	// 	}
-	// else
-	// 	{
-	// 		s->pos->nsew = 3;
-	// 		dis = s->ray->save2;
-	// 	}
 }

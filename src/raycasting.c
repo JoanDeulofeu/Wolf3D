@@ -28,11 +28,11 @@ void	ft_rcasting(t_s *s)
 	int 		swich;
 
 	x = -1;
-	// angle = 0;
+	angle = 0;
 	savedir = s->pos->dirplayer;
-	avcmnt = ((float)90) / ((float)WINDOW_WIDTH);
+	avcmnt = ((float)50) / ((float)WINDOW_WIDTH);
 	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH/2) * avcmnt + avcmnt);
-	angle = 45 + avcmnt;
+	angle = 25 + avcmnt;
 	swich = 0;
 	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 360 + s->pos->dirplayer;
 	position.x = 0;
@@ -84,11 +84,11 @@ void	ft_rcasting(t_s *s)
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
-	printf("dirplayer= %f  --  ", s->pos->dirplayer);
-	printf(",  moovex= %f -- ", s->pos->moovex);
-	printf(",  moovey= %f\n\n", s->pos->moovey);
-	printf(",  posplayx= %d -- ", s->pos->posplayer.x);
-	printf(",  posplayy= %d\n\n", s->pos->posplayer.y);
+	// printf("dirplayer= %f  --  ", s->pos->dirplayer);
+	// printf(",  moovex= %f -- ", s->pos->moovex);
+	// printf(",  moovey= %f\n\n", s->pos->moovey);
+	// printf(",  posplayx= %d -- ", s->pos->posplayer.x);
+	// printf(",  posplayy= %d\n\n", s->pos->posplayer.y);
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	// SDL_RenderPresent(s->render);
@@ -105,11 +105,15 @@ float ft_dir_raycasting(t_s *s)
 	tmp = s->pos->dirplayer;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
+	s->ray->swap1 = 0;
+	s->ray->swap2 = 0;
 	if (s->pos->dirplayer <= 90)
 	{
 		angle = ((90 - s->pos->dirplayer ) * M_PI / 180);
 		angle2 = ((s->pos->dirplayer ) * M_PI / 180);
 		ft_dir_raycasting1(s,angle,angle2);
+		while (s->ray->recursx == 1 || s->ray->recursy == 1)
+			ft_dir_raycasting1(s,angle,angle2);
 		if (s->ray->save1 < s->ray->save2)
 			{
 				s->pos->nsew = 4;
@@ -159,6 +163,8 @@ float ft_dir_raycasting(t_s *s)
 		angle = ((s->pos->dirplayer - 270) * M_PI / 180);
 		angle2 = ((360 - s->pos->dirplayer ) * M_PI / 180);
 		ft_dir_raycasting4(s,angle, angle2);
+		while (s->ray->recursx == 1 || s->ray->recursy == 1)
+			ft_dir_raycasting4(s,angle,angle2);
 		if (s->ray->save1 < s->ray->save2)
 			{
 				s->pos->nsew = 2;
