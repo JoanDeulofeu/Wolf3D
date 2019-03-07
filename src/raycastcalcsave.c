@@ -32,7 +32,6 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		printf("test");
 		if (s->map[x-1][y]->envi > 1049 && s->map[x-1][y]->envi < 1100)
 		{
 				save1 = s->ray->save1;

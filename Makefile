@@ -2,7 +2,8 @@ NAME = wolf3d
 
 SRC_PATH = src
 
-SRC_NAME = event.c main.c init.c parsing.c check.c draw.c hitbox.c raycasting.c raycastcalc.c
+SRC_NAME = event.c main.c init.c parsing.c check.c draw.c hitbox.c raycasting.c\
+			raycastcalc.c tga.c
 
 CPPFLAGS = -I libft/includes/ -I /usr/local/include/ -MMD
 
@@ -12,7 +13,7 @@ CC = gcc
 
 SDLFLAGS =  $(SDLINCL) -L frameworks/sdl2/lib -lSDL2
 
-SDLINCL = -I frameworks/sdl2/include
+SDLINCL = -I frameworks/sdl2/include -I frameworks/sdl2_image/include
 
 CFLAGS = -Werror -Wall -Wextra -O2 -ggdb3
 

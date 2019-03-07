@@ -48,23 +48,21 @@ void	ft_draw_minimap(t_s *s)
 		{
 			position.x = x * space;
 			position.y = y * space;
+			position.w = space;
+			position.h = space;
 			if (s->map[x][y]->envi > 1099)
-			{
-				SDL_QueryTexture(s->tex->wall, NULL, NULL, &position.w, &position.h);
 				SDL_RenderCopy(s->render, s->tex->wall, NULL, &position);
-			}
 			else
 			{
-				SDL_QueryTexture(s->tex->ground, NULL, NULL, &position.w, &position.h);
 				SDL_RenderCopy(s->render, s->tex->ground, NULL, &position);
 				if ((s->map[x][y]->item > 1 && s->map[x][y]->item < 6) && s->pos->initplayer == 0)
 				{
 					s->pos->dirplayer = (s->map[x][y]->item - 2) * 90;
 					s->pos->posplayer.x = position.x;
-					s->pos->xplayer = position.x + SPACE / 8;
+					s->pos->xplayer = position.x + space / 8;
 					s->pos->floatx = s->pos->posplayer.x;
 					s->pos->posplayer.y = position.y;
-					s->pos->yplayer = position.x + SPACE / 8;
+					s->pos->yplayer = position.x + space / 8;
 					s->pos->floaty = s->pos->posplayer.y;
 					s->pos->initplayer++;
 				}
@@ -77,9 +75,19 @@ void	ft_draw_minimap(t_s *s)
 	    ft_usage(6);
 	s->tex->player = SDL_CreateTextureFromSurface(s->render, pika);
 	SDL_FreeSurface(pika);
-	// SDL_QueryTexture(s->tex->player, NULL, NULL, &s->pos->posplayer.w, &s->pos->posplayer.h);
 	s->pos->posplayer.h = space / 4;
 	s->pos->posplayer.w = space / 4;
 	SDL_RenderCopy(s->render, s->tex->player, NULL, &s->pos->posplayer);
 	SDL_RenderPresent(s->render);
+
+	position.x = 200;
+	position.y = 200;
+	position.h = 4;
+	position.w = 4;
+	ft_putstr("--TEST[1]--\n");
+	ft_putstr("--TEST[2]--\n");
+	SDL_RenderCopy(s->render, s->tex->test, NULL, &position);
+	ft_putstr("--TEST[3]--\n");
+	SDL_RenderPresent(s->render);
+	ft_putstr("--TEST[4]--\n");
 }

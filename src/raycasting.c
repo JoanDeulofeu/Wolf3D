@@ -84,15 +84,11 @@ void	ft_rcasting(t_s *s)
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
-	printf("dirplayer= %f  --  ", s->pos->dirplayer);
-	printf(",  moovex= %f -- ", s->pos->moovex);
-	printf(",  moovey= %f\n\n", s->pos->moovey);
-	printf(",  posplayx= %d -- ", s->pos->posplayer.x);
-	printf(",  posplayy= %d\n\n", s->pos->posplayer.y);
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	// SDL_RenderPresent(s->render);
 	s->pos->dirplayer = savedir;
+	SDL_SetRenderTarget(s->render, NULL); // peu etre nul
 	// printf("pourri/n\n");
 }
 
