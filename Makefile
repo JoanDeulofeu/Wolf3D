@@ -13,7 +13,7 @@ CC = gcc
 
 SDLFLAGS =  $(SDLINCL) -L frameworks/sdl2/lib -lSDL2
 
-SDLINCL = -I frameworks/sdl2/include -I frameworks/sdl2_image/include
+SDLINCL = -I frameworks/sdl2/include
 
 CFLAGS = -Werror -Wall -Wextra -O2 -ggdb3
 

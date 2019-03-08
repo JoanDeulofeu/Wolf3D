@@ -35,12 +35,6 @@ void	ft_draw_minimap(t_s *s)
 
 	space = SPACE;
 	x = 0;
-
-	s->tex->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
-	ft_draw_rect(s, s->tex->wall, space, space);
-	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,space,space);
-	ft_draw_rect(s, s->tex->ground, space, space);
-	SDL_SetRenderTarget(s->render, NULL);
 	while (x < s->high)
 	{
 		y = 0;
@@ -71,23 +65,18 @@ void	ft_draw_minimap(t_s *s)
 		}
 		x++;
 	}
-	if(!(pika = SDL_LoadBMP("Pikapika.bmp")))
-	    ft_usage(6);
+	x = -1;
+	s->tex->test = ft_tga(s, "textures/felix.tga");
+	if (!(pika = SDL_LoadBMP("nuul.bmp")))
+		ft_usage(6);
 	s->tex->player = SDL_CreateTextureFromSurface(s->render, pika);
 	SDL_FreeSurface(pika);
-	s->pos->posplayer.h = space / 4;
-	s->pos->posplayer.w = space / 4;
-	SDL_RenderCopy(s->render, s->tex->player, NULL, &s->pos->posplayer);
+	ft_putstr("##--## TEST 0 ##--##\n");
+	// SDL_QueryTexture(s->tex->test, NULL, NULL, &s->pos->posplayer.w, &s->pos->posplayer.h);
+	s->pos->posplayer.w = 140;
+	s->pos->posplayer.h = 140;
+	ft_putstr("##--## TEST 1 ##--##\n");
+	SDL_RenderCopy(s->render, s->tex->test, NULL, &s->pos->posplayer);
+	ft_putstr("##--## TEST 2 ##--##\n");
 	SDL_RenderPresent(s->render);
-
-	position.x = 200;
-	position.y = 200;
-	position.h = 4;
-	position.w = 4;
-	ft_putstr("--TEST[1]--\n");
-	ft_putstr("--TEST[2]--\n");
-	SDL_RenderCopy(s->render, s->tex->test, NULL, &position);
-	ft_putstr("--TEST[3]--\n");
-	SDL_RenderPresent(s->render);
-	ft_putstr("--TEST[4]--\n");
 }

@@ -1,7 +1,7 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include <SDL2/SDL.h>
-# include <SDL2/SDL_image.h>
+// # include <SDL2/SDL_image.h>
 //# include "SDL_mixer.h"
 # include "libft.h"
 # include <unistd.h>
@@ -97,6 +97,7 @@ typedef struct		s_s
 	SDL_Window		*window;
 }					t_s;
 
+void				ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width);
 SDL_Texture			*ft_tga(t_s *s, const char *path);
 void				ft_swap_pos(t_s *s, int mode, int x, int y);
 void				ft_swap_ray(t_s *s, int mode, int x, int y);

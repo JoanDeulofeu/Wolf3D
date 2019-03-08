@@ -38,4 +38,9 @@ void	ft_init_struct(t_s *s)
 		ft_usage(-1);
 	s->pos->initplayer = 0;
 	s->pos->eyehigh = 0;
+	s->tex->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
+	ft_draw_rect(s, s->tex->wall, SPACE, SPACE);
+	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
+	ft_draw_rect(s, s->tex->ground, SPACE, SPACE);
+	SDL_SetRenderTarget(s->render, NULL);
 }

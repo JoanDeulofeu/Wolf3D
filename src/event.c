@@ -65,6 +65,8 @@ void	ft_display(t_s *s)
 						{
 							s->map[x][y]->envi = 0;
 						}
+						ft_rcasting(s);
+						ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
