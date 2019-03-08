@@ -30,9 +30,9 @@ void	ft_rcasting(t_s *s)
 	x = -1;
 	angle = 0;
 	savedir = s->pos->dirplayer;
-	avcmnt = ((float)50) / ((float)WINDOW_WIDTH);
+	avcmnt = ((float)90) / ((float)WINDOW_WIDTH);
 	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH/2) * avcmnt + avcmnt);
-	angle = 25 + avcmnt;
+	angle = 45 + avcmnt;
 	swich = 0;
 	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer : 360 + s->pos->dirplayer;
 	position.x = 0;
@@ -48,10 +48,7 @@ void	ft_rcasting(t_s *s)
 	{
 		s->pos->dirplayer += avcmnt;
 		s->pos->dirplayer = (s->pos->dirplayer < 360) ? s->pos->dirplayer : 0 + s->pos->dirplayer - 360;
-		// if (savedir > s->pos->dirplayer)
-		// angle = fabsf(((float)savedir) - ((float)s->pos->dirplayer));
 		dis = ft_dir_raycasting(s);
-		// dis = sqrtf(powf(s->pos->xplayer - s->pos->moovex, 2) + powf(s->pos->yplayer - s->pos->moovey, 2));
 		dis = (dis <= 0) ? 1 : dis;
 		if (angle - avcmnt > 0 && swich == 0)
 		 	angle = angle - avcmnt;
@@ -63,13 +60,7 @@ void	ft_rcasting(t_s *s)
 			angle = angle + avcmnt;
 		}
 		dis = dis * cos(angle * M_PI / 180);
-		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
-		// // printf("angle= %f  --   ", angle);
-
-		// printf("savedir= %f\n", savedir);
-		// printf("cos(angle)= %f", cos(angle));
-		// printf(",  hp= %d", hp);
-		// printf("\n");
+		hp = (20 * (400 / dis));
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
 		y = 0;
@@ -112,8 +103,8 @@ float ft_dir_raycasting(t_s *s)
 		angle = ((90 - s->pos->dirplayer ) * M_PI / 180);
 		angle2 = ((s->pos->dirplayer ) * M_PI / 180);
 		ft_dir_raycasting1(s,angle,angle2);
-		while (s->ray->recursx == 1 || s->ray->recursy == 1)
-			ft_dir_raycasting1(s,angle,angle2);
+		// while (s->ray->recursx == 1 || s->ray->recursy == 1)
+		// 	ft_dir_raycasting1(s,angle,angle2);
 		if (s->ray->save1 < s->ray->save2)
 			{
 				s->pos->nsew = 4;
@@ -163,8 +154,8 @@ float ft_dir_raycasting(t_s *s)
 		angle = ((s->pos->dirplayer - 270) * M_PI / 180);
 		angle2 = ((360 - s->pos->dirplayer ) * M_PI / 180);
 		ft_dir_raycasting4(s,angle, angle2);
-		while (s->ray->recursx == 1 || s->ray->recursy == 1)
-			ft_dir_raycasting4(s,angle,angle2);
+		// while (s->ray->recursx == 1 || s->ray->recursy == 1)
+		// 	ft_dir_raycasting4(s,angle,angle2);
 		if (s->ray->save1 < s->ray->save2)
 			{
 				s->pos->nsew = 2;

@@ -6,7 +6,7 @@ void	ft_display(t_s *s)
 	int		y;
 
 	ft_draw_minimap(s);
-	ft_rcasting(s);
+	// ft_rcasting(s);
 	if (s->window)
 	{
 		char cont = 1;
@@ -30,7 +30,7 @@ void	ft_display(t_s *s)
 								ft_dir_player(s, 1);
 								ft_dir_player(s, 1);
 								ft_dir_player(s, 1);
-								ft_rcasting(s);
+								// ft_rcasting(s);
 								ft_draw_minimap(s);
 							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
@@ -38,7 +38,7 @@ void	ft_display(t_s *s)
 								ft_dir_player(s, 2);
 								ft_dir_player(s, 2);
 								ft_dir_player(s, 2);
-								ft_rcasting(s);
+								// ft_rcasting(s);
 								ft_draw_minimap(s);
 							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
@@ -46,7 +46,7 @@ void	ft_display(t_s *s)
 								ft_dir_player(s, 3);
 								ft_dir_player(s, 3);
 								ft_dir_player(s, 3);
-								ft_rcasting(s);
+								// ft_rcasting(s);
 								ft_draw_minimap(s);
 							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
@@ -54,13 +54,13 @@ void	ft_display(t_s *s)
 								ft_dir_player(s, 4);
 								ft_dir_player(s, 4);
 								ft_dir_player(s, 4);
-								ft_rcasting(s);
+								// ft_rcasting(s);
 								ft_draw_minimap(s);
 							}
 					if (event.key.keysym.scancode == SDL_SCANCODE_E)// ouverture porte
 					{
-						y = s->pos->moovey / SPACE;
-						x = s->pos->moovex / SPACE;
+						y = (s->pos->floaty + SPACE / 8) / SPACE;
+						x = (s->pos->floatx + SPACE / 8) / SPACE;
 						if (s->map[x][y]->envi == 1000 || s->map[x][y]->envi == 1001)
 						{
 							s->map[x][y]->envi = 0;
@@ -71,7 +71,7 @@ void	ft_display(t_s *s)
 						s->pos->dirplayer += 10;
 						if (s->pos->dirplayer >= 360)
 							s->pos->dirplayer = 0;
-						ft_rcasting(s);
+						// ft_rcasting(s);
 						ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
@@ -79,7 +79,7 @@ void	ft_display(t_s *s)
 						s->pos->dirplayer -= 10;
 						if (s->pos->dirplayer < 0)
 							s->pos->dirplayer = 350;
-						ft_rcasting(s);
+						// ft_rcasting(s);
 						ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
