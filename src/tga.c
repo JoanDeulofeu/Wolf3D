@@ -32,7 +32,7 @@ void			ft_draw_tex(t_s *s, t_tga *tga)
 	SDL_SetRenderTarget(s->render, NULL);
 }
 
-SDL_Texture		*ft_tga(t_s *s, const char *path)
+SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha)
 {
 	t_tga			*tga;
 	int				lu;
@@ -52,8 +52,7 @@ SDL_Texture		*ft_tga(t_s *s, const char *path)
 	tga->high = tga->buff[15];
 	tga->high <<= 8;
 	tga->high |= tga->buff[14];
-	tga->texture = NULL; //inutile
-	tga->texture = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, tga->width, tga->high);
+	tga->texture = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, tga->width, tga->high);
 	i = -1;
 	if (!(tga->str = (unsigned char *)malloc(sizeof(unsigned char) * tga->width * tga->high * 4)))
 		ft_usage(1);
@@ -67,22 +66,19 @@ SDL_Texture		*ft_tga(t_s *s, const char *path)
 		while (u < lu && tga->buff[u] != '\0')
 		{
 			tga->str[o] = tga->buff[u];
-			// if (o > 39000 && o < 40000)
-			// {
-				// printf("b[%d] = %d  ", u , tga->buff[u]);
-				// if ((u + 1) % 8 == 0)
-				// 	printf("\n");
-			// }
+			if (alpha == 1 && (o + 1) % 4 == 0)
+			{
+				if (tga->str[o - 1] == 255 && tga->str[o - 2] == 255 && tga->str[o - 3] == 255)
+					tga->str[o] = 0;
+			}
 			u++;
 			o++;
 		}
-		while (++u < 128)
-			printf("str[%d] = %d\n", u-64, tga->buff[u-64]);
-		// printf("o = %d\n", o);
-		// ft_putstr("\n-------\n");
 	}
-	u = -1;
-	printf("=-=-= high=%d, width=%d =-=-=\n",tga->high,tga->width);
+	// u = -1;
+	// while (++u < 1024)
+	// 	printf("%d  ", tga->str[u]);
+	// printf("=-=-= high=%d, width=%d =-=-=\n",tga->high,tga->width);
 
 	close(tga->fd);
 	ft_draw_tex(s, tga);
