@@ -12,6 +12,24 @@ void	ft_choise_drawcolor(t_s *s)
 		SDL_SetRenderDrawColor(s->render,60,230,60,255); //vert
 }
 
+// void	ft_choise_drawtex(t_s *s)
+// {
+// 	float	percentx;
+// 	float	percenty;
+// 	//float	neg;
+//
+// 	if (s->pos->nsew == 1)
+// 	{
+// 		percentx = ((s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+// 	}
+// 	if (s->pos->nsew == 2)
+// 	if (s->pos->nsew == 3)
+// 	{
+// 		percentx = ((s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+// 	}
+// 	if (s->pos->nsew == 4)
+// }
+
 void	ft_rcasting(t_s *s)
 {
 	float		dis;
@@ -65,9 +83,22 @@ void	ft_rcasting(t_s *s)
 		SDL_SetRenderTarget(s->render, s->tex->screen);
 		while (y < xbegin)
 			SDL_RenderDrawPoint(s->render, x, y++);
-		ft_choise_drawcolor(s);
-		while (y < xend)
-			SDL_RenderDrawPoint(s->render, x, y++);
+
+		// if (s->ray->texorcolor == 0)
+		// {
+			ft_choise_drawcolor(s);
+			while (y < xend)
+				SDL_RenderDrawPoint(s->render, x, y++);
+		// }
+		// else
+		// {
+		// 	while (y < xend)
+		// 	{
+		// 		ft_choise_drawtex(s);
+		// 		SDL_RenderDrawPoint(s->render, x, y++);
+		// 	}
+		// }
+
 		SDL_SetRenderDrawColor(s->render,110,60,20,255);
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);

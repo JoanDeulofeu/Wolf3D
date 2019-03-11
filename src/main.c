@@ -30,11 +30,15 @@ int main(int ac, char **av)
 		return (0);
 	s->high = 0;
 	s->width = 0;
+	printf("test1\n");
 	ft_check(s, av[1]);
+	printf("test2\n");
 	ft_init_struct(s);
+	printf("test3\n");
 	ft_parsing(s, av[1]);
 	// s->tex->test = ft_tga(s, "textures/felix.tga");
 	// ft_tga(s, "textures/Maxence.tga");
+	printf("test4\n");
 	ft_display(s);
 	return (0);
 }

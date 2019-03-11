@@ -65,13 +65,17 @@ typedef struct		s_tex
 	SDL_Texture 	*ground;
 	SDL_Texture 	*player;
 	SDL_Texture 	*screen;
-	SDL_Texture 	*test;
+	SDL_Texture 	*door;
+	SDL_Texture 	*portal;
 }					t_tex;
 
 typedef struct		s_ray
 {
-	float			diffx;
-	float			diffy;
+	int				texorcolor;
+	float			diffxx;
+	float			diffyx;
+	float			diffxy;
+	float			diffyy;
 	float			inty;
 	float			intx;
 	float			save1;

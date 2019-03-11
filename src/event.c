@@ -28,15 +28,11 @@ void	ft_display(t_s *s)
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
 					{
 						ft_dir_player(s, 1);
-						ft_dir_player(s, 1);
-						ft_dir_player(s, 1);
 						ft_rcasting(s);
 						ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
 					{
-						ft_dir_player(s, 2);
-						ft_dir_player(s, 2);
 						ft_dir_player(s, 2);
 						ft_rcasting(s);
 						ft_draw_minimap(s);
@@ -44,20 +40,16 @@ void	ft_display(t_s *s)
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
 					{
 						ft_dir_player(s, 3);
-						ft_dir_player(s, 3);
-						ft_dir_player(s, 3);
 						ft_rcasting(s);
 						ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
 					{
 						ft_dir_player(s, 4);
-						ft_dir_player(s, 4);
-						ft_dir_player(s, 4);
 						ft_rcasting(s);
 						ft_draw_minimap(s);
 					}
-					if (event.key.keysym.scancode == SDL_SCANCODE_E)// ouverture porte
+					if (event.key.keysym.scancode == SDL_SCANCODE_E) //ouverture porte
 					{
 						y = s->pos->moovey / SPACE;
 						x = s->pos->moovex / SPACE;
