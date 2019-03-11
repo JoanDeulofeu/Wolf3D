@@ -52,10 +52,10 @@ void	ft_draw_minimap(t_s *s)
 				{
 					s->pos->dirplayer = (s->map[x][y]->item - 2) * 90;
 					s->pos->posplayer.x = position.x;
-					s->pos->xplayer = position.x + space / 8;
+					// s->pos->xplayer = position.x + space / 8;
 					s->pos->floatx = s->pos->posplayer.x;
 					s->pos->posplayer.y = position.y;
-					s->pos->yplayer = position.x + space / 8;
+					// s->pos->yplayer = position.x + space / 8;
 					s->pos->floaty = s->pos->posplayer.y;
 					s->pos->initplayer++;
 				}

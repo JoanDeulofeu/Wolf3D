@@ -47,8 +47,6 @@ typedef struct		s_inv
 typedef struct		s_pos
 {
 	SDL_Rect		posplayer;
-	float			xplayer;
-	float			yplayer;
 	int				initplayer;
 	float			floatx;
 	float			floaty;
@@ -58,6 +56,7 @@ typedef struct		s_pos
 	float			dirplayer;
 	int				nsew;
 	int				eyehigh;
+	int				tp;
 }					t_pos;
 
 typedef struct		s_tex
