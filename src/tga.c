@@ -29,6 +29,7 @@ void			ft_draw_tex(t_s *s, t_tga *tga)
 		y = 0;
 		x++;
 	}
+	SDL_SetTextureBlendMode(tga->texture, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderTarget(s->render, NULL);
 }
 

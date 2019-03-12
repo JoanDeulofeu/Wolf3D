@@ -74,8 +74,8 @@ void	ft_draw_minimap(t_s *s)
 	}
 	x = -1;
 	// ft_putstr("##--## TEST 0 ##--##\n");
-	s->pos->posplayer.w = 16;
-	s->pos->posplayer.h = 16;
+	s->pos->posplayer.w = SPACE;
+	s->pos->posplayer.h = SPACE;
 	// ft_putstr("##--## TEST 1 ##--##\n");
 	SDL_RenderCopy(s->render, s->tex->player, NULL, &s->pos->posplayer);
 	// ft_putstr("##--## TEST 2 ##--##\n");

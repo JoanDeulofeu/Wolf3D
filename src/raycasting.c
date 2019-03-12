@@ -75,7 +75,7 @@ void	ft_rcasting(t_s *s)
 			angle = angle + avcmnt;
 		}
 		dis = dis * cos(angle * M_PI / 180);
-		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
+		hp = (20 * (200 / dis)); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
 		y = 0;
