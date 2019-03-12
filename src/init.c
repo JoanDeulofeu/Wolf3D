@@ -43,6 +43,8 @@ void	ft_init_struct(t_s *s)
 	ft_draw_rect(s, s->tex->wall, SPACE, SPACE);
 	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
 	ft_draw_rect(s, s->tex->ground, SPACE, SPACE);
+	s->tex->wall1 = ft_tga_to_str(s, "textures/wall_brick.tga", 1);
+	s->tex->wall2 = ft_tga_to_str(s, "textures/wall_cobble.tga", 1);
 	// s->tex->player = ft_tga(s, "textures/smiley.tga", 1);
 	// s->tex->door = ft_tga(s, "textures/door.tga", 1);
 	// s->tex->portal = ft_tga(s, "textures/portal.tga", 1);
