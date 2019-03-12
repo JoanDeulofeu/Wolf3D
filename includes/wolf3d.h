@@ -1,6 +1,7 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include <SDL2/SDL.h>
+// # include <SDL2/SDL_image.h>
 //# include "SDL_mixer.h"
 # include "libft.h"
 # include <unistd.h>
@@ -21,7 +22,8 @@ typedef struct		s_tga
 	int				width;
 	int				high;
 	unsigned char	buff[4000];
-	SDL_Surface		*surface;
+	unsigned char	*str;
+	SDL_Texture 	*texture;
 }					t_tga;
 
 typedef struct		s_map
@@ -54,7 +56,7 @@ typedef struct		s_pos
 	float			dirplayer;
 	int				nsew;
 	int				eyehigh;
-	int 			tp;
+	int				tp;
 }					t_pos;
 
 typedef struct		s_tex
@@ -63,18 +65,25 @@ typedef struct		s_tex
 	SDL_Texture 	*ground;
 	SDL_Texture 	*player;
 	SDL_Texture 	*screen;
+	SDL_Texture 	*door;
+	SDL_Texture 	*portal;
 }					t_tex;
 
 typedef struct		s_ray
 {
-	float			diffx;
-	float			diffy;
+	int				texorcolor;
+	float			diffxx;
+	float			diffyx;
+	float			diffxy;
+	float			diffyy;
 	float			inty;
 	float			intx;
 	float			save1;
 	float			save2;
 	float			swap1;
 	float			swap2;
+	int             recursx;
+	int             recursy;
 }					t_ray;
 
 typedef struct		s_s
@@ -91,7 +100,8 @@ typedef struct		s_s
 	SDL_Window		*window;
 }					t_s;
 
-SDL_Surface			*ft_tga(const char *path);
+void				ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width);
+SDL_Texture			*ft_tga(t_s *s, const char *path, int alpha);
 void				ft_swap_pos(t_s *s, int mode, int x, int y);
 void				ft_swap_ray(t_s *s, int mode, int x, int y);
 void				ft_rcasting(t_s *s);

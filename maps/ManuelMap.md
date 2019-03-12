@@ -29,3 +29,5 @@ ITEM
 3 = spawn joueur / camera direction est
 4 = spawn joueur / camera direction sud
 5 = spawn joueur / camera direction ouest
+6 = clef
+7 = epee

@@ -83,7 +83,6 @@ void ft_swap_pos(t_s *s, int mode, int x, int y)
 	}
 }
 
-
 void ft_dir_player(t_s *s, int i)
 {
 	int tmp;

@@ -31,16 +31,17 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2))+ s->ray->swap1;
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x][y]->envi > 1049)
-			{
-				if (s->map[x][y]->envi < 1100)
-				{
-					s->ray->swap1 = s->ray->save1;
-					s->ray->recursx = 1;
-					ft_swap_ray(s, 1, x, y);
-				}
-			break;
-			}
+		if (s->map[x-1][y]->envi > 1049 && s->map[x-1][y]->envi < 1100)
+		{
+				save1 = s->ray->save1;
+				ft_swap_ray(s,1,x-1,y);
+				y = s->pos->moovey / SPACE;
+				x = s->pos->moovex / SPACE;
+				// s->ray->save1 += save1;
+				// break;
+		}
+		if (s->map[x][y]->envi > 1099)
+			stop = 1;
 		if (stop == 1)
 			break;
 	}

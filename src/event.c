@@ -26,38 +26,30 @@ void	ft_display(t_s *s)
 						break;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
-							{
-								ft_dir_player(s, 1);
-								ft_dir_player(s, 1);
-								ft_dir_player(s, 1);
-								// ft_rcasting(s);
-								ft_draw_minimap(s);
-							}
+					{
+						ft_dir_player(s, 1);
+						// ft_rcasting(s);
+						// ft_draw_minimap(s);
+					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
-							{
-								ft_dir_player(s, 2);
-								ft_dir_player(s, 2);
-								ft_dir_player(s, 2);
-								// ft_rcasting(s);
-								ft_draw_minimap(s);
-							}
+					{
+						ft_dir_player(s, 2);
+						// ft_rcasting(s);
+						// ft_draw_minimap(s);
+					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
-							{
-								ft_dir_player(s, 3);
-								ft_dir_player(s, 3);
-								ft_dir_player(s, 3);
-								// ft_rcasting(s);
-								ft_draw_minimap(s);
-							}
+					{
+						ft_dir_player(s, 3);
+						// ft_rcasting(s);
+						// ft_draw_minimap(s);
+					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
-							{
-								ft_dir_player(s, 4);
-								ft_dir_player(s, 4);
-								ft_dir_player(s, 4);
-								// ft_rcasting(s);
-								ft_draw_minimap(s);
-							}
-					if (event.key.keysym.scancode == SDL_SCANCODE_E)// ouverture porte
+					{
+						ft_dir_player(s, 4);
+					// 	ft_rcasting(s);
+					// 	ft_draw_minimap(s);
+					}
+					if (event.key.keysym.scancode == SDL_SCANCODE_E) //ouverture porte
 					{
 						y = (s->pos->floaty + SPACE / 8) / SPACE;
 						x = (s->pos->floatx + SPACE / 8) / SPACE;
@@ -65,6 +57,8 @@ void	ft_display(t_s *s)
 						{
 							s->map[x][y]->envi = 0;
 						}
+						// ft_rcasting(s);
+						// ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
 					{
@@ -72,7 +66,7 @@ void	ft_display(t_s *s)
 						if (s->pos->dirplayer >= 360)
 							s->pos->dirplayer = 0;
 						// ft_rcasting(s);
-						ft_draw_minimap(s);
+						// ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
 					{
@@ -80,7 +74,7 @@ void	ft_display(t_s *s)
 						if (s->pos->dirplayer < 0)
 							s->pos->dirplayer = 350;
 						// ft_rcasting(s);
-						ft_draw_minimap(s);
+						// ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_DOWN)
 						if (s->pos->eyehigh > -120)
@@ -88,8 +82,9 @@ void	ft_display(t_s *s)
 					if (event.key.keysym.scancode == SDL_SCANCODE_UP)
 						if (s->pos->eyehigh < 120)
 							s->pos->eyehigh += 10;
-					// ft_rcasting(s);
-					// ft_draw_minimap(s);
+
+					ft_draw_minimap(s);
+										ft_rcasting(s);
 				}
 			}
 		}
