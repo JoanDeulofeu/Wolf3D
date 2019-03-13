@@ -33,7 +33,55 @@ void			ft_draw_tex(t_s *s, t_tga *tga)
 	SDL_SetRenderTarget(s->render, NULL);
 }
 
-SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha)
+// SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha)
+// {
+// 	t_tga			*tga;
+// 	int				lu;
+// 	int				i;
+// 	int				u;
+// 	int				o;
+//
+// 	if (!(tga = (t_tga *)malloc(sizeof(t_tga))))
+// 		ft_usage(1);
+// 	i = -1;
+// 	tga->fd = open(path, O_RDONLY);
+// 	if (read(tga->fd, tga->buff, 18) != 18)
+// 		ft_usage(7);
+// 	tga->width = tga->buff[13];
+// 	tga->width <<= 8;
+// 	tga->width |= tga->buff[12];
+// 	tga->high = tga->buff[15];
+// 	tga->high <<= 8;
+// 	tga->high |= tga->buff[14];
+// 	tga->texture = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, tga->width, tga->high);
+// 	i = -1;
+// 	if (!(tga->str = (unsigned char *)malloc(sizeof(unsigned char) * tga->width * tga->high * 4)))
+// 		ft_usage(1);
+// 	o = 0;
+// 	while (++i < tga->width * tga->high)
+// 	{
+// 		ft_bzero(tga->buff, 4000);
+// 		if (!(lu = read(tga->fd, tga->buff, 4000)))
+// 			break;
+// 		u = 0;
+// 		while (u < lu && tga->buff[u] != '\0')
+// 		{
+// 			tga->str[o] = tga->buff[u];
+// 			if (alpha == 1 && (o + 1) % 4 == 0)
+// 			{
+// 				if (tga->str[o - 1] == 255 && tga->str[o - 2] == 255 && tga->str[o - 3] == 255)
+// 					tga->str[o] = 0;
+// 			}
+// 			u++;
+// 			o++;
+// 		}
+// 	}
+// 	close(tga->fd);
+// 	ft_draw_tex(s, tga);
+// 	return (tga->texture);
+// }
+
+unsigned char	*ft_tga_to_str(const char *path, int alpha)
 {
 	t_tga			*tga;
 	int				lu;
@@ -53,7 +101,7 @@ SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha)
 	tga->high = tga->buff[15];
 	tga->high <<= 8;
 	tga->high |= tga->buff[14];
-	tga->texture = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_TARGET, tga->width, tga->high);
+
 	i = -1;
 	if (!(tga->str = (unsigned char *)malloc(sizeof(unsigned char) * tga->width * tga->high * 4)))
 		ft_usage(1);
@@ -76,12 +124,6 @@ SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha)
 			o++;
 		}
 	}
-	// u = -1;
-	// while (++u < 1024)
-	// 	printf("%d  ", tga->str[u]);
-	// printf("=-=-= high=%d, width=%d =-=-=\n",tga->high,tga->width);
-
 	close(tga->fd);
-	ft_draw_tex(s, tga);
-	return (tga->texture);
+	return (tga->str);
 }

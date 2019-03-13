@@ -41,12 +41,12 @@ void	ft_draw_minimap(t_s *s)
 	int				x;
 	int				space;
 	SDL_Rect 		position;
+	SDL_Surface		*surface_door;
 
 	space = SPACE;
 	x = 0;
-	s->tex->player = ft_tga(s, "textures/smiley.tga", 1);
-	s->tex->door = ft_tga(s, "textures/door.tga", 1);
-	s->tex->portal = ft_tga(s, "textures/portal.tga", 1);
+	surface_door = SDL_LoadBMP("textures/door.tga");
+	s->tex->door = SDL_CreateTextureFromSurface(s->render, surface_door);
 	while (x < s->high)
 	{
 		y = 0;
@@ -56,12 +56,10 @@ void	ft_draw_minimap(t_s *s)
 			position.y = y * space;
 			position.w = space;
 			position.h = space;
-			if (s->map[x][y]->envi > 1099)
+			if (s->map[x][y]->envi > 1049)
 				SDL_RenderCopy(s->render, s->tex->wall, NULL, &position);
 			else if (s->map[x][y]->envi > 999 && s->map[x][y]->envi < 1050)
 				SDL_RenderCopy(s->render, s->tex->door, NULL, &position);
-			else if (s->map[x][y]->envi > 1049 && s->map[x][y]->envi < 1100)
-				SDL_RenderCopy(s->render, s->tex->portal, NULL, &position);
 			else
 			{
 				SDL_RenderCopy(s->render, s->tex->ground, NULL, &position);

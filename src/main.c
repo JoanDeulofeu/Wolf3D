@@ -36,8 +36,6 @@ int main(int ac, char **av)
 	ft_init_struct(s);
 	printf("test3\n");
 	ft_parsing(s, av[1]);
-	// s->tex->test = ft_tga(s, "textures/felix.tga");
-	// ft_tga(s, "textures/Maxence.tga");
 	printf("test4\n");
 	ft_display(s);
 	return (0);

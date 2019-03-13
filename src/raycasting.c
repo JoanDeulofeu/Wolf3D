@@ -1,6 +1,6 @@
 #include "wolf3d.h"
 
-void	ft_choise_drawcolor(t_s *s)
+void		ft_choise_drawcolor(t_s *s)
 {
 	if (s->pos->nsew == 1)
 		SDL_SetRenderDrawColor(s->render,220,60,60,255); //rouge
@@ -12,23 +12,83 @@ void	ft_choise_drawcolor(t_s *s)
 		SDL_SetRenderDrawColor(s->render,60,230,60,255); //vert
 }
 
-// void	ft_choise_drawtex(t_s *s)
-// {
-// 	float	percentx;
-// 	float	percenty;
-// 	//float	neg;
-//
-// 	if (s->pos->nsew == 1)
-// 	{
-// 		percentx = ((s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-// 	}
-// 	if (s->pos->nsew == 2)
-// 	if (s->pos->nsew == 3)
-// 	{
-// 		percentx = ((s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-// 	}
-// 	if (s->pos->nsew == 4)
-// }
+SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
+{
+	SDL_Color	color;
+	int			coord;
+
+	coord = x * y * 4;
+	color.r = str[coord];
+	color.g = str[coord + 1];
+	color.b = str[coord + 2];
+	color.a = str[coord + 3];
+	return (color);
+}
+
+int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
+{
+	int				percentx;
+	int				percenty;
+	int				xtex;
+	int				ytex;
+	SDL_Color		color;
+	SDL_PixelFormat *format;
+
+	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
+	if (s->pos->nsew == 1)
+	{
+		percentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+		xtex = percentx * 64 /100;
+		while (y < xend)
+		{
+			percenty = y * 100 / hp;
+			ytex = percenty * 64 /100;
+			color = ft_getcolor(xtex, ytex, s->tex->wall1);
+			SDL_SetRenderDrawColor(s->render, 60, 230, 60, 255);
+			SDL_RenderDrawPoint(s->render, x, y++);
+		}
+	}
+	if (s->pos->nsew == 2)
+	{
+		percentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
+		xtex = percentx * 64 /100;
+		while (y < xend)
+		{
+			percenty = y * 100 / hp;
+			ytex = percenty * 64 /100;
+			color = ft_getcolor(xtex, ytex, s->tex->wall2);
+			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_RenderDrawPoint(s->render, x, y++);
+		}
+	}
+	if (s->pos->nsew == 3)
+	{
+		percentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+		xtex = percentx * 64 /100;
+		while (y < xend)
+		{
+			percenty = y * 100 / hp;
+			ytex = percenty * 64 /100;
+			color = ft_getcolor(xtex, ytex, s->tex->wall3);
+			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_RenderDrawPoint(s->render, x, y++);
+		}
+	}
+	if (s->pos->nsew == 4)
+	{
+		percentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
+		xtex = percentx * 64 /100;
+		while (y < xend)
+		{
+			percenty = y * 100 / hp;
+			ytex = percenty * 64 /100;
+			color = ft_getcolor(xtex, ytex, s->tex->wall4);
+			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_RenderDrawPoint(s->render, x, y++);
+		}
+	}
+	return (y);
+}
 
 void	ft_rcasting(t_s *s)
 {
@@ -83,22 +143,14 @@ void	ft_rcasting(t_s *s)
 		SDL_SetRenderTarget(s->render, s->tex->screen);
 		while (y < xbegin)
 			SDL_RenderDrawPoint(s->render, x, y++);
-
-		// if (s->ray->texorcolor == 0)
-		// {
+		if (s->ray->texorcolor == 0)
+		{
 			ft_choise_drawcolor(s);
 			while (y < xend)
 				SDL_RenderDrawPoint(s->render, x, y++);
-		// }
-		// else
-		// {
-		// 	while (y < xend)
-		// 	{
-		// 		ft_choise_drawtex(s);
-		// 		SDL_RenderDrawPoint(s->render, x, y++);
-		// 	}
-		// }
-
+		}
+		else
+			y = ft_choise_drawtex(s, x, y, xend, hp);
 		SDL_SetRenderDrawColor(s->render,110,60,20,255);
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
@@ -108,7 +160,7 @@ void	ft_rcasting(t_s *s)
 	s->pos->dirplayer = savedir;
 }
 
-float ft_dir_raycasting(t_s *s)
+float		ft_dir_raycasting(t_s *s)
 {
 	float tmp;
 	float angle;
