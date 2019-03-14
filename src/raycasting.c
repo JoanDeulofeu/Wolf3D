@@ -17,7 +17,7 @@ SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
 	SDL_Color	color;
 	int			coord;
 
-	coord = x * y * 4;
+	coord = x + y * 64 * 4;
 	color.r = str[coord];
 	color.g = str[coord + 1];
 	color.b = str[coord + 2];
@@ -27,7 +27,7 @@ SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
 
 int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 {
-	int				percentx;
+	float			fpercentx;
 	int				percenty;
 	int				xtex;
 	int				ytex;
@@ -37,8 +37,11 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 	if (s->pos->nsew == 1)
 	{
-		percentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-		xtex = percentx * 64 /100;
+		fpercentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+		printf("\033[34mSUD) fpercentx = %f   ", fpercentx);
+		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
+		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
 			percenty = y * 100 / hp;
@@ -50,8 +53,11 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 2)
 	{
-		percentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
-		xtex = percentx * 64 /100;
+		fpercentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
+		printf("\033[31mEST) fpercentx = %f   ", fpercentx);
+		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
+		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
 			percenty = y * 100 / hp;
@@ -63,8 +69,11 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 3)
 	{
-		percentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-		xtex = percentx * 64 /100;
+		fpercentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
+		printf("\033[32mNORD) fpercentx = %f   ", fpercentx);
+		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
+		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
 			percenty = y * 100 / hp;
@@ -76,8 +85,11 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 4)
 	{
-		percentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
-		xtex = percentx * 64 /100;
+		fpercentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
+		printf("\033[33mOUEST) fpercentx = %f   ", fpercentx);
+		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
+		printf("calcul= %d\033[0033[31mm\n", (int)(s->pos->moovex + s->ray->diffxx));
+		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
 			percenty = y * 100 / hp;
