@@ -6,51 +6,57 @@ int		ft_hitbox(t_s *s, int key)
 	int		y;
 	int		x2;
 	int		y2;
-	int 	xc;
-	int 	yc;
-	// savex = savey;
+	int		xc;
+	int		yc;
+
 	y = s->pos->floaty / SPACE;
-	y2 = (s->pos->floaty + SPACE / 4) / SPACE ;
-	x = s->pos->floatx / SPACE;//trouver la case
-	x2 = (s->pos->floatx + SPACE / 4) / SPACE ;
-	xc = (s->pos->floatx + SPACE / 8) / SPACE ;
+	y2 = (s->pos->floaty + SPACE / 4) / SPACE;
+	x = s->pos->floatx / SPACE;
+	x2 = (s->pos->floatx + SPACE / 4) / SPACE;
+	xc = (s->pos->floatx + SPACE / 8) / SPACE;
 	yc = (s->pos->floaty + SPACE / 8) / SPACE;
-	if (key == 1 || key == 2 || key == 3 || key == 4) // gauche
+	if (key == 1 || key == 2 || key == 3 || key == 4)
 	{
-		if (s->map[x][y]->envi > 1099 || s->map[x][y2]->envi > 1099 || s->map[x2][y]->envi > 1099 || s->map[x2][y2]->envi > 1099)
-		 	return(0);
+		if (s->map[x][y]->envi > 1099 || s->map[x][y2]->envi > 1099 ||
+		s->map[x2][y]->envi > 1099 || s->map[x2][y2]->envi > 1099)
+			return (0);
 		if (s->map[xc][yc]->envi > 1049 && s->map[xc][yc]->envi < 1100)
 		{
-			ft_swap_pos(s,key,xc,yc);
+			ft_swap_pos(s, key, xc, yc);
 			s->pos->tp = 1;
 		}
 	}
-	if (key == 4) //gauche
-		if (s->pos->floatx < x * SPACE + SPACE / 2) // portehorizontale
+	if (key == 4)
+		if (s->pos->floatx < x * SPACE + SPACE / 2)
 			if (s->map[x][y]->envi == 1001 || s->map[x][y2]->envi == 1001)
 				return (0);
-	if (key == 3) // droite
-		if ((s->pos->floatx + SPACE / 4) < x * SPACE + SPACE / 2) // portehorizontale
+	if (key == 3)
+		if ((s->pos->floatx + SPACE / 4) < x * SPACE + SPACE / 2)
 			if (s->map[x2][y]->envi == 1001 || s->map[x2][y2]->envi == 1001)
 				return (0);
-	if (key == 1) //haut
-		if (s->pos->floaty < y * SPACE + SPACE / 2) // porteverticale
+	if (key == 1)
+		if (s->pos->floaty < y * SPACE + SPACE / 2)
 			if (s->map[x][y]->envi == 1000 || s->map[x2][y]->envi == 1000)
 				return (0);
-	if (key == 2) // bas
-		if ((s->pos->floaty + SPACE / 4) < y * SPACE + SPACE / 2) // porteverticale
+	if (key == 2)
+		if ((s->pos->floaty + SPACE / 4) < y * SPACE + SPACE / 2)
 			if (s->map[x2][y]->envi == 1000 || s->map[x][y]->envi == 1000)
 				return (0);
 	return (1);
 }
 
-void ft_swap_pos(t_s *s, int mode, int x, int y)
+void	ft_swap_pos(t_s *s, int mode, int x, int y)
 {
-	int i = 0;
-	int j = 0;
-	int tp;
-	int diffx = 0;
-	int diffy = 0;
+	int		i;
+	int		j;
+	int		tp;
+	float	diffx;
+	float	diffy;
+
+	diffx = 0;
+	diffy = 0;
+	i = 0;
+	j = 0;
 	if (mode == 1)
 		diffy = 1;
 	if (mode == 2)
@@ -70,10 +76,10 @@ void ft_swap_pos(t_s *s, int mode, int x, int y)
 				{
 					diffx += (x - i);
 					diffy += (y - j);
-					s->pos->posplayer.x -= (diffx * SPACE) ;
-					s->pos->posplayer.y -= (diffy * SPACE) ;
-					s->pos->floatx -= (diffx * SPACE) ;
-					s->pos->floaty -= (diffy * SPACE) ;
+					s->pos->posplayer.x -= (diffx * SPACE);
+					s->pos->posplayer.y -= (diffy * SPACE);
+					s->pos->floatx -= (diffx * SPACE);
+					s->pos->floaty -= (diffy * SPACE);
 				}
 			}
 			i++;
@@ -81,127 +87,4 @@ void ft_swap_pos(t_s *s, int mode, int x, int y)
 		i = 0;
 		j++;
 	}
-}
-
-void ft_dir_player(t_s *s, int i)
-{
-	int tmp;
-	tmp = s->pos->dirplayer;
-	float savey = s->pos->floaty;
-	float savex = s->pos->floatx;
-	s->pos->tp = 0;
-	if (i == 2)
-	{
-		if (s->pos->dirplayer < 180)
-			s->pos->dirplayer += 180;
-		else
-			s->pos->dirplayer -= 180;
-	}
-	if (i == 4)
-	{
-		if (s->pos->dirplayer < 90)
-			s->pos->dirplayer += 270;
-		else
-			s->pos->dirplayer -= 90;
-	}
-	if (i == 3)
-	{
-		if (s->pos->dirplayer > 270)
-			s->pos->dirplayer -= 270;
-		else
-			s->pos->dirplayer += 90;
-	}
-	if (s->pos->dirplayer <= 90)
-	{
-
-		s->pos->floaty -= (1-(s->pos->dirplayer/90));
-		if(ft_hitbox(s,1 ))
-		{
-		if (s->pos->floaty < s->pos->posplayer.y - 0.5)
-			s->pos->posplayer.y --;
-		}
-		else
-			s->pos->floaty = savey;
-		if (s->pos->tp == 0)
-		{
-		s->pos->floatx += (s->pos->dirplayer/90);
-		if(ft_hitbox(s,3 ))
-		{
-		if (s->pos->floatx > s->pos->posplayer.x + 0.5)
-			s->pos->posplayer.x ++;
-		}
-		else
-			s->pos->floatx = savex;
-		}
-	}
-	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
-	{
-
-		s->pos->floaty += ((s->pos->dirplayer-90)/90);
-		if(ft_hitbox(s,2 ))
-		{
-		if (s->pos->floaty > s->pos->posplayer.y + 0.5 )
-			s->pos->posplayer.y ++;
-		}
-		else
-			s->pos->floaty = savey;
-		if (s->pos->tp == 0)
-		{
-		s->pos->floatx += (1-((s->pos->dirplayer-90)/90));
-		if(ft_hitbox(s,3 ))
-		{
-		if (s->pos->floatx > s->pos->posplayer.x + 0.5 )
-			s->pos->posplayer.x ++;
-		}
-		else
-			s->pos->floatx = savex;
-		}
-	}
-	if (s->pos->dirplayer > 180 && s->pos->dirplayer <= 270)
-	{
-		s->pos->floaty += (1-((s->pos->dirplayer-180)/90));
-		if(ft_hitbox(s,2 ))
-		{
-		if (s->pos->floaty > s->pos->posplayer.y + 0.5 )
-			s->pos->posplayer.y ++;
-		}
-		else
-			s->pos->floaty = savey;
-		if (s->pos->tp == 0)
-		{
-		s->pos->floatx -= ((s->pos->dirplayer-180)/90);
-		if(ft_hitbox(s,4 ))
-		{
-		if (s->pos->floatx < s->pos->posplayer.x - 0.5 )
-			s->pos->posplayer.x --;
-		}
-		else
-			s->pos->floatx = savex;
-		}
-	}
-	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
-	{
-		s->pos->floaty -= ((s->pos->dirplayer-270)/90);
-		if(ft_hitbox(s,1 ))
-		{
-		if (s->pos->floaty < s->pos->posplayer.y - 0.5 )
-			s->pos->posplayer.y --;
-		}
-		else
-			s->pos->floaty = savey;
-		if (s->pos->tp == 0)
-		{
-		s->pos->floatx -= (1-((s->pos->dirplayer-270)/90));
-		if(ft_hitbox(s,4 ))
-		{
-		if (s->pos->floatx < s->pos->posplayer.x - 0.5)
-			s->pos->posplayer.x --;
-		}
-		else
-			s->pos->floatx = savex;
-		}
-	}
-	s->pos->dirplayer = tmp;
-	// s->pos->xplayer = s->pos->posplayer.x + SPACE / 8;
-	// s->pos->yplayer = s->pos->posplayer.y + SPACE / 8;
 }
