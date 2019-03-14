@@ -77,7 +77,6 @@ void	ft_rcasting(t_s *s)
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
-	printf("\n\n");
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	s->pos->dirplayer = savedir;
