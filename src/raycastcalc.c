@@ -20,11 +20,12 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 			x++;
 			s->ray->intx = x  * SPACE; //valide par jojo
 		}
-		s->ray->diffxx = s->ray->intx - s->pos->moovex; //valide par jojo
-		s->ray->diffyx = tan(angle) * s->ray->diffxx;
-		s->ray->inty = s->pos->moovey - s->ray->diffyx;
+		s->ray->diffx = s->ray->intx - s->pos->moovex; //valide par jojo
+		// printf("moovex=%f     diffx= %f   \n", s->pos->moovex , s->ray->diffx);
+		s->ray->diffy = tan(angle) * s->ray->diffx;
+		s->ray->inty = s->pos->moovey - s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffxx,2)+powf(s->ray->diffyx,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
 		if (s->map[x][y]->envi > 1049)
@@ -39,16 +40,16 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 	{
 		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) > y * SPACE)
 		{
-			s->ray->inty = y * SPACE + SPACE / 2;
+			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
 		}
 		else
-			s->ray->inty = y * SPACE; //valide par jojo
-		s->ray->diffyy = s->pos->moovey - s->ray->inty; //valide par jojo
-		s->ray->diffxy = tan(angle2) * s->ray->diffyy;
-		s->ray->intx = s->pos->moovex + s->ray->diffxy;
-		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffxy,2)+powf(s->ray->diffyy,2));
+			s->ray->inty2 = y * SPACE; //valide par jojo
+		s->ray->diffy = s->pos->moovey - s->ray->inty2; //valide par jojo
+		s->ray->diffx = tan(angle2) * s->ray->diffy;
+		s->ray->intx2 = s->pos->moovex + s->ray->diffx;
+		x = s->ray->intx2 / SPACE;
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high|| y < 0 || x < 0)
 			break;
 		if (s->map[x][y-1]->envi > 1049)
@@ -77,11 +78,11 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 		x++;
 		s->ray->intx = x * SPACE; //valide par jojo
 		}
-		s->ray->diffxx = s->ray->intx - s->pos->moovex; //valide par jojo
-		s->ray->diffyx = tan(angle) * s->ray->diffxx;
-		s->ray->inty = s->pos->moovey + s->ray->diffyx;
+		s->ray->diffx = s->ray->intx - s->pos->moovex; //valide par jojo
+		s->ray->diffy = tan(angle) * s->ray->diffx;
+		s->ray->inty = s->pos->moovey + s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffxx,2)+powf(s->ray->diffyx,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high   || y < 0 || x < 0)
 			break;
 		if (s->map[x][y]->envi > 1049)
@@ -96,19 +97,19 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 	{
 		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) < y * SPACE)
 		{
-			s->ray->inty = y * SPACE + SPACE / 2;
+			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
 		}
 		else
 		{
 		y++;
-		s->ray->inty = y * SPACE; //valide par jojo
+		s->ray->inty2 = y * SPACE; //valide par jojo
 		}
-		s->ray->diffyy = s->ray->inty - s->pos->moovey; //valide par jojo
-		s->ray->diffxy = tan(angle2) * s->ray->diffyy;
-		s->ray->intx = s->pos->moovex + s->ray->diffxy;
-		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffxy,2)+powf(s->ray->diffyy,2));
+		s->ray->diffy = s->ray->inty2 - s->pos->moovey; //valide par jojo
+		s->ray->diffx = tan(angle2) * s->ray->diffy;
+		s->ray->intx2 = s->pos->moovex + s->ray->diffx;
+		x = s->ray->intx2 / SPACE;
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width  || x >= s->high || y < 0 || x < 0)
 			break;
 		if (s->map[x][y]->envi > 1049)
@@ -135,11 +136,11 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		}
 		else
 			s->ray->intx = x  * SPACE; //valide par jojo
-		s->ray->diffxx = s->pos->moovex - s->ray->intx; //valide par jojo
-		s->ray->diffyx = tan(angle) * s->ray->diffxx;
-		s->ray->inty = s->pos->moovey + s->ray->diffyx;
+		s->ray->diffx = s->pos->moovex - s->ray->intx; //valide par jojo
+		s->ray->diffy = tan(angle) * s->ray->diffx;
+		s->ray->inty = s->pos->moovey + s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffxx,2)+powf(s->ray->diffyx,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y <= 0 || x <= 0)
 			break;
 		if (s->map[x - 1][y]->envi > 1049)
@@ -156,19 +157,19 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 	{
 		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) < y * SPACE)
 		{
-			s->ray->inty = y * SPACE + SPACE / 2;
+			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
 		}
 		else
 		{
 		y++;
-		s->ray->inty = y * SPACE; //valide par jojo
+		s->ray->inty2 = y * SPACE; //valide par jojo
 		}
-		s->ray->diffyy = s->ray->inty - s->pos->moovey; //valide par jojo
-		s->ray->diffxy = tan(angle2) * s->ray->diffyy;
-		s->ray->intx = s->pos->moovex - s->ray->diffxy;
-		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffxy,2)+powf(s->ray->diffyy,2));
+		s->ray->diffy = s->ray->inty2 - s->pos->moovey; //valide par jojo
+		s->ray->diffx = tan(angle2) * s->ray->diffy;
+		s->ray->intx2 = s->pos->moovex - s->ray->diffx;
+		x = s->ray->intx2 / SPACE;
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y <= 0 || x <= 0)
 			break;
 		if (s->map[x][y]->envi > 1049)
@@ -194,11 +195,11 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		}
 		else
 			s->ray->intx = x  * SPACE; //valide par jojo
-		s->ray->diffxx = s->pos->moovex - s->ray->intx; //valide par jojo
-		s->ray->diffyx = tan(angle) * s->ray->diffxx;
-		s->ray->inty = s->pos->moovey - s->ray->diffyx;
+		s->ray->diffx = s->pos->moovex - s->ray->intx; //valide par jojo
+		s->ray->diffy = tan(angle) * s->ray->diffx;
+		s->ray->inty = s->pos->moovey - s->ray->diffy;
 		y = s->ray->inty / SPACE;
-		s->ray->save1 = sqrtf(powf(s->ray->diffxx,2)+powf(s->ray->diffyx,2));
+		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y < 0 || x < 0)
 			break;
 		if (s->map[x-1][y]->envi > 1049)
@@ -214,16 +215,16 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 	{
 		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) > y * SPACE)
 		{
-			s->ray->inty = y * SPACE + SPACE / 2;
+			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
 		}
 		else
-			s->ray->inty = y * SPACE; //valide par jojo
-		s->ray->diffyy = s->pos->moovey - s->ray->inty; //valide par jojo
-		s->ray->diffxy = tan(angle2) * s->ray->diffyy;
-		s->ray->intx = s->pos->moovex - s->ray->diffxy;
-		x = s->ray->intx / SPACE;
-		s->ray->save2 = sqrtf(powf(s->ray->diffxy,2)+powf(s->ray->diffyy,2));
+			s->ray->inty2 = y * SPACE; //valide par jojo
+		s->ray->diffy = s->pos->moovey - s->ray->inty2; //valide par jojo
+		s->ray->diffx = tan(angle2) * s->ray->diffy;
+		s->ray->intx2 = s->pos->moovex - s->ray->diffx;
+		x = s->ray->intx2 / SPACE;
+		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
 		if (s->map[x][y - 1]->envi > 1049)

@@ -76,18 +76,16 @@ typedef struct		s_tex
 typedef struct		s_ray
 {
 	int				texorcolor;
-	float			diffxx;
-	float			diffyx;
-	float			diffxy;
-	float			diffyy;
+	float			diffx;
+	float			diffy;
+	float			savex;
+	float			savey;
 	float			inty;
 	float			intx;
+	float			inty2;
+	float			intx2;
 	float			save1;
 	float			save2;
-	float			swap1;
-	float			swap2;
-	int             recursx;
-	int             recursy;
 }					t_ray;
 
 typedef struct		s_s

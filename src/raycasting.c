@@ -37,10 +37,10 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 	if (s->pos->nsew == 1)
 	{
-		fpercentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-		printf("\033[34mSUD) fpercentx = %f   ", fpercentx);
-		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
-		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		fpercentx = ((int)(s->pos->moovex + s->ray->diffx) % SPACE) * 100 / SPACE;
+		// printf("\033[34mSUD) fpercentx = %f   ", fpercentx);
+		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
+		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
 		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
@@ -53,10 +53,10 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 2)
 	{
-		fpercentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
-		printf("\033[31mEST) fpercentx = %f   ", fpercentx);
-		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
-		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		fpercentx = ((int)(s->pos->moovey + s->ray->diffy) % SPACE) * 100 / SPACE;
+		// printf("\033[31mEST) fpercentx = %f   ", fpercentx);
+		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
+		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
 		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
@@ -69,10 +69,10 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 3)
 	{
-		fpercentx = ((int)(s->pos->moovex + s->ray->diffxx) % SPACE) * 100 / SPACE;
-		printf("\033[32mNORD) fpercentx = %f   ", fpercentx);
-		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
-		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		fpercentx = ((int)(s->pos->moovex + s->ray->diffx) % SPACE) * 100 / SPACE;
+		// printf("\033[32mNORD) fpercentx = %f   ", fpercentx);
+		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
+		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
 		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
@@ -85,10 +85,10 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	}
 	if (s->pos->nsew == 4)
 	{
-		fpercentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
-		printf("\033[33mOUEST) fpercentx = %f   ", fpercentx);
-		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
-		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
+		fpercentx = ((int)(s->pos->moovey + s->ray->diffy) % SPACE) * 100 / SPACE;
+		// printf("\033[33mOUEST) fpercentx = %f   ", fpercentx);
+		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
+		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
 		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
@@ -181,8 +181,6 @@ float		ft_dir_raycasting(t_s *s)
 	tmp = s->pos->dirplayer;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
-	s->ray->swap1 = 0;
-	s->ray->swap2 = 0;
 	if (s->pos->dirplayer <= 90)
 	{
 		angle = ((90 - s->pos->dirplayer) * M_PI / 180);
@@ -192,11 +190,15 @@ float		ft_dir_raycasting(t_s *s)
 		{
 			s->pos->nsew = 4;
 			dis = s->ray->save1;
+			s->ray->savex = s->ray->intx;
+			s->ray->savey = s->ray->inty;
 		}
 		else
 		{
 			s->pos->nsew = 3;
 			dis = s->ray->save2;
+			s->ray->savex = s->ray->intx2;
+			s->ray->savey = s->ray->inty2;
 		}
 	}
 	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
@@ -208,11 +210,15 @@ float		ft_dir_raycasting(t_s *s)
 		{
 			s->pos->nsew = 4;
 			dis = s->ray->save1;
+			s->ray->savex = s->ray->intx;
+			s->ray->savey = s->ray->inty;
 		}
 		else
 		{
 			s->pos->nsew = 1;
 			dis = s->ray->save2;
+			s->ray->savex = s->ray->intx2;
+			s->ray->savey = s->ray->inty2;
 		}
 
 	}
@@ -225,11 +231,15 @@ float		ft_dir_raycasting(t_s *s)
 		{
 			s->pos->nsew = 2;
 			dis = s->ray->save1;
+			s->ray->savex = s->ray->intx;
+			s->ray->savey = s->ray->inty;
 		}
 		else
 		{
 			s->pos->nsew = 1;
 			dis = s->ray->save2;
+			s->ray->savex = s->ray->intx2;
+			s->ray->savey = s->ray->inty2;
 		}
 	}
 	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
@@ -241,15 +251,20 @@ float		ft_dir_raycasting(t_s *s)
 		{
 			s->pos->nsew = 2;
 			dis = s->ray->save1;
+			s->ray->savex = s->ray->intx;
+			s->ray->savey = s->ray->inty;
 		}
 		else
 		{
 			s->pos->nsew = 3;
 			dis = s->ray->save2;
+			s->ray->savex = s->ray->intx2;
+			s->ray->savey = s->ray->inty2;
 		}
 	}
-	return(dis);
+	// printf("savex=%f     savey= %f   \n", s->ray->savex , s->ray->savey);
 	s->pos->dirplayer = tmp;
+	return(dis);
 }
 
 

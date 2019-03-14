@@ -20,11 +20,6 @@ int		ft_hitbox(t_s *s, int key)
 		if (s->map[x][y]->envi > 1099 || s->map[x][y2]->envi > 1099 ||
 		s->map[x2][y]->envi > 1099 || s->map[x2][y2]->envi > 1099)
 			return (0);
-		if (s->map[xc][yc]->envi > 1049 && s->map[xc][yc]->envi < 1100)
-		{
-			ft_swap_pos(s, key, xc, yc);
-			s->pos->tp = 1;
-		}
 	}
 	if (key == 4)
 		if (s->pos->floatx < x * SPACE + SPACE / 2)
@@ -43,48 +38,4 @@ int		ft_hitbox(t_s *s, int key)
 			if (s->map[x2][y]->envi == 1000 || s->map[x][y]->envi == 1000)
 				return (0);
 	return (1);
-}
-
-void	ft_swap_pos(t_s *s, int mode, int x, int y)
-{
-	int		i;
-	int		j;
-	int		tp;
-	float	diffx;
-	float	diffy;
-
-	diffx = 0;
-	diffy = 0;
-	i = 0;
-	j = 0;
-	if (mode == 1)
-		diffy = 1;
-	if (mode == 2)
-		diffy = -1;
-	if (mode == 3)
-		diffx = -1;
-	if (mode == 4)
-		diffx = 1;
-	tp = s->map[x][y]->envi;
-	while (j < s->high)
-	{
-		while (i < s->width)
-		{
-			if (i != x && j != y)
-			{
-				if (s->map[i][j]->envi == tp)
-				{
-					diffx += (x - i);
-					diffy += (y - j);
-					s->pos->posplayer.x -= (diffx * SPACE);
-					s->pos->posplayer.y -= (diffy * SPACE);
-					s->pos->floatx -= (diffx * SPACE);
-					s->pos->floaty -= (diffy * SPACE);
-				}
-			}
-			i++;
-		}
-		i = 0;
-		j++;
-	}
 }
