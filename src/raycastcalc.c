@@ -28,7 +28,7 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x][y]->envi > 1049)
+		if (s->map[x][y]->envi > 1001)
 			break;
 		if (stop == 1)
 			break;
@@ -52,7 +52,7 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high|| y < 0 || x < 0)
 			break;
-		if (s->map[x][y-1]->envi > 1049)
+		if (s->map[x][y-1]->envi > 1001)
 			break;
 		y--;
 		if (stop == 1)
@@ -85,7 +85,7 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high   || y < 0 || x < 0)
 			break;
-		if (s->map[x][y]->envi > 1049)
+		if (s->map[x][y]->envi > 1001)
 			break;
 		if (stop == 1)
 			break;
@@ -112,7 +112,7 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width  || x >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x][y]->envi > 1049)
+		if (s->map[x][y]->envi > 1001)
 			break;
 		if (stop == 1)
 			break;
@@ -143,7 +143,7 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y <= 0 || x <= 0)
 			break;
-		if (s->map[x - 1][y]->envi > 1049)
+		if (s->map[x - 1][y]->envi > 1001)
 			break;
 		x--;
 		if (stop == 1)
@@ -172,7 +172,7 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y <= 0 || x <= 0)
 			break;
-		if (s->map[x][y]->envi > 1049)
+		if (s->map[x][y]->envi > 1001)
 			break;
 		if (stop == 1)
 			break;
@@ -202,7 +202,7 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		s->ray->save1 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (y >= s->width || x >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x-1][y]->envi > 1049)
+		if (s->map[x-1][y]->envi > 1001)
 			break;
 		x--;
 		if (stop == 1)
@@ -227,7 +227,7 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		s->ray->save2 = sqrtf(powf(s->ray->diffx,2)+powf(s->ray->diffy,2));
 		if (x >= s->width || y >= s->high || y < 0 || x < 0)
 			break;
-		if (s->map[x][y - 1]->envi > 1049)
+		if (s->map[x][y - 1]->envi > 1001)
 			break;
 		y--;
 		if (stop == 1)

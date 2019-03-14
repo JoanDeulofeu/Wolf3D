@@ -2,9 +2,8 @@ structure =>	{environnement, hauteur envi, plafond, hauteur plafond, item}
 
 ENVIRONNEMENT
 {1, 999}		Les Sols
-{1100, 1999}	Les Murs
-{1000, 1049}	Les Portes
-{1050, 1099}	Les TP >> il doit y avoir 2 de chaque ! >> check.c
+{1002, 1999}	Les Murs
+{1000, 1001}	Les Portes
 Porte verticale = 1001 / horizontale = 1000
 
 1 = unicolor gris

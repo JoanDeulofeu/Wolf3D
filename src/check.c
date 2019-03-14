@@ -27,6 +27,8 @@ void	ft_check(t_s *s, char *av)
 			ft_usage(2);
 		ft_memdel((void **)&line);
 	}
+	// if (s->high != s->width)
+	// 	ft_usage(2);
 }
 
 void	ft_check_post_pars(t_s *s)
@@ -43,6 +45,12 @@ void	ft_check_post_pars(t_s *s)
 		while (y < s->width)
 		{
 			if (s->map[x][y]->envi < 1 || s->map[x][y]->envi > 1999)
+				ft_usage(2);
+			if (s->map[x][y]->envi == 1000 && (s->map[x+1][y]->envi < 1002 ||
+			s->map[x-1][y]->envi < 1002))
+				ft_usage(2);
+			if (s->map[x][y]->envi == 1001 && (s->map[x][y+1]->envi < 1002 ||
+			s->map[x][y-1]->envi < 1002))
 				ft_usage(2);
 			if (s->map[x][y]->envi_sz < 1 || s->map[x][y]->envi_sz > 5)
 				ft_usage(2);

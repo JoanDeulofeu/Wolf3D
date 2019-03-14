@@ -34,7 +34,7 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
 			color = ft_getcolor(xtex, ytex, s->tex->wall1);
-			SDL_SetRenderDrawColor(s->render, 60, 230, 60, 255);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
@@ -47,7 +47,7 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
 			color = ft_getcolor(xtex, ytex, s->tex->wall2);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
@@ -60,7 +60,7 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
 			color = ft_getcolor(xtex, ytex, s->tex->wall3);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
@@ -73,7 +73,7 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
 			color = ft_getcolor(xtex, ytex, s->tex->wall4);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
