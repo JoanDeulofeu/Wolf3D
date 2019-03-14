@@ -88,7 +88,7 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 		fpercentx = ((int)(s->pos->moovey + s->ray->diffyy) % SPACE) * 100 / SPACE;
 		printf("\033[33mOUEST) fpercentx = %f   ", fpercentx);
 		printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffxx);
-		printf("calcul= %d\033[0033[31mm\n", (int)(s->pos->moovex + s->ray->diffxx));
+		printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffxx));
 		xtex = fpercentx * 64 /100;
 		while (y < xend)
 		{
