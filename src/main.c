@@ -30,13 +30,13 @@ int main(int ac, char **av)
 		return (0);
 	s->high = 0;
 	s->width = 0;
-	printf("test1\n");
+	// printf("test1\n");
 	ft_check(s, av[1]);
-	printf("test2\n");
+	// printf("test2\n");
 	ft_init_struct(s);
-	printf("test3\n");
+	// printf("test3\n");
 	ft_parsing(s, av[1]);
-	printf("test4\n");
+	// printf("test4\n");
 	ft_display(s);
 	return (0);
 }

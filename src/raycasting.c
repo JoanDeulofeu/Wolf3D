@@ -12,96 +12,6 @@ void		ft_choise_drawcolor(t_s *s)
 		SDL_SetRenderDrawColor(s->render,60,230,60,255); //vert
 }
 
-SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
-{
-	SDL_Color	color;
-	int			coord;
-
-	coord = x + y * 64 * 4;
-	color.r = str[coord];
-	color.g = str[coord + 1];
-	color.b = str[coord + 2];
-	color.a = str[coord + 3];
-	return (color);
-}
-
-int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
-{
-	float			fpercentx;
-	int				percenty;
-	int				xtex;
-	int				ytex;
-	SDL_Color		color;
-	SDL_PixelFormat *format;
-
-	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
-	if (s->pos->nsew == 1)
-	{
-		fpercentx = ((int)(s->pos->moovex + s->ray->diffx) % SPACE) * 100 / SPACE;
-		// printf("\033[34mSUD) fpercentx = %f   ", fpercentx);
-		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
-		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
-		xtex = fpercentx * 64 /100;
-		while (y < xend)
-		{
-			percenty = y * 100 / hp;
-			ytex = percenty * 64 /100;
-			color = ft_getcolor(xtex, ytex, s->tex->wall1);
-			SDL_SetRenderDrawColor(s->render, 60, 230, 60, 255);
-			SDL_RenderDrawPoint(s->render, x, y++);
-		}
-	}
-	if (s->pos->nsew == 2)
-	{
-		fpercentx = ((int)(s->pos->moovey + s->ray->diffy) % SPACE) * 100 / SPACE;
-		// printf("\033[31mEST) fpercentx = %f   ", fpercentx);
-		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
-		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
-		xtex = fpercentx * 64 /100;
-		while (y < xend)
-		{
-			percenty = y * 100 / hp;
-			ytex = percenty * 64 /100;
-			color = ft_getcolor(xtex, ytex, s->tex->wall2);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
-		}
-	}
-	if (s->pos->nsew == 3)
-	{
-		fpercentx = ((int)(s->pos->moovex + s->ray->diffx) % SPACE) * 100 / SPACE;
-		// printf("\033[32mNORD) fpercentx = %f   ", fpercentx);
-		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
-		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
-		xtex = fpercentx * 64 /100;
-		while (y < xend)
-		{
-			percenty = y * 100 / hp;
-			ytex = percenty * 64 /100;
-			color = ft_getcolor(xtex, ytex, s->tex->wall3);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
-		}
-	}
-	if (s->pos->nsew == 4)
-	{
-		fpercentx = ((int)(s->pos->moovey + s->ray->diffy) % SPACE) * 100 / SPACE;
-		// printf("\033[33mOUEST) fpercentx = %f   ", fpercentx);
-		// printf("moovex=%f     diffx= %f   ", s->pos->moovex , s->ray->diffx);
-		// printf("calcul= %d\033[0m\n", (int)(s->pos->moovex + s->ray->diffx));
-		xtex = fpercentx * 64 /100;
-		while (y < xend)
-		{
-			percenty = y * 100 / hp;
-			ytex = percenty * 64 /100;
-			color = ft_getcolor(xtex, ytex, s->tex->wall4);
-			SDL_SetRenderDrawColor(s->render, color.r, color.g, color.b, color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
-		}
-	}
-	return (y);
-}
-
 void	ft_rcasting(t_s *s)
 {
 	float		dis;
@@ -147,7 +57,7 @@ void	ft_rcasting(t_s *s)
 			angle = angle + avcmnt;
 		}
 		dis = dis * cos(angle * M_PI / 180);
-		hp = (20 * (200 / dis)); //20=distance ecran *** 400=hauteur du mur defini
+		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
 		y = 0;
@@ -167,6 +77,7 @@ void	ft_rcasting(t_s *s)
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);
 	}
+	printf("\n\n");
 	SDL_SetRenderTarget(s->render, NULL);
 	SDL_RenderCopy(s->render, s->tex->screen, NULL, &position);
 	s->pos->dirplayer = savedir;

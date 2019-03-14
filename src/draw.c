@@ -56,7 +56,7 @@ void	ft_draw_minimap(t_s *s)
 			position.y = y * space;
 			position.w = space;
 			position.h = space;
-			if (s->map[x][y]->envi > 1049)
+			if (s->map[x][y]->envi > 999)
 				SDL_RenderCopy(s->render, s->tex->wall, NULL, &position);
 			else if (s->map[x][y]->envi > 999 && s->map[x][y]->envi < 1050)
 				SDL_RenderCopy(s->render, s->tex->door, NULL, &position);

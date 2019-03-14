@@ -103,7 +103,7 @@ typedef struct		s_s
 }					t_s;
 
 void				ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width);
-// SDL_Texture			*ft_tga(t_s *s, const char *path, int alpha);
+// SDL_Texture		*ft_tga(t_s *s, const char *path, int alpha);
 unsigned char		*ft_tga_to_str(const char *path, int alpha);
 void				ft_swap_pos(t_s *s, int mode, int x, int y);
 void				ft_swap_ray(t_s *s, int mode, int x, int y);
@@ -122,4 +122,5 @@ void				ft_parsing(t_s *s, char *av);
 void				ft_display(t_s *s);
 void				ft_usage(int usage);
 void				ft_draw_minimap(t_s *s);
+int					ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp);
 #endif
