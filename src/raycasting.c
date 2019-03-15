@@ -105,7 +105,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
 			if (s->pos->doorx == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 		else
 		{
@@ -114,7 +114,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
 			if (s->pos->doory == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 	}
 	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
@@ -129,7 +129,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
 			if (s->pos->doorx == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 		else
 		{
@@ -138,7 +138,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
 			if (s->pos->doory == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 
 	}
@@ -154,7 +154,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
 			if (s->pos->doorx == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 		else
 		{
@@ -163,7 +163,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
 			if (s->pos->doory == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 	}
 	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
@@ -178,7 +178,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
 			if (s->pos->doorx == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 		else
 		{
@@ -187,7 +187,7 @@ float		ft_dir_raycasting(t_s *s)
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
 			if (s->pos->doory == 1)
-				s->pos->nsew = 5;
+				s->pos->door = 1;
 		}
 	}
 	// printf("savex=%f     savey= %f   \n", s->ray->savex , s->ray->savey);
