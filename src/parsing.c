@@ -70,6 +70,7 @@ void	ft_parsing(t_s *s, char *av)
 		y++;
 		ft_memdel((void **)&line);
 	}
+	ft_memdel((void **)&line);
 	close(fd);
 	ft_check_post_pars(s);
 }

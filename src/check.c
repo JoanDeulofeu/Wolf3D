@@ -27,8 +27,10 @@ void	ft_check(t_s *s, char *av)
 			ft_usage(2);
 		ft_memdel((void **)&line);
 	}
-	// if (s->high != s->width)
-	// 	ft_usage(2);
+	ft_memdel((void **)&line);
+	close(fd);
+	if (s->high != s->width)
+		ft_usage(2);
 }
 
 void	ft_check_post_pars(t_s *s)
