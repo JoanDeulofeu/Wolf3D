@@ -89,6 +89,8 @@ float		ft_dir_raycasting(t_s *s)
 	float angle2;
 	float dis;
 	tmp = s->pos->dirplayer;
+	s->pos->doorx = 0;
+	s->pos->doory = 0;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
 	if (s->pos->dirplayer <= 90)
@@ -102,6 +104,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save1;
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
+			if (s->pos->doorx == 1)
+				s->pos->nsew = 5;
 		}
 		else
 		{
@@ -109,6 +113,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save2;
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
+			if (s->pos->doory == 1)
+				s->pos->nsew = 5;
 		}
 	}
 	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
@@ -122,6 +128,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save1;
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
+			if (s->pos->doorx == 1)
+				s->pos->nsew = 5;
 		}
 		else
 		{
@@ -129,6 +137,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save2;
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
+			if (s->pos->doory == 1)
+				s->pos->nsew = 5;
 		}
 
 	}
@@ -143,6 +153,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save1;
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
+			if (s->pos->doorx == 1)
+				s->pos->nsew = 5;
 		}
 		else
 		{
@@ -150,6 +162,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save2;
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
+			if (s->pos->doory == 1)
+				s->pos->nsew = 5;
 		}
 	}
 	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
@@ -163,6 +177,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save1;
 			s->ray->savex = s->ray->intx;
 			s->ray->savey = s->ray->inty;
+			if (s->pos->doorx == 1)
+				s->pos->nsew = 5;
 		}
 		else
 		{
@@ -170,6 +186,8 @@ float		ft_dir_raycasting(t_s *s)
 			dis = s->ray->save2;
 			s->ray->savex = s->ray->intx2;
 			s->ray->savey = s->ray->inty2;
+			if (s->pos->doory == 1)
+				s->pos->nsew = 5;
 		}
 	}
 	// printf("savex=%f     savey= %f   \n", s->ray->savex , s->ray->savey);

@@ -55,6 +55,8 @@ typedef struct		s_pos
 	int				witem;
 	float			dirplayer;
 	int				nsew;
+	int				doorx;
+	int				doory;
 	int				eyehigh;
 	int				tp;
 }					t_pos;

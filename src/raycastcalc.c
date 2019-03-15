@@ -14,6 +14,7 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		{
 			s->ray->intx = x * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doorx = 1;
 		}
 		else
 		{
@@ -42,6 +43,7 @@ void	ft_dir_raycasting1(t_s *s, float angle, float angle2)
 		{
 			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doory = 1;
 		}
 		else
 			s->ray->inty2 = y * SPACE; //valide par jojo
@@ -72,6 +74,7 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 		if (s->map[x][y]->envi == 1001 && (s->pos->moovex - SPACE / 2) < x * SPACE)
 		{	s->ray->intx = x * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doorx = 1;
 		}
 		else
 		{
@@ -99,6 +102,7 @@ void	ft_dir_raycasting2(t_s *s, float angle, float angle2)
 		{
 			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doory = 1;
 		}
 		else
 		{
@@ -133,6 +137,7 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		if (s->map[x][y]->envi == 1001 && (s->pos->moovex - SPACE / 2) > x * SPACE)
 		{	s->ray->intx = x * SPACE + SPACE / 2;
 				stop = 1;
+				s->pos->doorx = 1;
 		}
 		else
 			s->ray->intx = x  * SPACE; //valide par jojo
@@ -159,6 +164,7 @@ void	ft_dir_raycasting3(t_s *s, float angle, float angle2)
 		{
 			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doory = 1;
 		}
 		else
 		{
@@ -192,6 +198,7 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		if (s->map[x][y]->envi == 1001 && (s->pos->moovex - SPACE / 2) > x * SPACE)
 		{	s->ray->intx = x * SPACE + SPACE / 2;
 				stop = 1;
+				s->pos->doorx = 1;
 		}
 		else
 			s->ray->intx = x  * SPACE; //valide par jojo
@@ -217,6 +224,7 @@ void	ft_dir_raycasting4(t_s *s, float angle, float angle2)
 		{
 			s->ray->inty2 = y * SPACE + SPACE / 2;
 			stop = 1;
+			s->pos->doory = 1;
 		}
 		else
 			s->ray->inty2 = y * SPACE; //valide par jojo
