@@ -89,8 +89,6 @@ float		ft_dir_raycasting(t_s *s)
 	float angle2;
 	float dis;
 	tmp = s->pos->dirplayer;
-	s->pos->doorx = 0;
-	s->pos->doory = 0;
 	s->pos->door = 0;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
@@ -191,18 +189,6 @@ float		ft_dir_raycasting(t_s *s)
 				s->pos->door = 1;
 		}
 	}
-	// printf("savex=%f     savey= %f   \n", s->ray->savex , s->ray->savey);
 	s->pos->dirplayer = tmp;
 	return(dis);
 }
-
-
-// printf("dirplayer= %f", s->pos->dirplayer);
-// printf(",  xplayer= %f", s->pos->xplayer);
-// printf(",  yplayer= %f", s->pos->yplayer);
-// printf(",  movex= %f", s->pos->moovex);
-// printf(",  movey= %f", s->pos->moovey);
-// printf(",  dis= %f", dis);
-// printf(",  xbegin= %d", xbegin);
-// printf(",  xend= %d", xend);
-// printf("\n");
