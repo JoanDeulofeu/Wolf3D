@@ -88,6 +88,7 @@ unsigned char	*ft_tga_to_str(const char *path, int alpha)
 	int				i;
 	int				u;
 	int				o;
+	unsigned char	*tmp;
 
 	if (!(tga = (t_tga *)malloc(sizeof(t_tga))))
 		ft_usage(1);
@@ -125,5 +126,7 @@ unsigned char	*ft_tga_to_str(const char *path, int alpha)
 		}
 	}
 	close(tga->fd);
-	return (tga->str);
+	tmp = tga->str;
+	ft_memdel((void **)&tga);
+	return (tmp);
 }
