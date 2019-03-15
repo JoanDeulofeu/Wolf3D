@@ -17,8 +17,8 @@ int		ft_hitbox(t_s *s, int key)
 	yc = (s->pos->floaty + SPACE / 8) / SPACE;
 	if (key == 1 || key == 2 || key == 3 || key == 4)
 	{
-		if (s->map[x][y]->envi > 1099 || s->map[x][y2]->envi > 1099 ||
-		s->map[x2][y]->envi > 1099 || s->map[x2][y2]->envi > 1099)
+		if (s->map[x][y]->envi > 1001 || s->map[x][y2]->envi > 1001 ||
+		s->map[x2][y]->envi > 1001 || s->map[x2][y2]->envi > 1001)
 			return (0);
 	}
 	if (key == 4)

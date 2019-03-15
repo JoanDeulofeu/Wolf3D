@@ -97,6 +97,7 @@ typedef struct		s_s
 	t_ray			*ray;
 	int				high;
 	int				width;
+	int				speed;
 	SDL_Renderer	*render;
 	SDL_Renderer	*rendermap;
 	SDL_Window		*window;

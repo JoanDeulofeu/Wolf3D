@@ -123,18 +123,20 @@ void	ft_dir_player(t_s *s, int i)
 	int		tmp;
 	float	savex;
 	float	savey;
+	int		v;
 
+	v = s->speed;
 	tmp = s->pos->dirplayer;
 	ft_change_dir(s, i);
 	savey = s->pos->floaty;
 	savex = s->pos->floatx;
-	if (s->pos->dirplayer <= 90)
+	while (s->pos->dirplayer <= 90 && v-- > 0)
 		ft_dir_player1(s, savex, savey);
-	if (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180)
+	while (s->pos->dirplayer > 90 && s->pos->dirplayer <= 180 && v-- > 0)
 		ft_dir_player2(s, savex, savey);
-	if (s->pos->dirplayer > 180 && s->pos->dirplayer <= 270)
+	while (s->pos->dirplayer > 180 && s->pos->dirplayer <= 270 && v-- > 0)
 		ft_dir_player3(s, savex, savey);
-	if (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360)
+	while (s->pos->dirplayer > 270 && s->pos->dirplayer <= 360 && v-- > 0)
 		ft_dir_player4(s, savex, savey);
 	s->pos->dirplayer = tmp;
 }
