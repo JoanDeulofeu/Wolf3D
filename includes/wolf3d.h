@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/15 19:03:47 by fmerding          #+#    #+#             */
+/*   Updated: 2019/03/15 19:04:30 by fmerding         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # include <SDL2/SDL.h>
-// # include <SDL2/SDL_image.h>
-//# include "SDL_mixer.h"
 # include "libft.h"
 # include <unistd.h>
 # include <string.h>
@@ -24,15 +34,15 @@ typedef struct		s_tga
 	int				high;
 	unsigned char	buff[4000];
 	unsigned char	*str;
-	SDL_Texture 	*texture;
+	SDL_Texture		*texture;
 }					t_tga;
 
 typedef struct		s_map
 {
-	int				envi;		//environnement
-	int				envi_sz;	//environnement_size
-	int				roof;		//plafond
-	int				roof_sz;	//plafond_size
+	int				envi;
+	int				envi_sz;
+	int				roof;
+	int				roof_sz;
 	int				item;
 }					t_map;
 
@@ -71,11 +81,11 @@ typedef struct		s_tex
 	unsigned char	*wall3;
 	unsigned char	*wall4;
 	unsigned char	*wall5;
-	SDL_Texture 	*ground;
-	SDL_Texture 	*player;
-	SDL_Texture 	*screen;
-	SDL_Texture 	*door;
-	SDL_Texture 	*portal;
+	SDL_Texture		*ground;
+	SDL_Texture		*player;
+	SDL_Texture		*screen;
+	SDL_Texture		*door;
+	SDL_Texture		*portal;
 }					t_tex;
 
 typedef struct		s_ray

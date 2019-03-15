@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/15 19:02:53 by fmerding          #+#    #+#             */
+/*   Updated: 2019/03/15 19:03:15 by fmerding         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
 void	ft_usage(int usage)
@@ -21,9 +33,10 @@ void	ft_usage(int usage)
 	exit(0);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_s *s;
+
 	if (ac != 2)
 		ft_usage(1);
 	if (ft_strcmp(av[1], "maps/first_map.txt"))
