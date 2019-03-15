@@ -38,5 +38,6 @@ int main(int ac, char **av)
 	ft_parsing(s, av[1]);
 	// printf("test4\n");
 	ft_display(s);
+	// while (1);
 	return (0);
 }

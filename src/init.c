@@ -31,8 +31,9 @@ void	ft_init_struct(t_s *s)
 {
 	int x;
 	int y;
-	SDL_Renderer *render;
-	SDL_Window *window;
+	SDL_Renderer	*render;
+	SDL_Window		*window;
+	
 	x = 0;
 	y = 0;
 	if (!(s->map = (t_map***)malloc(sizeof(t_map**) * s->high + 1)))
