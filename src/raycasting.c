@@ -91,6 +91,7 @@ float		ft_dir_raycasting(t_s *s)
 	tmp = s->pos->dirplayer;
 	s->pos->doorx = 0;
 	s->pos->doory = 0;
+	s->pos->door = 0;
 	s->pos->moovex = s->pos->floatx + SPACE / 8;
 	s->pos->moovey = s->pos->floaty + SPACE / 8;
 	if (s->pos->dirplayer <= 90)
@@ -121,7 +122,7 @@ float		ft_dir_raycasting(t_s *s)
 	{
 		angle = ((s->pos->dirplayer - 90) * M_PI / 180);
 		angle2 = ((180 - s->pos->dirplayer) * M_PI / 180);
-		ft_dir_raycasting2(s, angle, angle2);
+		ft_dir_raycasting1(s, angle, angle2);
 		if (s->ray->save1 < s->ray->save2)
 		{
 			s->pos->nsew = 4;
@@ -146,7 +147,7 @@ float		ft_dir_raycasting(t_s *s)
 	{
 		angle = ((270 - s->pos->dirplayer) * M_PI / 180);
 		angle2 = ((s->pos->dirplayer - 180) * M_PI / 180);
-		ft_dir_raycasting3(s, angle, angle2);
+		ft_dir_raycasting2(s, angle, angle2);
 		if (s->ray->save1 < s->ray->save2)
 		{
 			s->pos->nsew = 2;
@@ -170,7 +171,7 @@ float		ft_dir_raycasting(t_s *s)
 	{
 		angle = ((s->pos->dirplayer - 270) * M_PI / 180);
 		angle2 = ((360 - s->pos->dirplayer ) * M_PI / 180);
-		ft_dir_raycasting4(s, angle, angle2);
+		ft_dir_raycasting2(s, angle, angle2);
 		if (s->ray->save1 < s->ray->save2)
 		{
 			s->pos->nsew = 2;
