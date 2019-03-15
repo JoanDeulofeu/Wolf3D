@@ -60,6 +60,8 @@ void	ft_rcasting(t_s *s)
 		hp = (20 * (400 / dis)); //20=distance ecran *** 400=hauteur du mur defini
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
+		s->compens = xbegin < 0 ? ft_abs(xbegin) : 0;
+		printf("xbegin %d  ",xbegin);
 		y = 0;
 		SDL_SetRenderDrawColor(s->render,160,160,160,255);
 		SDL_SetRenderTarget(s->render, s->tex->screen);
