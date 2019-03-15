@@ -6,9 +6,6 @@ ENVIRONNEMENT
 {1000, 1001}	Les Portes
 Porte verticale = 1001 / horizontale = 1000
 
-1 = unicolor gris
-1000 = unicolor vert
-
 HAUTEUR ENVI
 int de 1 (pour le sol) a 5 (hauteur max d'un mur)
 
@@ -28,5 +25,3 @@ ITEM
 3 = spawn joueur / camera direction est
 4 = spawn joueur / camera direction sud
 5 = spawn joueur / camera direction ouest
-6 = clef
-7 = epee

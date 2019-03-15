@@ -15,6 +15,7 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HIGH 800
 # define SPACE 16
+# define SPEED 2
 
 typedef struct		s_tga
 {

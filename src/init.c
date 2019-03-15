@@ -13,6 +13,8 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 		SDL_SetRenderDrawColor(s->render,20,70,20,255);
 	else if (txr == s->tex->wall)
 		SDL_SetRenderDrawColor(s->render,155,30,30,255);
+	else if (txr == s->tex->door)
+		SDL_SetRenderDrawColor(s->render,200,200,0,255);
 	SDL_SetRenderTarget(s->render, txr);
 	while (y != high)
 	{
@@ -67,11 +69,13 @@ void	ft_init_struct(t_s *s)
 	s->pos->initplayer = 0;
 	s->pos->eyehigh = 0;
 	s->ray->texorcolor = 1;
-	s->speed = 2;
+	s->speed = SPEED;
 	s->tex->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
 	ft_draw_rect(s, s->tex->wall, SPACE, SPACE);
 	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
 	ft_draw_rect(s, s->tex->ground, SPACE, SPACE);
+	s->tex->door = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
+	ft_draw_rect(s, s->tex->door, SPACE, SPACE);
 	s->tex->player = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,4,4);
 	ft_draw_rect(s, s->tex->player, 4, 4);
 	s->tex->wall1 = (ft_tga_to_str("textures/wall_brick.tga", 1));

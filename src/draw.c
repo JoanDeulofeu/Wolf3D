@@ -31,10 +31,10 @@ void	ft_draw_minimap(t_s *s)
 			position.y = y * space;
 			position.w = space;
 			position.h = space;
-			if (s->map[x][y]->envi > 999)
+			if (s->map[x][y]->envi > 1001)
 				SDL_RenderCopy(s->render, s->tex->wall, NULL, &position);
-			// else if (s->map[x][y]->envi == 1000 || s->map[x][y]->envi == 1001)
-			// 	SDL_RenderCopy(s->render, s->tex->door, NULL, &position);
+			else if (s->map[x][y]->envi == 1000 || s->map[x][y]->envi == 1001)
+				SDL_RenderCopy(s->render, s->tex->door, NULL, &position);
 			else
 			{
 				SDL_RenderCopy(s->render, s->tex->ground, NULL, &position);
