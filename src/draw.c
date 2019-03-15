@@ -16,12 +16,9 @@ void	ft_draw_minimap(t_s *s)
 	int				x;
 	int				space;
 	SDL_Rect 		position;
-	// SDL_Surface		*surface_door;
 
 	space = SPACE;
 	x = 0;
-	// surface_door = SDL_LoadBMP("textures/door.bmp");
-	// s->tex->door = SDL_CreateTextureFromSurface(s->render, surface_door);
 	while (x < s->high)
 	{
 		y = 0;

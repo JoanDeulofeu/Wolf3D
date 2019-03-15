@@ -29,12 +29,10 @@ void	ft_draw_rect(t_s *s, SDL_Texture *txr, int high, int width)
 	SDL_SetRenderTarget(s->render, NULL);
 }
 
-void	ft_init_struct(t_s *s)
+void	ft_init_map(t_s *s)
 {
 	int x;
 	int y;
-	SDL_Renderer	*render;
-	SDL_Window		*window;
 
 	x = 0;
 	y = 0;
@@ -54,6 +52,13 @@ void	ft_init_struct(t_s *s)
 		y = 0;
 		x++;
 	}
+}
+
+void	ft_init_struct(t_s *s)
+{
+	SDL_Renderer	*render;
+	SDL_Window		*window;
+
 	SDL_Init(SDL_INIT_VIDEO);
     SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_HIGH, 0, &window, &render);
 	s->render = render;
@@ -82,4 +87,5 @@ void	ft_init_struct(t_s *s)
 	s->tex->wall2 = (ft_tga_to_str("textures/wall_cobble.tga", 1));
 	s->tex->wall3 = (ft_tga_to_str("textures/wall_dropper.tga", 1));
 	s->tex->wall4 = (ft_tga_to_str("textures/wall_sticky.tga", 1));
+	s->tex->wall5 = (ft_tga_to_str("textures/wall_door1.tga", 1));
 }

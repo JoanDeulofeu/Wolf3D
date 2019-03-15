@@ -15,9 +15,9 @@ void	ft_usage(int usage)
 	if (usage == 5)
 		ft_putstr("Warning : Invalid file (value not in range)\n");
 	if (usage == 6)
-		printf("Erreur de chargement de l'image : %s\n",SDL_GetError());
+		ft_putstr("Erreur de chargement de l'image");
 	if (usage == 7)
-		printf("Erreur de chargement de texture\n");
+		ft_putstr("Erreur de chargement de texture\n");
 	exit(0);
 }
 
@@ -32,14 +32,10 @@ int main(int ac, char **av)
 		return (0);
 	s->high = 0;
 	s->width = 0;
-	// printf("test1\n");
 	ft_check(s, av[1]);
-	// printf("test2\n");
-	ft_init_struct(s);
-	// printf("test3\n");
+	ft_init_map(s);
 	ft_parsing(s, av[1]);
-	// printf("test4\n");
+	ft_init_struct(s);
 	ft_display(s);
-	// while (1);
 	return (0);
 }
