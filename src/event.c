@@ -4,9 +4,12 @@ void	ft_display(t_s *s)
 {
 	int		x;
 	int		y;
+	int timep = 0;
+	int timea = 0;
 
 	ft_draw_minimap(s);
 	ft_rcasting(s);
+	ft_draw_minimap(s);
 	if (s->window)
 	{
 		char cont = 1;
@@ -15,6 +18,12 @@ void	ft_display(t_s *s)
 		{
 			while (SDL_WaitEvent(&event))
 			{
+				timea= SDL_GetTicks();
+				if (timea - timep < 1)
+					SDL_Delay(1 - (timea - timep));
+				else
+				{
+				timep = timea;
 				if (event.type == SDL_QUIT)
 					{
 						SDL_DestroyTexture(s->tex->wall);
@@ -32,6 +41,7 @@ void	ft_display(t_s *s)
 						SDL_DestroyTexture(s->tex->player);
 						cont = 0;
 						break;
+					  ;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_P)
 					{
@@ -39,6 +49,7 @@ void	ft_display(t_s *s)
 						// ft_rcasting(s);
 						// ft_draw_minimap(s);
 						s->ray->texorcolor = s->ray->texorcolor == 0 ? 1 : 0;
+					  ;
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_W)
 					{
@@ -48,18 +59,21 @@ void	ft_display(t_s *s)
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_S)
 					{
+
 						ft_dir_player(s, 2);
 					// 	ft_rcasting(s);
 					// 	ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_D)
 					{
+
 						ft_dir_player(s, 3);
 						// ft_rcasting(s);
 						// ft_draw_minimap(s);
 					}
 					if (event.key.keysym.scancode == SDL_SCANCODE_A)
 					{
+
 						ft_dir_player(s, 4);
 						// ft_rcasting(s);
 						// ft_draw_minimap(s);
@@ -103,4 +117,5 @@ void	ft_display(t_s *s)
 			}
 		}
 	}
+}
 }
