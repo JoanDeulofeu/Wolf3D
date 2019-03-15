@@ -103,9 +103,11 @@ typedef struct		s_s
 	int				high;
 	int				width;
 	int				speed;
+	int				compens;
 	SDL_Renderer	*render;
 	SDL_Renderer	*rendermap;
 	SDL_Window		*window;
+	char			cont;
 }					t_s;
 
 void				ft_init_map(t_s *s);

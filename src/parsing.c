@@ -61,7 +61,6 @@ void	ft_parsing(t_s *s, char *av)
 			tmp = ft_tmp_to_char(tmp, ',');
 			s->map[x][y]->item = atoi(tmp);
 			tmp = ft_tmp_to_char(tmp, ',');
-			// printf("s->map[%d][%d]->emvi = %d\n",x,y,s->map[x][y]->envi);
 			ft_memdel((void **)&tab[i]);
 			i++;
 			x++;
