@@ -1,30 +1,16 @@
-#include "wolf3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dir_player.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/15 16:19:01 by fmerding          #+#    #+#             */
+/*   Updated: 2019/03/15 16:19:32 by fmerding         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_change_dir(t_s *s, int i)
-{
-	if (i == 2)
-	{
-		if (s->pos->dirplayer < 180)
-			s->pos->dirplayer += 180;
-		else
-			s->pos->dirplayer -= 180;
-	}
-	if (i == 4)
-	{
-		if (s->pos->dirplayer < 90)
-			s->pos->dirplayer += 270;
-		else
-			s->pos->dirplayer -= 90;
-	}
-	if (i == 3)
-	{
-		if (s->pos->dirplayer > 270)
-			s->pos->dirplayer -= 270;
-		else
-			s->pos->dirplayer += 90;
-	}
-	s->pos->tp = 0;
-}
+#include "wolf3d.h"
 
 void	ft_dir_player1(t_s *s, float savex, float savey)
 {
