@@ -33,7 +33,7 @@ void	ft_init_struct(t_s *s)
 	int y;
 	SDL_Renderer	*render;
 	SDL_Window		*window;
-	
+
 	x = 0;
 	y = 0;
 	if (!(s->map = (t_map***)malloc(sizeof(t_map**) * s->high + 1)))
@@ -67,7 +67,7 @@ void	ft_init_struct(t_s *s)
 	s->pos->initplayer = 0;
 	s->pos->eyehigh = 0;
 	s->ray->texorcolor = 1;
-	s->speed = 5;
+	s->speed = 2;
 	s->tex->wall = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);
 	ft_draw_rect(s, s->tex->wall, SPACE, SPACE);
 	s->tex->ground = SDL_CreateTexture(s->render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET,SPACE,SPACE);

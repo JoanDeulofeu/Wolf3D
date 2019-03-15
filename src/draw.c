@@ -3,9 +3,9 @@
 void	ft_init_draw(t_s *s, SDL_Rect position, int x, int y)
 {
 	s->pos->dirplayer = (s->map[x][y]->item - 2) * 90;
-	s->pos->posplayer.x = position.x;
+	s->pos->posplayer.x = position.x + SPACE / 2 - 1;
 	s->pos->floatx = s->pos->posplayer.x;
-	s->pos->posplayer.y = position.y;
+	s->pos->posplayer.y = position.y + SPACE / 2 - 1;
 	s->pos->floaty = s->pos->posplayer.y;
 	s->pos->initplayer++;
 }
