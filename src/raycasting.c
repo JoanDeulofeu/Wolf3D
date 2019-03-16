@@ -26,6 +26,7 @@ void	ft_rcasting(t_s *s)
 	SDL_Rect	position;
 	float		angle;
 	int			swich;
+	int			diff;
 
 	hr = (WINDOW_HIGH / 2) + s->pos->eyehigh;
 	x = -1;
@@ -60,8 +61,8 @@ void	ft_rcasting(t_s *s)
 		hp = (20 * (400 / dis));
 		xbegin = hr - hp / 2;
 		xend = hr + hp / 2;
-		s->compens = xbegin < 0 ? ft_abs(xbegin) : 0;
-		printf("xbegin %d  ", xbegin);
+		if (xbegin < 0)
+			diff = xbegin;
 		y = 0;
 		SDL_SetRenderDrawColor(s->render, 160, 160, 160, 255);
 		SDL_SetRenderTarget(s->render, s->tex->screen);
@@ -70,11 +71,16 @@ void	ft_rcasting(t_s *s)
 		if (s->ray->texorcolor == 0)
 		{
 			ft_choise_drawcolor(s);
-			while (y < xend)
+			while (y < xend )
 				SDL_RenderDrawPoint(s->render, x, y++);
 		}
 		else
-			y = ft_choise_drawtex(s, x, y, xend, hp);
+		{
+			if (xbegin < 0)
+				y = ft_choise_drawtex(s, x, y + xbegin, xend, hp);
+			else
+				y = ft_choise_drawtex(s, x, y , xend, hp);
+		}
 		SDL_SetRenderDrawColor(s->render, 110, 60, 20, 255);
 		while (y < WINDOW_HIGH - 1)
 			SDL_RenderDrawPoint(s->render, x, y++);

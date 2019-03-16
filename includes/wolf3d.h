@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 19:03:47 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/15 19:04:30 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/16 13:36:30 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct		s_s
 	int				high;
 	int				width;
 	int				speed;
-	int				compens;
 	SDL_Renderer	*render;
 	SDL_Renderer	*rendermap;
 	SDL_Window		*window;

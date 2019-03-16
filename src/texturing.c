@@ -19,63 +19,72 @@ int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
 	float			fpercenty;
 	int				xtex;
 	int				ytex;
-	int				savey = y;
+	int				savey;
 	SDL_Color		color;
 	SDL_PixelFormat *format;
 
+	if (s)
+	savey = y;
 	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
-	y += s->compens;
 	if (s->pos->nsew == 1)
 	{
-		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE;
-		xtex = fpercentx * 64 /100;
+		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE ;
+		xtex = fpercentx * 64 / 100;
 		while (y < xend)
 		{
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall1) : ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
+			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall1)
+			: ft_getcolor(xtex, ytex, s->tex->wall5);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
+			color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
 	if (s->pos->nsew == 2)
 	{
-		fpercentx = (fmodf(s->ray->savey, SPACE)) * 100 / SPACE;
-		xtex = fpercentx * 64 /100;
+		fpercentx = (fmodf(s->ray->savey, SPACE)) * 100 / SPACE ;
+		xtex = fpercentx * 64 / 100;
 		while (y < xend)
 		{
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall2) : ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
+			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall2)
+			: ft_getcolor(xtex, ytex, s->tex->wall5);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
+			color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
 	if (s->pos->nsew == 3)
 	{
-		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE;
-		xtex = fpercentx * 64 /100;
-		printf("y=%d   ",y);
+		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE ;
+		xtex = fpercentx * 64 / 100;
+		// printf("y=%d   ",y);
 		while (y < xend)
 		{
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall3) : ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
+			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall3)
+			: ft_getcolor(xtex, ytex, s->tex->wall5);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
+			color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
-		printf("y=%d\n",y);
+		// printf("y=%d\n",y);
 	}
 	if (s->pos->nsew == 4)
 	{
 		fpercentx = (fmodf(s->ray->savey, SPACE)) * 100 / SPACE;
-		xtex = fpercentx * 64 /100;
+		xtex = fpercentx * 64 / 100;
 		while (y < xend)
 		{
 			fpercenty = y * 100 / hp;
 			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall4) : ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r, color.a);
+			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall4)
+			: ft_getcolor(xtex, ytex, s->tex->wall5);
+			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
+			color.a);
 			SDL_RenderDrawPoint(s->render, x, y++);
 		}
 	}
