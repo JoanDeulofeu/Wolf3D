@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 12:15:55 by jgehin            #+#    #+#             */
-/*   Updated: 2019/03/18 12:15:58 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/03/18 14:06:58 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_cas	*ft_so_calcul(t_s *s, t_cas *c)
 	c->dis = c->dis * cos(c->angle * M_PI / 180);
 	c->hp = (20 * (400 / c->dis));
 	c->xbegin = c->hr - c->hp / 2;
-	c->xend = c->hr + c->hp / 2;
+	c->xend = c->hr + c->hp / 2 > 800 ? 800 : c->hr + c->hp / 2;
 	c->y = 0;
 	SDL_SetRenderDrawColor(s->render, 160, 160, 160, 255);
 	SDL_SetRenderTarget(s->render, s->tex->screen);
