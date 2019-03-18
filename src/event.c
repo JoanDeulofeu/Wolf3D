@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 17:28:44 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/18 11:35:02 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/03/18 17:54:30 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,28 @@ void	ft_display2(t_s *s, SDL_Event event)
 	if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
 		s->pos->dirplayer = (s->pos->dirplayer -= 10) < 0 ?
 		350 : s->pos->dirplayer;
-	ft_rcasting(s);
-	ft_draw_minimap(s);
 }
 
 void	ft_display(t_s *s)
 {
-	int			timep;
-	int			timea;
 	SDL_Event	event;
+	int			i;
 
-	timep = 0;
+	i = 0;
 	ft_draw_minimap(s);
 	ft_rcasting(s);
 	ft_draw_minimap(s);
-	while (SDL_WaitEvent(&event) && s->cont != 0)
+	while (1)
 	{
 		if (event.type == SDL_QUIT)
 			ft_quit(s);
-		timea = SDL_GetTicks();
-		if (timea - timep < 10)
-			SDL_Delay(10 - (timea - timep));
-		else
+		if (event.type == SDL_KEYDOWN)
+			ft_display2(s, event);
+		i = SDL_PollEvent(&event);
+		if (i == 0)
 		{
-			timep = timea;
-			if (event.type == SDL_KEYDOWN)
-				ft_display2(s, event);
+			ft_rcasting(s);
+			ft_draw_minimap(s);
 		}
 	}
 }

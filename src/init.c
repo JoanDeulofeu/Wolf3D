@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 18:51:10 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/18 15:25:07 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:47:47 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,5 @@ void	ft_init_struct(t_s *s)
 	s->pos->eyehigh = 0;
 	s->ray->texorcolor = 1;
 	s->speed = SPEED;
-	s->cont = 1;
 	ft_init_struct2(s);
 }
