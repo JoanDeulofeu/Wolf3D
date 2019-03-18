@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 14:39:25 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/16 14:44:18 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:13:43 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 char	*ft_tmp_to_char(char *tmp, char c)
 {
-	while (tmp[0] != c)
+	if (!tmp)
+		return (0);
+	while (tmp && tmp[0] != c)
 		tmp++;
 	tmp++;
 	return (tmp);

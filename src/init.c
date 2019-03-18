@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 18:51:10 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/18 10:16:03 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/03/18 15:09:43 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_init_map(t_s *s)
 
 	x = 0;
 	y = 0;
-	if (!(s->map = (t_map***)malloc(sizeof(t_map**) * s->high + 1)))
+	if (!(s->map = (t_map***)malloc(sizeof(t_map**) * (s->high + 1))))
 		ft_usage(-1);
 	s->map[s->high] = NULL;
 	while (x < s->high)
