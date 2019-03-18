@@ -16,7 +16,7 @@ SDLFLAGS =  $(SDLINCL) -L frameworks/sdl2/lib -lSDL2
 
 SDLINCL = -I frameworks/sdl2/include
 
-CFLAGS = -Werror -Wall -Wextra -g -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

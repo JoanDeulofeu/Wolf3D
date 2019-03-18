@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 14:39:25 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/18 15:13:43 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/03/18 15:55:13 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_parsing2(t_s *s, char **tab, int x, int y)
 	s->map[x][y]->roof_sz = atoi(tmp);
 	tmp = ft_tmp_to_char(tmp, ',');
 	s->map[x][y]->item = atoi(tmp);
-	tmp = ft_tmp_to_char(tmp, ',');
 	ft_memdel((void **)&tab[x]);
 }
 
