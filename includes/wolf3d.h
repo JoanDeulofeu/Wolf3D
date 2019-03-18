@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 19:03:47 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/16 13:36:30 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 11:53:11 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,33 @@
 typedef struct		s_tga
 {
 	int				fd;
+	int				lu;
+	int				i;
+	int				o;
+	int				u;
 	int				width;
 	int				high;
 	unsigned char	buff[4000];
 	unsigned char	*str;
 	SDL_Texture		*texture;
 }					t_tga;
+
+typedef struct		s_cas
+{
+	float			dis;
+	int				hr;
+	int				xbegin;
+	int				xend;
+	int				x;
+	int				y;
+	int				hp;
+	float			savedir;
+	float			avc;
+	SDL_Rect		position;
+	float			angle;
+	int				swich;
+	int				diff;
+}					t_cas;
 
 typedef struct		s_map
 {
@@ -103,6 +124,17 @@ typedef struct		s_ray
 	float			save2;
 }					t_ray;
 
+typedef struct		s_n1
+{
+	int				xtex;
+	int				ytex;
+	int				savey;
+	int				x;
+	int				y;
+	int				xend;
+	int				hp;
+}					t_n1;
+
 typedef struct		s_s
 {
 	t_map			***map;
@@ -110,6 +142,7 @@ typedef struct		s_s
 	t_pos			*pos;
 	t_tex			*tex;
 	t_ray			*ray;
+	t_n1			*n1;
 	int				high;
 	int				width;
 	int				speed;
@@ -138,5 +171,5 @@ void				ft_parsing(t_s *s, char *av);
 void				ft_display(t_s *s);
 void				ft_usage(int usage);
 void				ft_draw_minimap(t_s *s);
-int					ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp);
+int					ft_choise_drawtex(t_s *s);
 #endif

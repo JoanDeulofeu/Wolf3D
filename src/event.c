@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 17:28:44 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/15 18:29:18 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 11:35:02 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,12 @@ void	ft_display2(t_s *s, SDL_Event event)
 		ft_dir_player(s, 4);
 	if (event.key.keysym.scancode == SDL_SCANCODE_E)
 		ft_display3(s);
-	if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)//besoin de william turner.
-	{
-		s->pos->dirplayer += 10;
-		if (s->pos->dirplayer >= 360)
-			s->pos->dirplayer = 0;
-	}
-	if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)//besoin de william turner.
-	{
-		s->pos->dirplayer -= 10;
-		if (s->pos->dirplayer < 0)
-			s->pos->dirplayer = 350;
-	}
+	if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
+		s->pos->dirplayer = (s->pos->dirplayer += 10) >= 360 ?
+		0 : s->pos->dirplayer;
+	if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
+		s->pos->dirplayer = (s->pos->dirplayer -= 10) < 0 ?
+		350 : s->pos->dirplayer;
 	ft_rcasting(s);
 	ft_draw_minimap(s);
 }

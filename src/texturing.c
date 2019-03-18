@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texturing.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jgehin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/18 11:05:10 by jgehin            #+#    #+#             */
+/*   Updated: 2019/03/18 11:05:14 by jgehin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
+SDL_Color	ft_clr(int x, int y, unsigned char *str)
 {
 	SDL_Color	color;
 	int			coord;
@@ -13,80 +25,77 @@ SDL_Color	ft_getcolor(int x, int y, unsigned char *str)
 	return (color);
 }
 
-int			ft_choise_drawtex(t_s *s, int x, int y, int xend, int hp)
+void		ft_just_draw(t_s *s, SDL_Color clr)
 {
-	float			fpercentx;
-	float			fpercenty;
-	int				xtex;
-	int				ytex;
-	int				savey;
-	SDL_Color		color;
-	SDL_PixelFormat *format;
+	SDL_SetRenderDrawColor(s->render, clr.b, clr.g, clr.r, clr.a);
+	SDL_RenderDrawPoint(s->render, s->n1->x, s->n1->y++);
+}
 
-	if (s)
-	savey = y;
-	format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
+int			ft_south_east(t_s *s)
+{
+	SDL_Color		clr;
+
 	if (s->pos->nsew == 1)
 	{
-		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE ;
-		xtex = fpercentx * 64 / 100;
-		while (y < xend)
+		s->n1->xtex = ((fmodf(s->ray->savex, SPACE)) * 100 / SPACE) * 64 / 100;
+		while (s->n1->y < s->n1->xend)
 		{
-			fpercenty = y * 100 / hp;
-			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall1)
-			: ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
-			color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
+			s->n1->ytex = (s->n1->y - s->n1->savey) * 64 / s->n1->hp;
+			clr = s->pos->door == 0 ? ft_clr(s->n1->xtex, s->n1->ytex,
+			s->tex->wall1) : ft_clr(s->n1->xtex, s->n1->ytex, s->tex->wall5);
+			ft_just_draw(s, clr);
 		}
 	}
 	if (s->pos->nsew == 2)
 	{
-		fpercentx = (fmodf(s->ray->savey, SPACE)) * 100 / SPACE ;
-		xtex = fpercentx * 64 / 100;
-		while (y < xend)
+		s->n1->xtex = ((fmodf(s->ray->savey, SPACE)) * 100 / SPACE) * 64 / 100;
+		while (s->n1->y < s->n1->xend)
 		{
-			fpercenty = y * 100 / hp;
-			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall2)
-			: ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
-			color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
+			s->n1->ytex = (s->n1->y - s->n1->savey) * 64 / s->n1->hp;
+			clr = s->pos->door == 0 ? ft_clr(s->n1->xtex, s->n1->ytex,
+			s->tex->wall2) : ft_clr(s->n1->xtex, s->n1->ytex, s->tex->wall5);
+			ft_just_draw(s, clr);
 		}
 	}
+	return (s->n1->y);
+}
+
+int			ft_north_west(t_s *s)
+{
+	SDL_Color		clr;
+
 	if (s->pos->nsew == 3)
 	{
-		fpercentx = (fmodf(s->ray->savex, SPACE)) * 100 / SPACE ;
-		xtex = fpercentx * 64 / 100;
-		// printf("y=%d   ",y);
-		while (y < xend)
+		s->n1->xtex = ((fmodf(s->ray->savex, SPACE)) * 100 / SPACE) * 64 / 100;
+		while (s->n1->y < s->n1->xend)
 		{
-			fpercenty = y * 100 / hp;
-			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall3)
-			: ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
-			color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
+			s->n1->ytex = (s->n1->y - s->n1->savey) * 64 / s->n1->hp;
+			clr = s->pos->door == 0 ? ft_clr(s->n1->xtex, s->n1->ytex,
+			s->tex->wall3) : ft_clr(s->n1->xtex, s->n1->ytex, s->tex->wall5);
+			ft_just_draw(s, clr);
 		}
-		// printf("y=%d\n",y);
 	}
 	if (s->pos->nsew == 4)
 	{
-		fpercentx = (fmodf(s->ray->savey, SPACE)) * 100 / SPACE;
-		xtex = fpercentx * 64 / 100;
-		while (y < xend)
+		s->n1->xtex = (fmodf(s->ray->savey, SPACE) * 100 / SPACE) * 64 / 100;
+		while (s->n1->y < s->n1->xend)
 		{
-			fpercenty = y * 100 / hp;
-			ytex = (y - savey) * 64 / hp;
-			color = s->pos->door == 0 ? ft_getcolor(xtex, ytex, s->tex->wall4)
-			: ft_getcolor(xtex, ytex, s->tex->wall5);
-			SDL_SetRenderDrawColor(s->render, color.b, color.g, color.r,
-			color.a);
-			SDL_RenderDrawPoint(s->render, x, y++);
+			s->n1->ytex = (s->n1->y - s->n1->savey) * 64 / s->n1->hp;
+			clr = s->pos->door == 0 ? ft_clr(s->n1->xtex, s->n1->ytex,
+			s->tex->wall4) : ft_clr(s->n1->xtex, s->n1->ytex, s->tex->wall5);
+			ft_just_draw(s, clr);
 		}
 	}
+	return (s->n1->y);
+}
+
+int			ft_choise_drawtex(t_s *s)
+{
+	int y;
+
+	if (s->pos->nsew == 1 || s->pos->nsew == 2)
+		y = ft_south_east(s);
+	else
+		y = ft_north_west(s);
 	return (y);
 }

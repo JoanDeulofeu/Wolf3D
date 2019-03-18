@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 18:51:10 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/16 13:36:46 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 10:16:03 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	ft_init_struct(t_s *s)
 	if (!(s->tex = (t_tex*)malloc(sizeof(t_tex))))
 		ft_usage(-1);
 	if (!(s->ray = (t_ray*)malloc(sizeof(t_ray))))
+		ft_usage(-1);
+	if (!(s->n1 = (t_n1*)malloc(sizeof(t_n1))))
 		ft_usage(-1);
 	s->pos->initplayer = 0;
 	s->pos->eyehigh = 0;
