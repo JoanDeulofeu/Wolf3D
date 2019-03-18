@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/16 11:11:09 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/16 13:45:40 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/18 14:29:24 by jgehin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ft_check(t_s *s, char *av)
 
 void	ft_check_post_2(t_s *s, int x, int y)
 {
-	if (s->map[x][y]->envi < 1 || s->map[x][y]->envi > 1999)
+	if (s->map[x][y]->envi != 1 && s->map[x][y]->envi != 1000 &&
+		s->map[x][y]->envi != 1001 && s->map[x][y]->envi != 1100)
 		ft_usage(2);
 	if (s->map[x][y]->envi_sz < 1 || s->map[x][y]->envi_sz > 5)
 		ft_usage(2);
