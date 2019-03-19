@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 18:29:48 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/15 18:38:21 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:18:00 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_draw_minimap3(t_s *s)
 void	ft_draw_minimap2(t_s *s, SDL_Rect position, int x, int y)
 {
 	SDL_RenderCopy(s->render, s->tex->ground, NULL, &position);
-	if ((s->map[x][y]->item > 1 && s->map[x][y]->item <
-	6) && s->pos->initplayer == 0)
+	if ((s->map[x][y]->item > 1 && s->map[x][y]->item
+	< 6) && s->pos->initplayer == 0)
 		ft_init_draw(s, position, x, y);
 }
 

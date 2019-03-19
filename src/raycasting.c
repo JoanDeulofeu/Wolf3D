@@ -6,7 +6,7 @@
 /*   By: jgehin <jgehin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 12:15:55 by jgehin            #+#    #+#             */
-/*   Updated: 2019/03/18 14:06:58 by jgehin           ###   ########.fr       */
+/*   Updated: 2019/03/19 11:14:45 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_cas	*ft_post_rcasting(t_s *s)
 	c->x = -1;
 	c->savedir = s->pos->dirplayer;
 	c->avc = ((float)60) / ((float)WINDOW_WIDTH);
-	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH / 2) *
-		c->avc + c->avc);
+	s->pos->dirplayer = s->pos->dirplayer - ((WINDOW_WIDTH / 2)
+	* c->avc + c->avc);
 	c->angle = 30 + c->avc;
 	c->swich = 0;
 	s->pos->dirplayer = (s->pos->dirplayer >= 0) ? s->pos->dirplayer :
@@ -72,8 +72,8 @@ t_cas	*ft_wall_casting(t_s *s, t_cas *c)
 t_cas	*ft_so_calcul(t_s *s, t_cas *c)
 {
 	s->pos->dirplayer += c->avc;
-	s->pos->dirplayer = (s->pos->dirplayer < 360) ?
-		s->pos->dirplayer : 0 + s->pos->dirplayer - 360;
+	s->pos->dirplayer = (s->pos->dirplayer < 360)
+	? s->pos->dirplayer : 0 + s->pos->dirplayer - 360;
 	c->dis = ft_dir_raycasting(s);
 	c->dis = (c->dis <= 0) ? 1 : c->dis;
 	if (c->angle - c->avc > 0 && c->swich == 0)

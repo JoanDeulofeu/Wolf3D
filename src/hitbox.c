@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 17:14:56 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/15 17:14:59 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:16:24 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int		ft_hitbox(t_s *s, int key)
 	y2 = (s->pos->floaty + SPACE / 4) / SPACE;
 	x = s->pos->floatx / SPACE;
 	x2 = (s->pos->floatx + SPACE / 4) / SPACE;
-	if (s->map[x][y]->envi > 1001 || s->map[x][y2]->envi > 1001 ||
-	s->map[x2][y]->envi > 1001 || s->map[x2][y2]->envi > 1001)
+	if (s->map[x][y]->envi > 1001 || s->map[x][y2]->envi > 1001
+	|| s->map[x2][y]->envi > 1001 || s->map[x2][y2]->envi > 1001)
 		return (0);
 	if (key == 4)
 		return (ft_hitbox2(s, x, y, y2));

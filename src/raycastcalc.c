@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 16:00:53 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/15 16:15:55 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:15:35 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_dir_raycasting3y(t_s *s, float angle2, int x, int y)
 {
 	while (1)
 	{
-		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) < y *
-		SPACE)
+		if (s->map[x][y]->envi == 1000 && (s->pos->moovey - SPACE / 2) < y
+		* SPACE)
 		{
 			s->ray->inty2 = y * SPACE + SPACE / 2;
 			s->pos->doory = 1;

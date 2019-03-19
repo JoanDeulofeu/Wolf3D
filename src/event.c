@@ -6,7 +6,7 @@
 /*   By: fmerding <fmerding@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 17:28:44 by fmerding          #+#    #+#             */
-/*   Updated: 2019/03/18 17:54:30 by fmerding         ###   ########.fr       */
+/*   Updated: 2019/03/19 11:26:26 by fmerding         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_display3(t_s *s)
 
 	y = (s->pos->floaty + SPACE / 8) / SPACE;
 	x = (s->pos->floatx + SPACE / 8) / SPACE;
-	if (s->map[x][y]->envi == 1000 || s->map[x][y]->envi ==
-	1001)
+	if (s->map[x][y]->envi == 1000
+	|| s->map[x][y]->envi == 1001)
 		s->map[x][y]->envi = 0;
 }
 
@@ -50,11 +50,11 @@ void	ft_display2(t_s *s, SDL_Event event)
 	if (event.key.keysym.scancode == SDL_SCANCODE_E)
 		ft_display3(s);
 	if (event.key.keysym.scancode == SDL_SCANCODE_RIGHT)
-		s->pos->dirplayer = (s->pos->dirplayer += 10) >= 360 ?
-		0 : s->pos->dirplayer;
+		s->pos->dirplayer = (s->pos->dirplayer += 5) >= 360
+		? 0 : s->pos->dirplayer;
 	if (event.key.keysym.scancode == SDL_SCANCODE_LEFT)
-		s->pos->dirplayer = (s->pos->dirplayer -= 10) < 0 ?
-		350 : s->pos->dirplayer;
+		s->pos->dirplayer = (s->pos->dirplayer -= 5) < 0
+		? 350 : s->pos->dirplayer;
 }
 
 void	ft_display(t_s *s)
